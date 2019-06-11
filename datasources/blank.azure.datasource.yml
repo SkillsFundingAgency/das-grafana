@@ -1,0 +1,14 @@
+apiVersion: 1
+
+datasources:
+    - name: "Azure Monitor"
+      type: "grafana-azure-monitor-datasource"
+      access: "proxy"
+      jsonData:
+        clientId: ""
+        cloudName: "azuremonitor"
+        subscriptionId: ""
+        tenantId: ""
+        azureLogAnalyticsSameAs: true
+      secureJsonData:
+        clientSecret: ""
