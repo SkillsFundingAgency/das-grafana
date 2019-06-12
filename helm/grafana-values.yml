@@ -22,6 +22,21 @@ grafana.ini:
     password: __MySqlPassword__
     ssl_mode: skip-verify
     ca_cert_path: /etc/ssl/certs/Baltimore_CyberTrust_Root.pem
+datasources: {}
+ datasources.yaml:
+   apiVersion: 1
+   datasources:
+    - name: "Azure Monitor"
+      type: "grafana-azure-monitor-datasource"
+      access: "proxy"
+      jsonData:
+        cloudName: "azuremonitor"
+        clientId: __AzureMonitorClientId__
+        subscriptionId: __AzureSubscriptionId__
+        tenantId: __AzureTenantId__
+        azureLogAnalyticsSameAs: true
+      secureJsonData:
+        clientSecret: __AzureMonitorClientSecret__
 ingress:
   enabled: true
   annotations:
