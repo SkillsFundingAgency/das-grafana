@@ -11,7 +11,7 @@ grafana.ini:
     # team_ids:
     allowed_organizations: __AllowedOrganizations__
   server:
-    root_url: http://__RootUrl__
+    root_url: __RootUrl__
   database:
     type: mysql
     host: __MysqlServerName__.mysql.database.azure.com:3306
@@ -28,4 +28,7 @@ ingress:
   path: /
   hosts:
     - __CustomDomain__
-  tls: []
+  tls:
+    - hosts:
+      - __CustomDomain__
+      secretName: __TlsSecretName__
