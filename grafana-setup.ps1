@@ -32,7 +32,13 @@ $ServiceUrl | Clip
 Write-Output "Service Url: $ServiceUrl has been copied to the clipboard"
 
 # --- Get grafana password
-Write-Output "Password $([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((kubectl get secret --namespace default $Release -o json | ConvertFrom-Json).data."admin-password")))"
+Write-Output "Password: $([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((kubectl get secret --namespace default $Release -o json | ConvertFrom-Json).data."admin-password")))"
 
-# --- Kill it
-#.\helm.exe delete --purge $Release
+# --- Utility function used to generate base64 strings
+function ConvertTo-Base64String{
+    Param(
+        [String]$InputString
+    )
+    $Bytes = [System.Text.Encoding]::Unicode.GetBytes($InputString)
+    [Convert]::ToBase64String($Bytes)
+}
