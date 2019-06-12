@@ -1,6 +1,8 @@
 replicas: 2
 plugins:
   - grafana-azure-monitor-datasource
+admin:
+  existingSecret: grafana-admin-user
 grafana.ini:
   auth.github:
     name: github
