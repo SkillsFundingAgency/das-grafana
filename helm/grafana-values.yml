@@ -34,7 +34,7 @@ datasources:
         clientId: __AzureMonitorClientId__
         subscriptionId: __AzureSubscriptionId__
         tenantId: __AzureTenantId__
-        azureLogAnalyticsSameAs: true
+        azureLogAnalyticsSameAs: false
       secureJsonData:
         clientSecret: __AzureMonitorClientSecret__
 ingress:
