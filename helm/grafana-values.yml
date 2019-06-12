@@ -22,7 +22,7 @@ grafana.ini:
     password: __MySqlPassword__
     ssl_mode: skip-verify
     ca_cert_path: /etc/ssl/certs/Baltimore_CyberTrust_Root.pem
-datasources: {}
+datasources:
  datasources.yaml:
    apiVersion: 1
    datasources:
