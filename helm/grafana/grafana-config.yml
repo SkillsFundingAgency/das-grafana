@@ -13,7 +13,7 @@ grafana.ini:
     # team_ids:
     allowed_organizations: __AllowedOrganizations__
   server:
-    root_url: __RootUrl__
+    root_url: http://__RootUrl__
   database:
     type: mysql
     host: __MysqlServerName__.mysql.database.azure.com:3306
@@ -22,3 +22,12 @@ grafana.ini:
     password: __MySqlPassword__
     ssl_mode: skip-verify
     ca_cert_path: /etc/ssl/certs/Baltimore_CyberTrust_Root.pem
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - __CustomDomain__
+  tls: []
