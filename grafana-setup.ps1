@@ -39,6 +39,6 @@ function ConvertTo-Base64String{
     Param(
         [String]$InputString
     )
-    $Bytes = [System.Text.Encoding]::Unicode.GetBytes($InputString)
+    $Bytes = [System.Text.Encoding]::UTF8.GetBytes($InputString)
     [Convert]::ToBase64String($Bytes)
 }
