@@ -1,5 +1,3 @@
-service:
-  type: ClusterIP
 replicas: 2
 plugins:
   - grafana-azure-monitor-datasource
