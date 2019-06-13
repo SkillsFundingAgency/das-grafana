@@ -8,8 +8,8 @@ grafana.ini:
     name: github
     enabled: true
     allow_sign_up: true
-    client_id: __ClientId__
-    client_secret: __ClientSecret__
+    client_id: __GitHubClientId__
+    client_secret: __GitHubClientSecret__
     # team_ids:
     allowed_organizations: __AllowedOrganizations__
   server:
@@ -60,4 +60,4 @@ ingress:
         azureLogAnalyticsSameAs: true
       secureJsonData:
         clientSecret: ""
-    
+
