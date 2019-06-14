@@ -1,0 +1,51 @@
+replicas: 2
+plugins:
+  - grafana-azure-monitor-datasource
+admin:
+  existingSecret: grafana-admin-user
+grafana.ini:
+  auth.github:
+    name: github
+    enabled: true
+    allow_sign_up: true
+    client_id: __GitHubClientId__
+    client_secret: __GitHubClientSecret__
+    team_ids: '__GitHubTeamIds__'
+    allowed_organizations: __GitHubAllowedOrganizations__
+  server:
+    root_url: __RootUrl__
+  database:
+    type: mysql
+    host: __MysqlServerName__.mysql.database.azure.com:3306
+    name: grafana
+    user: __MySqlUsername__
+    password: __MySqlPassword__
+    ssl_mode: skip-verify
+    ca_cert_path: /etc/ssl/certs/Baltimore_CyberTrust_Root.pem
+datasources:
+ datasources.yaml:
+   apiVersion: 1
+   datasources:
+    - name: "Azure Monitor"
+      type: "grafana-azure-monitor-datasource"
+      access: "proxy"
+      jsonData:
+        cloudName: "azuremonitor"
+        clientId: __AzureMonitorClientId__
+        subscriptionId: __AzureSubscriptionId__
+        tenantId: __AzureTenantId__
+        azureLogAnalyticsSameAs: true
+      secureJsonData:
+        clientSecret: __AzureMonitorClientSecret__
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - __CustomDomain__
+  tls:
+    - hosts:
+      - __CustomDomain__
+      secretName: __TlsSecretName__
