@@ -1,8 +1,7 @@
-
 controller:
-  replicaCount: 2 
+  replicaCount: 2
   nodeSelector:
-    beta.kubernetes.io/os: linux 
+    beta.kubernetes.io/os: linux
 defaultBackend:
   nodeSelector:
     beta.kubernetes.io/os: linux
