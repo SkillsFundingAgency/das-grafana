@@ -1,0 +1,14 @@
+apiVersion: spv.no/v1alpha1
+kind: AzureKeyVaultSecret
+metadata:
+  name: grafana-tls-cert
+spec:
+  vault:
+    name: __KeyVaultName__
+    object:
+      type: secret
+      name: __TlsSecretName__
+  output:
+    secret:
+      name: __TlsSecretName__
+      type: kubernetes.io/tls
