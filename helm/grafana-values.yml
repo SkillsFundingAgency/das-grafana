@@ -63,7 +63,7 @@ datasources:
       secureJsonData:
         clientSecret: __AzureMonitorPreProdClientSecret__
     - name: "Azure Monitor"
-      orgId: 2
+      orgId: 3
       type: "grafana-azure-monitor-datasource"
       access: "proxy"
       jsonData:
