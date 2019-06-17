@@ -18,8 +18,8 @@ grafana.ini:
     type: mysql
     host: __MysqlServerName__.mysql.database.azure.com:3306
     name: grafana
-    user: __MySqlUsername__
-    password: __MySqlPassword__
+    user: __MySqlServiceAccountUsername__
+    password: __MySqlServiceAccountPassword__
     ssl_mode: skip-verify
     ca_cert_path: /etc/ssl/certs/Baltimore_CyberTrust_Root.pem
 datasources:
