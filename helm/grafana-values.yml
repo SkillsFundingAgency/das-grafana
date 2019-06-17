@@ -27,6 +27,7 @@ datasources:
    apiVersion: 1
    datasources:
     - name: "Azure Monitor"
+      orgId: 1
       type: "grafana-azure-monitor-datasource"
       access: "proxy"
       jsonData:
@@ -37,6 +38,42 @@ datasources:
         azureLogAnalyticsSameAs: true
       secureJsonData:
         clientSecret: __AzureMonitorClientSecret__
+    - name: "Azure Monitor"
+      orgId: 1
+      type: "grafana-azure-monitor-datasource"
+      access: "proxy"
+      jsonData:
+        cloudName: "azuremonitor"
+        clientId: __AzureMonitorClientId__
+        subscriptionId: __AzureSubscriptionId__
+        tenantId: __AzureTenantId__
+        azureLogAnalyticsSameAs: true
+      secureJsonData:
+        clientSecret: __AzureMonitorClientSecret__
+    - name: "Azure Monitor"
+      orgId: 2
+      type: "grafana-azure-monitor-datasource"
+      access: "proxy"
+      jsonData:
+        cloudName: "azuremonitor"
+        clientId: __AzureMonitorPreProdClientId__
+        subscriptionId: __AzurePreProdSubscriptionId__
+        tenantId: __AzureFCSTenantId__
+        azureLogAnalyticsSameAs: true
+      secureJsonData:
+        clientSecret: __AzureMonitorPreProdClientSecret__
+    - name: "Azure Monitor"
+      orgId: 2
+      type: "grafana-azure-monitor-datasource"
+      access: "proxy"
+      jsonData:
+        cloudName: "azuremonitor"
+        clientId: __AzureMonitorProdClientId__
+        subscriptionId: __AzureProdSubscriptionId__
+        tenantId: __AzureFCSTenantId__
+        azureLogAnalyticsSameAs: true
+      secureJsonData:
+        clientSecret: __AzureMonitorProdClientSecret__
 ingress:
   enabled: true
   annotations:
