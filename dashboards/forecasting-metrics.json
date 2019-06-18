@@ -293,7 +293,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -461,7 +461,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -629,7 +629,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -797,7 +797,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -965,7 +965,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -1133,7 +1133,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -1313,7 +1313,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -1399,7 +1399,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "B",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -1485,7 +1485,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "C",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -1571,7 +1571,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "D",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -1657,7 +1657,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "E",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -1743,7 +1743,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "F",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -1922,7 +1922,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -2019,7 +2019,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "B",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -2116,7 +2116,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "C",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -2213,7 +2213,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "D",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -2310,7 +2310,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "E",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -2407,7 +2407,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "F",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -2573,7 +2573,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -2659,7 +2659,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "B",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -2745,7 +2745,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "C",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -2831,7 +2831,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "D",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -2917,7 +2917,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "E",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             },
             {
               "appInsights": {
@@ -3003,7 +3003,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "F",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -3141,7 +3141,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -3317,7 +3317,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -3492,7 +3492,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -3665,7 +3665,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -3835,7 +3835,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -3990,7 +3990,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -4143,7 +4143,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"           
             }
           ],
           "thresholds": [],
@@ -4299,7 +4299,7 @@
               },
               "queryType": "Azure Monitor",
               "refId": "A",
-              "subscription": "68208b91-0105-498e-a1bc-40d75596c01a"
+              "subscription": "$subscriptions"
             }
           ],
           "thresholds": [],
@@ -4355,6 +4355,20 @@
   "tags": [],
   "templating": {
     "list": [
+      {
+        "current": {},
+        "hide": 0,
+        "includeAll": false,
+        "label": "Subscriptions",
+        "multi": false,
+        "name": "subscriptions",
+        "options": [],
+        "query": "grafana-azure-monitor-datasource",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
       {
         "current": {
           "value": "${VAR_ENVIRONMENT}",
