@@ -63,7 +63,7 @@ datasources:
         azureLogAnalyticsSameAs: true
       secureJsonData:
         clientSecret: __AzureMonitorProdClientSecret__
-    - name: MSSQL - Forecasting
+    - name: "MSSQL - Forecasting"
       ordId: 1
       type: mssql
       url: __TestSharedSqlServerName__.database.windows.net:1433
@@ -75,7 +75,7 @@ datasources:
         connMaxLifetime: 14400
       secureJsonData:
         password:  "__TestForecastingServiceAccountPassword__"
-    - name: MSSQL - Forecasting
+    - name: "MSSQL - Forecasting"
       ordId: 2
       type: mssql
       url: __PreProdSharedSqlServerName__.database.windows.net:1433
@@ -87,7 +87,7 @@ datasources:
         connMaxLifetime: 14400
       secureJsonData:
         password:  "__PreProdForecastingServiceAccountPassword__"
-    - name: MSSQL - Forecasting
+    - name: "MSSQL - Forecasting"
       ordId: 3
       type: mssql
       url: __ProdSharedSqlServerName__.database.windows.net:1433
