@@ -40,18 +40,6 @@ datasources:
       secureJsonData:
         clientSecret: __AzureMonitorClientSecret__
     - name: "Azure Monitor"
-      orgId: 1
-      type: "grafana-azure-monitor-datasource"
-      access: "proxy"
-      jsonData:
-        cloudName: "azuremonitor"
-        clientId: __AzureMonitorClientId__
-        subscriptionId: __AzureSubscriptionId__
-        tenantId: __AzureTenantId__
-        azureLogAnalyticsSameAs: true
-      secureJsonData:
-        clientSecret: __AzureMonitorClientSecret__
-    - name: "Azure Monitor"
       orgId: 2
       type: "grafana-azure-monitor-datasource"
       access: "proxy"
@@ -75,6 +63,42 @@ datasources:
         azureLogAnalyticsSameAs: true
       secureJsonData:
         clientSecret: __AzureMonitorProdClientSecret__
+    - name: MSSQL - Forecasting
+      ordId: 1
+      type: mssql
+      url: __TestSharedSqlServerName__.database.windows.net:1433
+      database: __TestForecastingDatabaseName__
+      user: __ForecastingServiceAccountUsername__
+      jsonData:
+        maxOpenConns: 0
+        maxIdleConns: 2
+        connMaxLifetime: 14400
+      secureJsonData:
+        password:  "__TestForecastingServiceAccountPassword__"
+    - name: MSSQL - Forecasting
+      ordId: 2
+      type: mssql
+      url: __PreProdSharedSqlServerName__.database.windows.net:1433
+      database: __PreProdForecastingDatabaseName__
+      user: __ForecastingServiceAccountUsername__
+      jsonData:
+        maxOpenConns: 0
+        maxIdleConns: 2
+        connMaxLifetime: 14400
+      secureJsonData:
+        password:  "__PreProdForecastingServiceAccountPassword__"
+    - name: MSSQL - Forecasting
+      ordId: 3
+      type: mssql
+      url: __ProdSharedSqlServerName__.database.windows.net:1433
+      database: __ProdForecastingDatabaseName__
+      user: __ForecastingServiceAccountUsername__
+      jsonData:
+        maxOpenConns: 0
+        maxIdleConns: 2
+        connMaxLifetime: 14400
+      secureJsonData:
+        password:  "__ProdForecastingServiceAccountPassword__"
 ingress:
   enabled: true
   annotations:
