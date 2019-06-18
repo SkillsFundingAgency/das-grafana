@@ -64,7 +64,7 @@ datasources:
       secureJsonData:
         clientSecret: __AzureMonitorProdClientSecret__
     - name: "MSSQL - Forecasting"
-      ordId: 1
+      orgId: 1
       type: mssql
       url: __TestSharedSqlServerName__.database.windows.net:1433
       database: __TestForecastingDatabaseName__
@@ -76,7 +76,7 @@ datasources:
       secureJsonData:
         password:  "__TestForecastingServiceAccountPassword__"
     - name: "MSSQL - Forecasting"
-      ordId: 2
+      orgId: 2
       type: mssql
       url: __PreProdSharedSqlServerName__.database.windows.net:1433
       database: __PreProdForecastingDatabaseName__
@@ -88,7 +88,7 @@ datasources:
       secureJsonData:
         password:  "__PreProdForecastingServiceAccountPassword__"
     - name: "MSSQL - Forecasting"
-      ordId: 3
+      orgId: 3
       type: mssql
       url: __ProdSharedSqlServerName__.database.windows.net:1433
       database: __ProdForecastingDatabaseName__
