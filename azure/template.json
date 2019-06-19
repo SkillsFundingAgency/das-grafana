@@ -101,10 +101,6 @@
     "mySqlServerName": {
       "type": "string",
       "value": "[variables('mySqlServerName')]"
-    },
-    "redisConnectionString": {
-      "type": "string",
-      "value": "[reference('redis-cache').outputs.PrimaryConnectionString.value]"
     }
   }
 }
