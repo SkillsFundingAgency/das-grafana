@@ -7,7 +7,7 @@
     },
     "mySqlSkuName": {
       "type": "string",
-      "defaultValue": "B_Gen5_1"
+      "defaultValue": "B_Gen5_2"
     },
     "mySqlSkuTier": {
       "type": "string",
