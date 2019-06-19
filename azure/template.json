@@ -29,9 +29,28 @@
     }
   },
   "variables": {
-    "mySqlServerName": "[concat('das-', parameters('resourceEnvironmentName'), '-graf-msql')]"
+    "deploymentUrlBase": "https://raw.githubusercontent.com/SkillsFundingAgency/das-platform-building-blocks/master/templates/",
+    "mySqlServerName": "[concat('das-', parameters('resourceEnvironmentName'), '-graf-msql')]",
+    "redisCacheName": "[concat('das-', parameters('resourceEnvironmentName'), '-graf-rds')]"
   },
   "resources": [
+    {
+      "apiVersion": "2017-05-10",
+      "name": "redis-cache",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(variables('deploymentUrlBase'),'redis.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "redisCacheName": {
+            "value": "[variables('redisCacheName')]"
+          }
+        }
+      }
+    },
     {
       "name": "[variables('mySqlServerName')]",
       "type": "Microsoft.DBforMySQL/servers",
@@ -82,6 +101,10 @@
     "mySqlServerName": {
       "type": "string",
       "value": "[variables('mySqlServerName')]"
+    },
+    "redisConnectionString": {
+      "type": "string",
+      "value": "[reference('redis-cache').outputs.PrimaryConnectionString.value]"
     }
   }
 }
