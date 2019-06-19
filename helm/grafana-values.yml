@@ -2,6 +2,8 @@ replicas: 2
 plugins:
   - grafana-azure-monitor-datasource
   - natel-plotly-panel
+users:
+  auto_assign_org: false
 admin:
   existingSecret: grafana-admin-user
 grafana.ini:
