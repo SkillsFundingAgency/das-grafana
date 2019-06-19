@@ -2,8 +2,6 @@ replicas: 2
 plugins:
   - grafana-azure-monitor-datasource
   - natel-plotly-panel
-users:
-  auto_assign_org: false
 admin:
   existingSecret: grafana-admin-user
 grafana.ini:
@@ -25,6 +23,8 @@ grafana.ini:
     password: __MySqlPassword__
     ssl_mode: skip-verify
     ca_cert_path: /etc/ssl/certs/Baltimore_CyberTrust_Root.pem
+  users:
+    auto_assign_org: false
 datasources:
  datasources.yaml:
    apiVersion: 1
