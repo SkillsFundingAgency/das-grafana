@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_MICROSOFT_SQL SERVER",
-      "label": "Microsoft SQL Server",
+      "name": "DS_MSSQL_- FORECASTING",
+      "label": "MSSQL - Forecasting",
       "description": "",
       "type": "datasource",
       "pluginId": "mssql",
@@ -20,8 +20,8 @@
       "name": "VAR_ENVIRONMENT",
       "type": "constant",
       "label": "Environment",
-      "value": "test",
-      "description": ""
+      "value": "",
+      "description": "Environment name [at,test,test2,demo,pp,prd]"
     }
   ],
   "__requires": [
@@ -73,7 +73,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1560885130537,
+  "iteration": 1560935360558,
   "links": [],
   "panels": [
     {
@@ -86,7 +86,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "${DS_MICROSOFT_SQL SERVER}",
+      "datasource": "${DS_MSSQL_- FORECASTING}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -3126,7 +3126,7 @@
                 "metricDefinition": "Microsoft.Storage/storageAccounts/queueServices",
                 "metricName": "QueueMessageCount",
                 "resourceGroup": "das-$environment-fcast-rg",
-                "resourceName": "dastestfcaststr/default",
+                "resourceName": "das[[environment]]fcaststr/default",
                 "timeGrain": "auto",
                 "timeGrains": [
                   {
@@ -3274,7 +3274,7 @@
                 "metricDefinition": "Microsoft.Storage/storageAccounts/queueServices",
                 "metricName": "Transactions",
                 "resourceGroup": "das-$environment-fcast-rg",
-                "resourceName": "dastestfcaststr/default",
+                "resourceName": "das[[environment]]fcaststr/default",
                 "timeGrain": "auto",
                 "timeGrains": [
                   {
@@ -3449,7 +3449,7 @@
                 "metricDefinition": "Microsoft.Storage/storageAccounts/queueServices",
                 "metricName": "Transactions",
                 "resourceGroup": "das-$environment-fcast-rg",
-                "resourceName": "dastestfcaststr/default",
+                "resourceName": "das[[environment]]fcaststr/default",
                 "timeGrain": "auto",
                 "timeGrains": [
                   {
@@ -3622,7 +3622,7 @@
                 "metricDefinition": "Microsoft.Storage/storageAccounts/queueServices",
                 "metricName": "SuccessE2ELatency",
                 "resourceGroup": "das-$environment-fcast-rg",
-                "resourceName": "dastestfcaststr/default",
+                "resourceName": "das[[environment]]fcaststr/default",
                 "timeGrain": "auto",
                 "timeGrains": [
                   {
@@ -3715,7 +3715,7 @@
       "type": "row"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3723,630 +3723,629 @@
         "y": 7
       },
       "id": 30,
-      "panels": [
-        {
-          "aliasColors": {
-            "das-$environment-fcast-db": "light-blue"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_AZURE_MONITOR}",
-          "fill": 1,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 0,
-            "y": 8
-          },
-          "id": 28,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "appInsights": {
-                "groupBy": "none",
-                "metricName": "select",
-                "rawQuery": false,
-                "rawQueryString": "",
-                "spliton": "",
-                "timeGrainType": "auto",
-                "xaxis": "timestamp",
-                "yaxis": ""
-              },
-              "azureLogAnalytics": {
-                "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
-                "resultFormat": "time_series"
-              },
-              "azureMonitor": {
-                "aggOptions": [
-                  "Average",
-                  "Maximum",
-                  "Minimum"
-                ],
-                "aggregation": "Minimum",
-                "alias": "{{resourcename}}",
-                "dimension": "",
-                "dimensionFilter": "*",
-                "dimensions": [],
-                "metricDefinition": "Microsoft.Sql/servers/databases",
-                "metricName": "dtu_consumption_percent",
-                "resourceGroup": "das-$environment-shared-rg",
-                "resourceName": "das-$environment-shared-sql/das-$environment-fcast-db",
-                "timeGrain": "auto",
-                "timeGrains": [
-                  {
-                    "text": "auto",
-                    "value": "auto"
-                  },
-                  {
-                    "text": "1 minute",
-                    "value": "PT1M"
-                  },
-                  {
-                    "text": "5 minutes",
-                    "value": "PT5M"
-                  },
-                  {
-                    "text": "15 minutes",
-                    "value": "PT15M"
-                  },
-                  {
-                    "text": "30 minutes",
-                    "value": "PT30M"
-                  },
-                  {
-                    "text": "1 hour",
-                    "value": "PT1H"
-                  },
-                  {
-                    "text": "6 hours",
-                    "value": "PT6H"
-                  },
-                  {
-                    "text": "12 hours",
-                    "value": "PT12H"
-                  },
-                  {
-                    "text": "1 day",
-                    "value": "P1D"
-                  }
-                ]
-              },
-              "queryType": "Azure Monitor",
-              "refId": "A",
-              "subscription": "$subscriptions"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "DTU",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": true,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {
-            "das-$environment-fcast-db": "dark-orange"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_AZURE_MONITOR}",
-          "fill": 1,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 6,
-            "y": 8
-          },
-          "id": 31,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "appInsights": {
-                "groupBy": "none",
-                "metricName": "select",
-                "rawQuery": false,
-                "rawQueryString": "",
-                "spliton": "",
-                "timeGrainType": "auto",
-                "xaxis": "timestamp",
-                "yaxis": ""
-              },
-              "azureLogAnalytics": {
-                "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
-                "resultFormat": "time_series"
-              },
-              "azureMonitor": {
-                "aggOptions": [
-                  "Total",
-                  "Count"
-                ],
-                "aggregation": "Count",
-                "alias": "{{resourcename}}",
-                "dimension": "",
-                "dimensionFilter": "*",
-                "dimensions": [],
-                "metricDefinition": "Microsoft.Sql/servers/databases",
-                "metricName": "deadlock",
-                "resourceGroup": "das-$environment-shared-rg",
-                "resourceName": "das-$environment-shared-sql/das-$environment-fcast-db",
-                "timeGrain": "auto",
-                "timeGrains": [
-                  {
-                    "text": "auto",
-                    "value": "auto"
-                  },
-                  {
-                    "text": "1 minute",
-                    "value": "PT1M"
-                  },
-                  {
-                    "text": "5 minutes",
-                    "value": "PT5M"
-                  },
-                  {
-                    "text": "15 minutes",
-                    "value": "PT15M"
-                  },
-                  {
-                    "text": "30 minutes",
-                    "value": "PT30M"
-                  },
-                  {
-                    "text": "1 hour",
-                    "value": "PT1H"
-                  },
-                  {
-                    "text": "6 hours",
-                    "value": "PT6H"
-                  },
-                  {
-                    "text": "12 hours",
-                    "value": "PT12H"
-                  },
-                  {
-                    "text": "1 day",
-                    "value": "P1D"
-                  }
-                ]
-              },
-              "queryType": "Azure Monitor",
-              "refId": "A",
-              "subscription": "$subscriptions"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Deadlocks",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": true,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_AZURE_MONITOR}",
-          "fill": 1,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 12,
-            "y": 8
-          },
-          "id": 32,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "appInsights": {
-                "groupBy": "none",
-                "metricName": "select",
-                "rawQuery": false,
-                "rawQueryString": "",
-                "spliton": "",
-                "timeGrainType": "auto",
-                "xaxis": "timestamp",
-                "yaxis": ""
-              },
-              "azureLogAnalytics": {
-                "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
-                "resultFormat": "time_series"
-              },
-              "azureMonitor": {
-                "aggOptions": [
-                  "Total",
-                  "Count"
-                ],
-                "aggregation": "Total",
-                "alias": "{{resourcename}}",
-                "dimension": "",
-                "dimensionFilter": "*",
-                "dimensions": [],
-                "metricDefinition": "Microsoft.Sql/servers/databases",
-                "metricName": "connection_successful",
-                "resourceGroup": "das-$environment-shared-rg",
-                "resourceName": "das-$environment-shared-sql/das-$environment-fcast-db",
-                "timeGrain": "auto",
-                "timeGrains": [
-                  {
-                    "text": "auto",
-                    "value": "auto"
-                  },
-                  {
-                    "text": "1 minute",
-                    "value": "PT1M"
-                  },
-                  {
-                    "text": "5 minutes",
-                    "value": "PT5M"
-                  },
-                  {
-                    "text": "15 minutes",
-                    "value": "PT15M"
-                  },
-                  {
-                    "text": "30 minutes",
-                    "value": "PT30M"
-                  },
-                  {
-                    "text": "1 hour",
-                    "value": "PT1H"
-                  },
-                  {
-                    "text": "6 hours",
-                    "value": "PT6H"
-                  },
-                  {
-                    "text": "12 hours",
-                    "value": "PT12H"
-                  },
-                  {
-                    "text": "1 day",
-                    "value": "P1D"
-                  }
-                ]
-              },
-              "queryType": "Azure Monitor",
-              "refId": "A",
-              "subscription": "$subscriptions"           
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Successful Connection",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": true,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {
-            "das-$environment-fcast-db": "dark-red",
-            "das-$environment-fcast-db.connection_failed": "dark-red"
-          },
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_AZURE_MONITOR}",
-          "fill": 1,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 18,
-            "y": 8
-          },
-          "id": 33,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "appInsights": {
-                "groupBy": "none",
-                "metricName": "select",
-                "rawQuery": false,
-                "rawQueryString": "",
-                "spliton": "",
-                "timeGrainType": "auto",
-                "xaxis": "timestamp",
-                "yaxis": ""
-              },
-              "azureLogAnalytics": {
-                "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
-                "resultFormat": "time_series"
-              },
-              "azureMonitor": {
-                "aggOptions": [
-                  "Total",
-                  "Count"
-                ],
-                "aggregation": "Total",
-                "alias": "{{resourcename}}",
-                "dimension": "",
-                "dimensionFilter": "*",
-                "dimensions": [],
-                "metricDefinition": "Microsoft.Sql/servers/databases",
-                "metricName": "connection_failed",
-                "resourceGroup": "das-$environment-shared-rg",
-                "resourceName": "das-$environment-shared-sql/das-$environment-fcast-db",
-                "timeGrain": "auto",
-                "timeGrains": [
-                  {
-                    "text": "auto",
-                    "value": "auto"
-                  },
-                  {
-                    "text": "1 minute",
-                    "value": "PT1M"
-                  },
-                  {
-                    "text": "5 minutes",
-                    "value": "PT5M"
-                  },
-                  {
-                    "text": "15 minutes",
-                    "value": "PT15M"
-                  },
-                  {
-                    "text": "30 minutes",
-                    "value": "PT30M"
-                  },
-                  {
-                    "text": "1 hour",
-                    "value": "PT1H"
-                  },
-                  {
-                    "text": "6 hours",
-                    "value": "PT6H"
-                  },
-                  {
-                    "text": "12 hours",
-                    "value": "PT12H"
-                  },
-                  {
-                    "text": "1 day",
-                    "value": "P1D"
-                  }
-                ]
-              },
-              "queryType": "Azure Monitor",
-              "refId": "A",
-              "subscription": "$subscriptions"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Failed Connection",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "transparent": true,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        }
-      ],
+      "panels": [],
       "title": "Database",
       "type": "row"
+    },
+    {
+      "aliasColors": {
+        "das-$environment-fcast-db": "light-blue"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_AZURE_MONITOR}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 8
+      },
+      "id": 28,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "appInsights": {
+            "groupBy": "none",
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "spliton": "",
+            "timeGrainType": "auto",
+            "xaxis": "timestamp",
+            "yaxis": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Average",
+              "Maximum",
+              "Minimum"
+            ],
+            "aggregation": "Minimum",
+            "alias": "{{resourcename}}",
+            "dimension": "",
+            "dimensionFilter": "*",
+            "dimensions": [],
+            "metricDefinition": "Microsoft.Sql/servers/databases",
+            "metricName": "dtu_consumption_percent",
+            "resourceGroup": "das-$environment-shared-rg",
+            "resourceName": "das-$environment-shared-sql-we/das-$environment-fcast-db",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ]
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "$subscriptions"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "DTU",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "das-$environment-fcast-db": "dark-orange"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_AZURE_MONITOR}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 8
+      },
+      "id": 31,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "appInsights": {
+            "groupBy": "none",
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "spliton": "",
+            "timeGrainType": "auto",
+            "xaxis": "timestamp",
+            "yaxis": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Total",
+              "Count"
+            ],
+            "aggregation": "Count",
+            "alias": "{{resourcename}}",
+            "dimension": "",
+            "dimensionFilter": "*",
+            "dimensions": [],
+            "metricDefinition": "Microsoft.Sql/servers/databases",
+            "metricName": "deadlock",
+            "resourceGroup": "das-$environment-shared-rg",
+            "resourceName": "das-$environment-shared-sql-we/das-$environment-fcast-db",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ]
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "$subscriptions"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Deadlocks",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_AZURE_MONITOR}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 8
+      },
+      "id": 32,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "appInsights": {
+            "groupBy": "none",
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "spliton": "",
+            "timeGrainType": "auto",
+            "xaxis": "timestamp",
+            "yaxis": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Total",
+              "Count"
+            ],
+            "aggregation": "Total",
+            "alias": "{{resourcename}}",
+            "dimension": "",
+            "dimensionFilter": "*",
+            "dimensions": [],
+            "metricDefinition": "Microsoft.Sql/servers/databases",
+            "metricName": "connection_successful",
+            "resourceGroup": "das-$environment-shared-rg",
+            "resourceName": "das-$environment-shared-sql-we/das-$environment-fcast-db",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ]
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "$subscriptions"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Successful Connection",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "das-$environment-fcast-db": "dark-red",
+        "das-$environment-fcast-db.connection_failed": "dark-red"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_AZURE_MONITOR}",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 8
+      },
+      "id": 33,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "appInsights": {
+            "groupBy": "none",
+            "metricName": "select",
+            "rawQuery": false,
+            "rawQueryString": "",
+            "spliton": "",
+            "timeGrainType": "auto",
+            "xaxis": "timestamp",
+            "yaxis": ""
+          },
+          "azureLogAnalytics": {
+            "query": "//change this example to create your own time series query\n<table name>                                                              //the table to query (e.g. Usage, Heartbeat, Perf)\n| where $__timeFilter(TimeGenerated)                                      //this is a macro used to show the full chart’s time range, choose the datetime column here\n| summarize count() by <group by column>, bin(TimeGenerated, $__interval) //change “group by column” to a column in your table, such as “Computer”. The $__interval macro is used to auto-select the time grain. Can also use 1h, 5m etc.\n| order by TimeGenerated asc",
+            "resultFormat": "time_series"
+          },
+          "azureMonitor": {
+            "aggOptions": [
+              "Total",
+              "Count"
+            ],
+            "aggregation": "Total",
+            "alias": "{{resourcename}}",
+            "dimension": "",
+            "dimensionFilter": "*",
+            "dimensions": [],
+            "metricDefinition": "Microsoft.Sql/servers/databases",
+            "metricName": "connection_failed",
+            "resourceGroup": "das-$environment-shared-rg",
+            "resourceName": "das-$environment-shared-sql-we/das-$environment-fcast-db",
+            "timeGrain": "auto",
+            "timeGrains": [
+              {
+                "text": "auto",
+                "value": "auto"
+              },
+              {
+                "text": "1 minute",
+                "value": "PT1M"
+              },
+              {
+                "text": "5 minutes",
+                "value": "PT5M"
+              },
+              {
+                "text": "15 minutes",
+                "value": "PT15M"
+              },
+              {
+                "text": "30 minutes",
+                "value": "PT30M"
+              },
+              {
+                "text": "1 hour",
+                "value": "PT1H"
+              },
+              {
+                "text": "6 hours",
+                "value": "PT6H"
+              },
+              {
+                "text": "12 hours",
+                "value": "PT12H"
+              },
+              {
+                "text": "1 day",
+                "value": "P1D"
+              }
+            ]
+          },
+          "queryType": "Azure Monitor",
+          "refId": "A",
+          "subscription": "$subscriptions"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Failed Connection",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": false,
@@ -4356,18 +4355,26 @@
   "templating": {
     "list": [
       {
+        "allValue": null,
         "current": {},
+        "datasource": "${DS_AZURE_MONITOR}",
+        "definition": "subscriptions()",
         "hide": 0,
         "includeAll": false,
         "label": "Subscriptions",
         "multi": false,
         "name": "subscriptions",
         "options": [],
-        "query": "grafana-azure-monitor-datasource",
+        "query": "subscriptions()",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "type": "datasource"
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       },
       {
         "current": {
@@ -4421,5 +4428,5 @@
   "timezone": "",
   "title": "Forecasting Metrics",
   "uid": "SBi8I8nWk",
-  "version": 14
+  "version": 7
 }
