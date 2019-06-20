@@ -30,8 +30,8 @@ datasources:
  datasources.yaml:
    apiVersion: 1
    datasources:
-    - name: "Azure Monitor"
-      orgId: 1
+    - name: "Azure Monitor - Dev/Test"
+      orgId: 3
       type: "grafana-azure-monitor-datasource"
       access: "proxy"
       jsonData:
@@ -42,8 +42,8 @@ datasources:
         azureLogAnalyticsSameAs: true
       secureJsonData:
         clientSecret: __AzureMonitorClientSecret__
-    - name: "Azure Monitor"
-      orgId: 2
+    - name: "Azure Monitor - PreProduction"
+      orgId: 3
       type: "grafana-azure-monitor-datasource"
       access: "proxy"
       jsonData:
@@ -54,7 +54,7 @@ datasources:
         azureLogAnalyticsSameAs: true
       secureJsonData:
         clientSecret: __AzureMonitorPreProdClientSecret__
-    - name: "Azure Monitor"
+    - name: "Azure Monitor - Production"
       orgId: 3
       type: "grafana-azure-monitor-datasource"
       access: "proxy"
@@ -66,8 +66,8 @@ datasources:
         azureLogAnalyticsSameAs: true
       secureJsonData:
         clientSecret: __AzureMonitorProdClientSecret__
-    - name: "MSSQL - Forecasting"
-      orgId: 1
+    - name: "MSSQL - das-test-fcast-db"
+      orgId: 3
       type: mssql
       url: __TestSharedSqlServerName__.database.windows.net:1433
       database: __TestForecastingDatabaseName__
@@ -78,7 +78,7 @@ datasources:
         connMaxLifetime: 14400
       secureJsonData:
         password:  "__TestForecastingServiceAccountPassword__"
-    - name: "MSSQL - Forecasting"
+    - name: "MSSQL - das-pp-fcast-db"
       orgId: 2
       type: mssql
       url: __PreProdSharedSqlServerName__.database.windows.net:1433
@@ -90,7 +90,7 @@ datasources:
         connMaxLifetime: 14400
       secureJsonData:
         password:  "__PreProdForecastingServiceAccountPassword__"
-    - name: "MSSQL - Forecasting"
+    - name: "MSSQL - das-prd-fcast-db"
       orgId: 3
       type: mssql
       url: __ProdSharedSqlServerName__.database.windows.net:1433
