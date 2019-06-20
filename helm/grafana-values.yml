@@ -79,7 +79,7 @@ datasources:
       secureJsonData:
         password:  "__TestForecastingServiceAccountPassword__"
     - name: "MSSQL - das-pp-fcast-db"
-      orgId: 2
+      orgId: 3
       type: mssql
       url: __PreProdSharedSqlServerName__.database.windows.net:1433
       database: __PreProdForecastingDatabaseName__
@@ -93,7 +93,7 @@ datasources:
     - name: "MSSQL - das-prd-fcast-db"
       orgId: 3
       type: mssql
-      url: __ProdSharedSqlServerName__.database.windows.net:1433
+      url: __ProdSharedSqlServerName__.database.windows.netlll..l,.l:1433
       database: __ProdForecastingDatabaseName__
       user: __ForecastingServiceAccountUsername__
       jsonData:
