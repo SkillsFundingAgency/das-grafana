@@ -1,7 +1,6 @@
 replicas: 2
 plugins:
   - grafana-azure-monitor-datasource
-  - natel-plotly-panel
 admin:
   existingSecret: grafana-admin-user
 grafana.ini:
@@ -93,7 +92,7 @@ datasources:
     - name: "MSSQL - das-prd-fcast-db"
       orgId: 3
       type: mssql
-      url: __ProdSharedSqlServerName__.database.windows.netlll..l,.l:1433
+      url: __ProdSharedSqlServerName__.database.windows.net:1433
       database: __ProdForecastingDatabaseName__
       user: __ForecastingServiceAccountUsername__
       jsonData:
