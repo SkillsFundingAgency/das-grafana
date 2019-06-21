@@ -102,6 +102,18 @@ datasources:
         connMaxLifetime: 14400
       secureJsonData:
         password:  "__ProdForecastingServiceAccountPassword__"
+    - name: "MSSQL - das-prd-eas-fin-db"
+      orgId: 3
+      type: mssql
+      url: __ProdSharedSqlServerName__.database.windows.net:1433
+      database: __ProdEmployerFinDatabaseName__
+      user: __ProdEmployerFinServiceAccountUsername__
+      jsonData:
+        maxOpenConns: 0
+        maxIdleConns: 2
+        connMaxLifetime: 14400
+      secureJsonData:
+        password:  "__EmployerFinServiceAccountPassword__"
 ingress:
   enabled: true
   annotations:
