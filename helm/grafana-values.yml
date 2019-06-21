@@ -1,6 +1,7 @@
 replicas: 2
 plugins:
   - grafana-azure-monitor-datasource
+  - vonage-status-panel
 admin:
   existingSecret: grafana-admin-user
 grafana.ini:
