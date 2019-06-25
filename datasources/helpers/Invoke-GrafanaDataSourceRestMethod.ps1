@@ -1,5 +1,49 @@
-function Set-MSSQLSqlDataSource {
+function Invoke-GrafanaDataSourceRestMethod {
+<#
+.SYNOPSIS
+Create or Update a grafana data source
 
+.DESCRIPTION
+Create or Update a grafana data source
+
+.PARAMETER GrafanaBaseUri
+The base uri of the grafana instance
+
+.PARAMETER GrafanaApiToken
+An API token that is valid for a grafana organization
+
+The default value is ENV:GrafanaApiToken
+
+.PARAMETER Payload
+The datasource payload
+
+.EXAMPLE
+        $Payload = @"
+        {
+            "name": "$DataSourceName",
+            "type": "mssql",
+            "access": "proxy",
+            "url": "$ServerName.database.windows.net:1433",
+            "user": "$SqlServiceAccountName",
+            "database": "$DatabaseName",
+            "jsonData": {
+                "maxOpenConns": 0,
+                "maxIdleConns": 2,
+                "connMaxLifetime": 14400
+            },
+            "secureJsonData": {
+                "password": "$ServiceAccountPassword"
+            }
+        }
+"@
+
+        $DataSourceRestMethodParameters = @{
+            GrafanaBaseUri = $GrafanaBaseUri
+            Payload = $Payload
+        }
+
+        $null = Invoke-GrafanaDataSourceRestMethod @DataSourceRestMethodParameters -Verbose:$VerbosePreference
+#>
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory = $true)]
@@ -7,15 +51,7 @@ function Set-MSSQLSqlDataSource {
         [Parameter(Mandatory = $false)]
         [String]$GrafanaApiToken = $ENV:GrafanaApiToken,
         [Parameter(Mandatory = $true)]
-        [String]$Environment,
-        [Parameter(Mandatory = $true)]
-        [String]$ServerName,
-        [Parameter(Mandatory = $true)]
-        [String]$DatabaseName,
-        [Parameter(Mandatory = $true)]
-        [String]$SqlServiceAccountName,
-        [Parameter(Mandatory = $true)]
-        [String]$KeyVaultName
+        [String]$Payload
     )
 
     try {
@@ -24,38 +60,13 @@ function Set-MSSQLSqlDataSource {
             Write-Error -Message "Could not find a valid api token" -ErrorAction Stop
         }
 
-        $ServiceAccountSecretName = "$Environment-$SqlServiceAccountName".ToLower()
-        $ServiceAccountPassword = (Get-AzKeyVaultSecret -VaultName $KeyVaultName -Name $ServiceAccountSecretName).SecretValueText
-        if (!$ServiceAccountPassword) {
-            Write-Error -Message "Could not find a secret with name $ServiceAccountSecretName"
-        }
-
-        $DataSourceName = "MSSQL - $DatabaseName"
-
         $Headers = @{
             "Accept"        = "application/json"
             "Content-Type"  = "application/json"
             "Authorization" = "Bearer $GrafanaApiToken"
         }
 
-        $Payload = @"
-            {
-                "name": "$DataSourceName",
-                "type": "mssql",
-                "access": "proxy",
-                "url": "$ServerName.database.windows.net:1433",
-                "user": "$SqlServiceAccountName",
-                "database": "$DatabaseName",
-                "jsonData": {
-                    "maxOpenConns": 0,
-                    "maxIdleConns": 2,
-                    "connMaxLifetime": 14400
-                },
-                "secureJsonData": {
-                    "password": "$ServiceAccountPassword"
-                }
-            }
-"@
+        $DataSourceName = ($Payload | ConvertFrom-Json).Name
 
         if (!$GrafanaBaseUri.EndsWith("/")) {
             $GrafanaBaseUri = $GrafanaBaseUri.TrimEnd("/")
@@ -72,17 +83,15 @@ function Set-MSSQLSqlDataSource {
         if ($DataSource) {
             Write-Verbose "Updating existing datasource $DataSourceName"
             $DataSource = (Invoke-RestMethod -Method PUT -Headers $Headers -Uri $GrafanaBaseUri/api/datasources/$($DataSource.Id) -Body $Payload -Verbose:$VerbosePreference).DataSource
-        } else {
+        }
+        else {
             Write-Verbose -Message "Creating datasource $DataSourceName"
             $DataSource = (Invoke-RestMethod -Method POST -Headers $Headers -Uri $GrafanaBaseUri/api/datasources/ -Body $Payload -Verbose:$VerbosePreference).Datasource
-
         }
 
         Write-Output $DataSource
-
     }
     catch {
         Write-Error "Failed to create a datasource: $_" -ErrorAction Stop
     }
-
 }

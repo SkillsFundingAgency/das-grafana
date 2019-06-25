@@ -48,13 +48,12 @@ $NewSqlDBAccountParameters = @{
         [Parameter(Mandatory = $true)]
         [String]$SqlServiceAccountName,
         [Parameter(Mandatory = $true)]
-        [ValidateSet("R","RW", "RWE")]
+        [ValidateSet("R", "RW", "RWE")]
         [String]$SqlServiceAccountRole = "RWE",
         [Parameter(Mandatory = $true)]
         [String]$Environment,
         [Parameter(Mandatory = $true)]
         [String]$KeyVaultName
-
     )
 
     $ErrorActionPreference = 'Stop'
@@ -110,7 +109,7 @@ $NewSqlDBAccountParameters = @{
             $null = Set-AzKeyVaultSecret -VaultName $KeyVaultName -Name $ServiceAccountSecretName -SecretValue $SecureAccountPassword -Verbose:$VerbosePreference
         }
 
-        switch($SqlServiceAccountRole) {
+        switch ($SqlServiceAccountRole) {
             'R' {
                 $Role = @"
                 ALTER ROLE db_datareader
@@ -125,7 +124,6 @@ $NewSqlDBAccountParameters = @{
                 ADD MEMBER "$($SqlServiceAccountName)"
 "@
                 break
-
             }
 
             'RWE' {
@@ -162,7 +160,6 @@ $NewSqlDBAccountParameters = @{
             Write-Host "##vso[task.setvariable variable=SQLServerServiceAccountUsername]$SqlServiceAccountName"
             Write-Host "##vso[task.setvariable variable=SQLServerServiceAccountPassword;issecret=true]$ServiceAccountPassword"
         }
-
     }
     catch {
         throw "$_"
@@ -173,5 +170,4 @@ $NewSqlDBAccountParameters = @{
             $null = Remove-AzSqlServerFirewallRule -FirewallRuleName $AzureFirewallName -ServerName $ServerName -ResourceGroupName $ServerResource.ResourceGroupName
         }
     }
-
 }
