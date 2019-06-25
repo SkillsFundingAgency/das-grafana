@@ -66,18 +66,6 @@ datasources:
         azureLogAnalyticsSameAs: true
       secureJsonData:
         clientSecret: __AzureMonitorProdClientSecret__
-    - name: "MSSQL - das-test-fcast-db"
-      orgId: 3
-      type: mssql
-      url: __TestSharedSqlServerName__.database.windows.net:1433
-      database: __TestForecastingDatabaseName__
-      user: __ForecastingServiceAccountUsername__
-      jsonData:
-        maxOpenConns: 0
-        maxIdleConns: 2
-        connMaxLifetime: 14400
-      secureJsonData:
-        password:  "__TestForecastingServiceAccountPassword__"
     - name: "MSSQL - das-pp-fcast-db"
       orgId: 3
       type: mssql
