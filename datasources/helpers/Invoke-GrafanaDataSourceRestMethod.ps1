@@ -68,7 +68,7 @@ The datasource payload
 
         $DataSourceName = ($Payload | ConvertFrom-Json).Name
 
-        if (!$GrafanaBaseUri.EndsWith("/")) {
+        if ($GrafanaBaseUri.EndsWith("/")) {
             $GrafanaBaseUri = $GrafanaBaseUri.TrimEnd("/")
         }
 
