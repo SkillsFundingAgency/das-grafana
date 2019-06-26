@@ -114,6 +114,9 @@ $NewSqlDBAccountParameters = @{
                 $Role = @"
                 ALTER ROLE db_datareader
                 ADD MEMBER "$($SqlServiceAccountName)"
+                ALTER ROLE db_datawriter
+                DROP MEMBER "$($SqlServiceAccountName)"
+                REVOKE EXECUTE FROM "$($SqlServiceAccountName)"
 "@
                 break
             }
