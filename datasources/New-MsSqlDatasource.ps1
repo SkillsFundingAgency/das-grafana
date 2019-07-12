@@ -38,6 +38,8 @@ Param(
     [Parameter(Mandatory = $true)]
     [String]$GrafanaBaseUri,
     [Parameter(Mandatory = $true)]
+    [String]$GrafanaApiToken,
+    [Parameter(Mandatory = $true)]
     [String]$ServerName,
     [Parameter(Mandatory = $false)]
     [String[]]$DatabaseName,
@@ -106,9 +108,9 @@ try {
 "@
 
         $DataSourceRestMethodParameters = @{
-            GrafanaBaseUri = $GrafanaBaseUri
-            Payload        = $Payload
-            GrafanaApiToken = $ENV:GrafanaApiToken
+            GrafanaBaseUri  = $GrafanaBaseUri
+            Payload         = $Payload
+            GrafanaApiToken = $GrafanaApiToken
         }
 
         $null = Invoke-GrafanaDataSourceRestMethod @DataSourceRestMethodParameters -Verbose:$VerbosePreference
