@@ -75,10 +75,10 @@ $NewSqlDBAccountParameters = @{
         }
 
         Write-Verbose -Message "Retrieving server login details"
-        $SqlServerUserName = (Get-AzSqlServer -ResourceGroupName $ServerResource.ResourceGroupName -ServerName $ServerName.Replace("-ne","")).SqlAdministratorLogin
+        $SqlServerUserName = (Get-AzSqlServer -ResourceGroupName $ServerResource.ResourceGroupName -ServerName $ServerName).SqlAdministratorLogin
 
         Write-Verbose -Message "Retrieving secure server password"
-        $SqlServerPassword = (Get-AzKeyVaultSecret -VaultName $KeyVaultName -Name $ServerName).SecretValueText
+        $SqlServerPassword = (Get-AzKeyVaultSecret -VaultName $KeyVaultName -Name $ServerName.Replace("-ne","")).SecretValueText
         if (!$SqlServerPassword) {
             throw "Could not retrieve secure password for $ServerName"
         }
