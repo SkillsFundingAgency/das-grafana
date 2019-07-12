@@ -75,7 +75,7 @@ $NewSqlDBAccountParameters = @{
         }
 
         Write-Verbose -Message "Retrieving server login details"
-        $SqlServerUserName = (Get-AzSqlServer -ResourceGroupName $ServerResource.ResourceGroupName -ServerName $ServerName).SqlAdministratorLogin
+        $SqlServerUserName = (Get-AzSqlServer -ResourceGroupName $ServerResource.ResourceGroupName -ServerName $ServerName.Replace("-ne","")).SqlAdministratorLogin
 
         Write-Verbose -Message "Retrieving secure server password"
         $SqlServerPassword = (Get-AzKeyVaultSecret -VaultName $KeyVaultName -Name $ServerName).SecretValueText
