@@ -90,12 +90,12 @@ try {
 
         $Payload = @"
         {
-            "name": "MSSQL - $DatabaseName",
+            "name": "MSSQL - $_",
             "type": "mssql",
             "access": "proxy",
             "url": "$ServerName.database.windows.net:1433",
             "user": "$ServiceAccountName",
-            "database": "$DatabaseName",
+            "database": "$_",
             "jsonData": {
                 "maxOpenConns": 0,
                 "maxIdleConns": 2,
