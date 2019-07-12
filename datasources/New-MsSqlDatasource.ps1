@@ -108,6 +108,7 @@ try {
         $DataSourceRestMethodParameters = @{
             GrafanaBaseUri = $GrafanaBaseUri
             Payload        = $Payload
+            GrafanaApiToken = $ENV:GrafanaApiToken
         }
 
         $null = Invoke-GrafanaDataSourceRestMethod @DataSourceRestMethodParameters -Verbose:$VerbosePreference
