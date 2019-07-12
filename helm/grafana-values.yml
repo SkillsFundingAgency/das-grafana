@@ -1,4 +1,6 @@
 replicas: 2
+nodeSelector:
+  agentpool: agentpool
 plugins:
   - grafana-azure-monitor-datasource
   - vonage-status-panel
