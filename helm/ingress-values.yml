@@ -1,5 +1,5 @@
 controller:
-  replicaCount: 2
+  replicaCount: 4
   nodeSelector:
     agentpool: agentpool
     beta.kubernetes.io/os: linux

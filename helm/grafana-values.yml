@@ -1,4 +1,4 @@
-replicas: 2
+replicas: 6
 nodeSelector:
   agentpool: agentpool
 plugins:
