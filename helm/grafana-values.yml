@@ -4,6 +4,7 @@ nodeSelector:
 plugins:
   - grafana-azure-monitor-datasource
   - vonage-status-panel
+  - flant-statusmap-panel
 admin:
   existingSecret: grafana-admin-user
 grafana.ini:
