@@ -31,7 +31,8 @@
   "variables": {
     "deploymentUrlBase": "https://raw.githubusercontent.com/SkillsFundingAgency/das-platform-building-blocks/master/templates/",
     "mySqlServerName": "[concat('das-', parameters('resourceEnvironmentName'), '-graf-msql')]",
-    "redisCacheName": "[concat('das-', parameters('resourceEnvironmentName'), '-graf-rds')]"
+    "redisCacheName": "[concat('das-', parameters('resourceEnvironmentName'), '-graf-rds')]",
+    "storageAccountName": "[toLower(concat('das', parameters('resourceEnvironmentName'), 'grafstr'))]"
   },
   "resources": [
     {
@@ -95,12 +96,59 @@
           ]
         }
       ]
+    },
+    {
+      "apiVersion": "2017-05-10",
+      "name": "storage-account",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(variables('deploymentUrlBase'),'storage-account-arm.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "storageAccountName": {
+            "value": "[variables('storageAccountName')]"
+          }
+        }
+      }
+    },
+    {
+      "apiVersion": "2017-05-10",
+      "name": "[concat('storage-account-container')]",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(variables('deploymentUrlBase'), 'storage-container.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "storageAccountName": {
+            "value": "[variables('storageAccountName')]"
+          },
+          "containerName": {
+            "value": "alerts"
+          },
+          "publicAccess": {
+            "value": "Blob"
+          }
+        }
+      },
+      "dependsOn": [
+        "storage-account"
+      ]
     }
   ],
   "outputs": {
     "mySqlServerName": {
       "type": "string",
       "value": "[variables('mySqlServerName')]"
+    },
+    "storageAccountName": {
+      "type": "string",
+      "value": "[variables('storageAccountName')]"
     }
   }
 }
