@@ -29,6 +29,8 @@ grafana.ini:
   remote_cache:
     type: redis
     connstr: __RedisConnectionString__
+  external_image_storage:
+    provider: azure_blob
   external_image_storage.azure_blob:
     account_name: __StorageAccountName__
     account_key: __StorageAccountKey__
