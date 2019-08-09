@@ -1,8 +1,6 @@
 replicas: 2
 nodeSelector:
   agentpool: defaultpool
-image:
-  tag: 6.3.2
 plugins:
   - grafana-azure-monitor-datasource
   - vonage-status-panel
