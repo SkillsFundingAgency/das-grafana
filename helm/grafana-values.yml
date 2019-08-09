@@ -1,4 +1,4 @@
-replicas: 6
+replicas: 2
 nodeSelector:
   agentpool: defaultpool
 image:
