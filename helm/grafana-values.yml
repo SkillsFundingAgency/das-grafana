@@ -26,9 +26,6 @@ grafana.ini:
     password: __MySqlPassword__
     ssl_mode: skip-verify
     ca_cert_path: /etc/ssl/certs/Baltimore_CyberTrust_Root.pem
-  remote_cache:
-    type: redis
-    connstr: __RedisConnectionString__
   external_image_storage:
     provider: azure_blob
   external_image_storage.azure_blob:
