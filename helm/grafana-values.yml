@@ -38,11 +38,7 @@ datasources:
   datasources.yaml:
     apiVersion: 1
     deleteDatasources:
-      - name: "Microsoft SQL Server"
-        orgId: 1
       - name: "MSSQL - Forecasting"
-        orgId: 1
-      - name: "Azure Monitor"
         orgId: 3
     datasources:
       - name: "Azure Monitor - Dev/Test"
