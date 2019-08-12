@@ -1,9 +1,0 @@
-controller:
-  replicaCount: 4
-  nodeSelector:
-    agentpool: defaultpool
-    beta.kubernetes.io/os: linux
-defaultBackend:
-  nodeSelector:
-    agentpool: defaultpool
-    beta.kubernetes.io/os: linux
