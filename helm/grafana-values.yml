@@ -74,54 +74,6 @@ datasources:
           azureLogAnalyticsSameAs: true
         secureJsonData:
           clientSecret: __AzureMonitorProdClientSecret__
-      - name: "MSSQL - das-pp-fcast-db"
-        orgId: 3
-        type: mssql
-        url: __PreProdSharedSqlServerName__.database.windows.net:1433
-        database: __PreProdForecastingDatabaseName__
-        user: __ForecastingServiceAccountUsername__
-        jsonData:
-          maxOpenConns: 0
-          maxIdleConns: 2
-          connMaxLifetime: 14400
-        secureJsonData:
-          password:  "__PreProdForecastingServiceAccountPassword__"
-      - name: "MSSQL - das-prd-fcast-db"
-        orgId: 3
-        type: mssql
-        url: __ProdSharedSqlServerName__.database.windows.net:1433
-        database: __ProdForecastingDatabaseName__
-        user: __ForecastingServiceAccountUsername__
-        jsonData:
-          maxOpenConns: 0
-          maxIdleConns: 2
-          connMaxLifetime: 14400
-        secureJsonData:
-          password:  "__ProdForecastingServiceAccountPassword__"
-      - name: "MSSQL - das-prd-eas-fin-db"
-        orgId: 3
-        type: mssql
-        url: __ProdSharedSqlServerName__.database.windows.net:1433
-        database: __ProdEmployerFinDatabaseName__
-        user: __ProdEmployerFinServiceAccountUsername__
-        jsonData:
-          maxOpenConns: 0
-          maxIdleConns: 2
-          connMaxLifetime: 14400
-        secureJsonData:
-          password:  "__EmployerFinServiceAccountPassword__"
-      - name: "MSSQL - das-prd-eas-acc-db"
-        orgId: 3
-        type: mssql
-        url: __ProdSharedSqlServerName__.database.windows.net:1433
-        database: __ProdEmployerAccDatabaseName__
-        user: __ProdEmployerAccServiceAccountUsername__
-        jsonData:
-          maxOpenConns: 0
-          maxIdleConns: 2
-          connMaxLifetime: 14400
-        secureJsonData:
-          password:  "__ProdEmployerAccServiceAccountPassword__"
 ingress:
   enabled: true
   annotations:
