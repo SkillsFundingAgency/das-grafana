@@ -31,27 +31,9 @@
   "variables": {
     "deploymentUrlBase": "https://raw.githubusercontent.com/SkillsFundingAgency/das-platform-building-blocks/master/templates/",
     "mySqlServerName": "[concat('das-', parameters('resourceEnvironmentName'), '-graf-msql')]",
-    "redisCacheName": "[concat('das-', parameters('resourceEnvironmentName'), '-graf-rds')]",
     "storageAccountName": "[toLower(concat('das', parameters('resourceEnvironmentName'), 'grafstr'))]"
   },
   "resources": [
-    {
-      "apiVersion": "2017-05-10",
-      "name": "redis-cache",
-      "type": "Microsoft.Resources/deployments",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[concat(variables('deploymentUrlBase'),'redis.json')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "redisCacheName": {
-            "value": "[variables('redisCacheName')]"
-          }
-        }
-      }
-    },
     {
       "name": "[variables('mySqlServerName')]",
       "type": "Microsoft.DBforMySQL/servers",
