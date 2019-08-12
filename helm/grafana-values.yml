@@ -37,9 +37,6 @@ grafana.ini:
 datasources:
   datasources.yaml:
     apiVersion: 1
-    deleteDatasources:
-      - name: "MSSQL - Forecasting"
-        orgId: 3
     datasources:
       - name: "Azure Monitor - Dev/Test"
         orgId: 1
