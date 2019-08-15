@@ -50,6 +50,11 @@ datasources:
           azureLogAnalyticsSameAs: true
         secureJsonData:
           clientSecret: __AzureMonitorClientSecret__
+      - name: Prometheus
+        orgId: 1
+        type: prometheus
+        access: proxy
+        url: http://prometheus-server.default.svc.cluster.local
       - name: "Azure Monitor - Dev/Test"
         orgId: 3
         type: "grafana-azure-monitor-datasource"
@@ -86,6 +91,11 @@ datasources:
           azureLogAnalyticsSameAs: true
         secureJsonData:
           clientSecret: __AzureMonitorProdClientSecret__
+      - name: Prometheus
+        orgId: 1
+        type: prometheus
+        access: proxy
+        url: http://prometheus-server.default.svc.cluster.local
 ingress:
   enabled: true
   annotations:
