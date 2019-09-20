@@ -17,7 +17,7 @@ grafana.ini:
     team_ids: '__GitHubTeamIds__'
     allowed_organizations: __GitHubAllowedOrganizations__
   server:
-    root_url: __RootUrl__
+    root_url: __RootUrl__/logs
     serve_from_sub_path: logs
   database:
     type: mysql
