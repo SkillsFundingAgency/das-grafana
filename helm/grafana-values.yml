@@ -2,7 +2,6 @@ replicas: 2
 nodeSelector:
   agentpool: mgmt
 plugins:
-  - grafana-azure-monitor-datasource
   - vonage-status-panel
   - flant-statusmap-panel
 admin:
@@ -49,11 +48,28 @@ datasources:
           azureLogAnalyticsSameAs: true
         secureJsonData:
           clientSecret: __AzureMonitorClientSecret__
+
       - name: Prometheus
         orgId: 1
         type: prometheus
         access: proxy
         url: http://prometheus-server.default.svc.cluster.local
+
+      - name: Elasticsearch - Logging
+        orgId: 1
+        type: elasticsearch
+        access: proxy
+        database: "[das-logstash*]YYYY.MM.DD"
+        url: __ElasticSearchLoggingUrl__
+        jsonData:
+          interval: Daily
+          timeField: "@timestamp"
+          esVersion: 70
+          basicAuth: true
+          basicAuthUser: __ElasticsearchLoggingServiceAccountUser__
+        secureJsonData:
+          basicAuthPassword: __ElasticsearchLoggingServiceAccountPassword__
+
       - name: "Azure Monitor - Dev/Test"
         orgId: 3
         type: "grafana-azure-monitor-datasource"
@@ -66,6 +82,7 @@ datasources:
           azureLogAnalyticsSameAs: true
         secureJsonData:
           clientSecret: __AzureMonitorClientSecret__
+
       - name: "Azure Monitor - PreProduction"
         orgId: 3
         type: "grafana-azure-monitor-datasource"
@@ -78,6 +95,7 @@ datasources:
           azureLogAnalyticsSameAs: true
         secureJsonData:
           clientSecret: __AzureMonitorPreProdClientSecret__
+
       - name: "Azure Monitor - Production"
         orgId: 3
         type: "grafana-azure-monitor-datasource"
@@ -90,19 +108,24 @@ datasources:
           azureLogAnalyticsSameAs: true
         secureJsonData:
           clientSecret: __AzureMonitorProdClientSecret__
+
       - name: Prometheus
-        orgId: 1
+        orgId: 3
         type: prometheus
         access: proxy
         url: http://prometheus-server.default.svc.cluster.local
-ingress:
-  enabled: true
-  annotations:
-    kubernetes.io/ingress.class: traefik
-  path: /grafana
-  hosts:
-    - __CustomDomain__
-  tls:
-    - hosts:
-      - __CustomDomain__
-      secretName: __TlsSecretName__
+
+      - name: Elasticsearch - Logging
+        orgId: 3
+        type: elasticsearch
+        access: proxy
+        database: "[das-logstash*]YYYY.MM.DD"
+        url: __ElasticSearchLoggingUrl__
+        jsonData:
+          interval: Daily
+          timeField: "@timestamp"
+          esVersion: 70
+          basicAuth: true
+          basicAuthUser: __ElasticsearchLoggingServiceAccountUser__
+        secureJsonData:
+          basicAuthPassword: __ElasticsearchLoggingServiceAccountPassword__
