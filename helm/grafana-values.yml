@@ -65,13 +65,12 @@ datasources:
         access: proxy
         database: "[das-logstash*]YYYY.MM.DD"
         url: __ElasticSearchLoggingUrl__
+        basicAuth: true
+        basicAuthUser: __ElasticsearchLoggingServiceAccountUser__
         jsonData:
           interval: Daily
           timeField: "@timestamp"
           esVersion: 70
-          basicAuth: true
-          basicAuthUser: __ElasticsearchLoggingServiceAccountUser__
-          withCredentials: true
         secureJsonData:
           basicAuthPassword: __ElasticsearchLoggingServiceAccountPassword__
 
@@ -126,12 +125,11 @@ datasources:
         access: proxy
         database: "[das-logstash*]YYYY.MM.DD"
         url: __ElasticSearchLoggingUrl__
+        basicAuth: true
+        basicAuthUser: __ElasticsearchLoggingServiceAccountUser__
         jsonData:
           interval: Daily
           timeField: "@timestamp"
           esVersion: 70
-          basicAuth: true
-          basicAuthUser: __ElasticsearchLoggingServiceAccountUser__
-          withCredentials: true
         secureJsonData:
           basicAuthPassword: __ElasticsearchLoggingServiceAccountPassword__
