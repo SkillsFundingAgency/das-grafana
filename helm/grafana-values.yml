@@ -57,7 +57,7 @@ datasources:
         orgId: 1
         type: prometheus
         access: proxy
-        url: http://prometheus-operator-prometheus.monitoring.svc.cluster.local:9090
+        url: http://pom-prometheus.monitoring.svc.cluster.local:9090
 
       - name: Elasticsearch - Logging
         orgId: 1
@@ -117,7 +117,7 @@ datasources:
         orgId: 3
         type: prometheus
         access: proxy
-        url: http://prometheus-operator-prometheus.monitoring.svc.cluster.local:9090
+        url: http://pom-prometheus.monitoring.svc.cluster.local:9090
 
       - name: Elasticsearch - Logging
         orgId: 3
