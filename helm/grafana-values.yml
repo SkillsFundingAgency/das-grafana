@@ -18,14 +18,14 @@ grafana.ini:
   auth:
     oauth_auto_login: true
     disable_login_form: false
-    github:
-      name: github
-      enabled: true
-      allow_sign_up: true
-      client_id: __GitHubClientId__
-      client_secret: __GitHubClientSecret__
-      team_ids: "__GitHubTeamIds__"
-      allowed_organizations: __GitHubAllowedOrganizations__
+  auth.github:
+    name: github
+    enabled: true
+    allow_sign_up: true
+    client_id: __GitHubClientId__
+    client_secret: __GitHubClientSecret__
+    team_ids: "__GitHubTeamIds__"
+    allowed_organizations: __GitHubAllowedOrganizations__
   server:
     root_url: __RootUrl__/grafana
     serve_from_sub_path: true
