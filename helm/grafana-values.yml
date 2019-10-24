@@ -11,14 +11,20 @@ plugins:
 admin:
   existingSecret: grafana-admin-user
 grafana.ini:
-  auth.github:
-    name: github
-    enabled: true
-    allow_sign_up: true
-    client_id: __GitHubClientId__
-    client_secret: __GitHubClientSecret__
-    team_ids: "__GitHubTeamIds__"
-    allowed_organizations: __GitHubAllowedOrganizations__
+  users:
+    auto_assign_org: true
+    auto_assign_org_id: 3
+    auto_assign_org_role: Viewer
+  auth:
+    disable_login_form: true
+    github:
+      name: github
+      enabled: true
+      allow_sign_up: true
+      client_id: __GitHubClientId__
+      client_secret: __GitHubClientSecret__
+      team_ids: "__GitHubTeamIds__"
+      allowed_organizations: __GitHubAllowedOrganizations__
   server:
     root_url: __RootUrl__/grafana
     serve_from_sub_path: true
