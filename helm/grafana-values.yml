@@ -16,6 +16,7 @@ grafana.ini:
     auto_assign_org_id: 3
     auto_assign_org_role: Viewer
   auth:
+    oauth_auto_login: true
     disable_login_form: true
     github:
       name: github
