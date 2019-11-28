@@ -70,12 +70,11 @@ datasources:
         orgId: 1
         type: elasticsearch
         access: proxy
-        database: "[das-logstash*]YYYY.MM.DD"
+        database: "[das-logstash*]"
         url: __ElasticSearchLoggingUrl__
         basicAuth: true
         basicAuthUser: __ElasticsearchLoggingServiceAccountUser__
         jsonData:
-          interval: Daily
           timeField: "@timestamp"
           esVersion: 70
         secureJsonData:
@@ -130,12 +129,11 @@ datasources:
         orgId: 3
         type: elasticsearch
         access: proxy
-        database: "[das-logstash*]YYYY.MM.DD"
+        database: "[das-logstash*]"
         url: __ElasticSearchLoggingUrl__
         basicAuth: true
         basicAuthUser: __ElasticsearchLoggingServiceAccountUser__
         jsonData:
-          interval: Daily
           timeField: "@timestamp"
           esVersion: 70
         secureJsonData:
