@@ -70,7 +70,7 @@ datasources:
         orgId: 1
         type: elasticsearch
         access: proxy
-        database: "[das-logstash*]"
+        database: "das-logstash*"
         url: __ElasticSearchLoggingUrl__
         basicAuth: true
         basicAuthUser: __ElasticsearchLoggingServiceAccountUser__
@@ -131,7 +131,7 @@ datasources:
         orgId: 3
         type: elasticsearch
         access: proxy
-        database: "[das-logstash*]"
+        database: "das-logstash*"
         url: __ElasticSearchLoggingUrl__
         basicAuth: true
         basicAuthUser: __ElasticsearchLoggingServiceAccountUser__
