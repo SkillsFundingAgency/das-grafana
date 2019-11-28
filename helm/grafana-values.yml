@@ -1,6 +1,6 @@
 replicas: 2
 image:
-  tag: 6.5.1-ubuntu
+  tag: 6.5.1
 nodeSelector:
   agentpool: mgmt
 resources:
