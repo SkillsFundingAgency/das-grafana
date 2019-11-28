@@ -77,6 +77,8 @@ datasources:
         jsonData:
           timeField: "@timestamp"
           esVersion: 70
+          logMessageField: "Message"
+          logLevelField: "level"
         secureJsonData:
           basicAuthPassword: __ElasticsearchLoggingServiceAccountPassword__
 
@@ -136,5 +138,7 @@ datasources:
         jsonData:
           timeField: "@timestamp"
           esVersion: 70
+          logMessageField: "Message"
+          logLevelField: "level"
         secureJsonData:
           basicAuthPassword: __ElasticsearchLoggingServiceAccountPassword__
