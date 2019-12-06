@@ -59,6 +59,7 @@ datasources:
           subscriptionId: __AzureSubscriptionId__
           tenantId: __AzureTenantId__
           azureLogAnalyticsSameAs: true
+          logAnalyticsDefaultWorkspace: __DevLogAnalyticsWorkspaceId__
         secureJsonData:
           clientSecret: __AzureMonitorClientSecret__
 
@@ -94,6 +95,7 @@ datasources:
           subscriptionId: __AzureSubscriptionId__
           tenantId: __AzureTenantId__
           azureLogAnalyticsSameAs: true
+          logAnalyticsDefaultWorkspace: __DevLogAnalyticsWorkspaceId__
         secureJsonData:
           clientSecret: __AzureMonitorClientSecret__
 
@@ -107,6 +109,7 @@ datasources:
           subscriptionId: __AzurePreProdSubscriptionId__
           tenantId: __AzureFCSTenantId__
           azureLogAnalyticsSameAs: true
+          logAnalyticsDefaultWorkspace: __PreProdLogAnalyticsWorkspaceId__
         secureJsonData:
           clientSecret: __AzureMonitorPreProdClientSecret__
 
@@ -120,6 +123,7 @@ datasources:
           subscriptionId: __AzureProdSubscriptionId__
           tenantId: __AzureFCSTenantId__
           azureLogAnalyticsSameAs: true
+          logAnalyticsDefaultWorkspace: __ProdLogAnalyticsWorkspaceId__
         secureJsonData:
           clientSecret: __AzureMonitorProdClientSecret__
 
