@@ -18,18 +18,21 @@ grafana.ini:
     auto_assign_org_id: 3
     auto_assign_org_role: Viewer
   auth:
-    oauth_auto_login: false
+    oauth_auto_login: true
     disable_login_form: false
-  auth.github:
-    name: github
+    signout_redirect_url: https://tools.apprenticeships.education.gov.uk/Account/Logout
+  auth.generic_oauth:
     enabled: true
+    client_id: __Auth0ClientId__
+    client_secret: __Auth0ClientSecret__
+    scopes: openid profile email
+    auth_url: https://dfe-apprenticeships.eu.auth0.com/authorize
+    token_url: https://dfe-apprenticeships.eu.auth0.com/oauth/token
+    api_url:  https://dfe-apprenticeships.eu.auth0.com/usrinfo
+    send_client_credentials_via_post: true
     allow_sign_up: true
-    client_id: __GitHubClientId__
-    client_secret: __GitHubClientSecret__
-    team_ids: "__GitHubTeamIds__"
-    allowed_organizations: __GitHubAllowedOrganizations__
   server:
-    root_url: __RootUrl__/grafana
+    root_url: https://tools.apprenticeships.education.gov.uk/grafana
     serve_from_sub_path: true
   database:
     type: mysql
