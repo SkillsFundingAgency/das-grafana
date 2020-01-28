@@ -130,6 +130,20 @@ datasources:
         secureJsonData:
           clientSecret: __AzureMonitorProdClientSecret__
 
+      - name: "Azure Monitor - NAS"
+        orgId: 3
+        type: "grafana-azure-monitor-datasource"
+        access: "proxy"
+        jsonData:
+          cloudName: "azuremonitor"
+          clientId: __AzureMonitorNASClientId__
+          subscriptionId: __AzureNASSubscriptionId__
+          tenantId: __AzureNASTenantId__
+          azureLogAnalyticsSameAs: true
+          logAnalyticsDefaultWorkspace: __NASLogAnalyticsWorkspaceId__
+        secureJsonData:
+          clientSecret: __AzureMonitorNASClientSecret__
+
       - name: Prometheus
         orgId: 3
         type: prometheus
