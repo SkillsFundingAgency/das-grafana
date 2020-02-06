@@ -1,6 +1,10 @@
 replicas: 2
 image:
+<<<<<<< HEAD
   tag: 6.6.1
+=======
+  tag: 6.6.0
+>>>>>>> 7b03205f62b6335cfa2204767f90c9be19a7a8b0
 nodeSelector:
   agentpool: mgmt
 resources:
@@ -129,6 +133,20 @@ datasources:
           logAnalyticsDefaultWorkspace: __ProdLogAnalyticsWorkspaceId__
         secureJsonData:
           clientSecret: __AzureMonitorProdClientSecret__
+
+      - name: "Azure Monitor - NAS"
+        orgId: 3
+        type: "grafana-azure-monitor-datasource"
+        access: "proxy"
+        jsonData:
+          cloudName: "azuremonitor"
+          clientId: __AzureMonitorNASClientId__
+          subscriptionId: __AzureNASSubscriptionId__
+          tenantId: __AzureNASTenantId__
+          azureLogAnalyticsSameAs: true
+          logAnalyticsDefaultWorkspace: __NASLogAnalyticsWorkspaceId__
+        secureJsonData:
+          clientSecret: __AzureMonitorNASClientSecret__
 
       - name: Prometheus
         orgId: 3
