@@ -1,6 +1,6 @@
 replicas: 2
 image:
-  tag: 6.5.1
+  tag: 6.6.1
 nodeSelector:
   agentpool: mgmt
 resources:
