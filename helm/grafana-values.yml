@@ -10,6 +10,7 @@ resources:
 plugins:
   - vonage-status-panel
   - flant-statusmap-panel
+  - simpod-json-datasource
 admin:
   existingSecret: grafana-admin-user
 grafana.ini:
