@@ -11,6 +11,7 @@ plugins:
   - vonage-status-panel
   - flant-statusmap-panel
   - simpod-json-datasource
+  - grafana-piechart-panel
 admin:
   existingSecret: grafana-admin-user
 grafana.ini:
