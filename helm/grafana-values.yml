@@ -1,6 +1,6 @@
 replicas: 2
 image:
-  tag: 6.5.2
+  tag: 6.7.2
 nodeSelector:
   agentpool: mgmt
 resources:
@@ -63,10 +63,13 @@ datasources:
           clientId: __AzureMonitorClientId__
           subscriptionId: __AzureSubscriptionId__
           tenantId: __AzureTenantId__
-          azureLogAnalyticsSameAs: true
+          logAnalyticsSubscriptionId: __AzureSubscriptionId__
+          logAnalyticsTenantId: __AzureTenantId__
+          logAnalyticsClientId: __AzureMonitorClientId__
           logAnalyticsDefaultWorkspace: __DevLogAnalyticsWorkspaceId__
         secureJsonData:
           clientSecret: __AzureMonitorClientSecret__
+          logAnalyticsClientSecret: __AzureMonitorClientSecret__
 
       - name: Prometheus
         orgId: 1
@@ -99,10 +102,13 @@ datasources:
           clientId: __AzureMonitorClientId__
           subscriptionId: __AzureSubscriptionId__
           tenantId: __AzureTenantId__
-          azureLogAnalyticsSameAs: true
+          logAnalyticsSubscriptionId: __AzureSubscriptionId__
+          logAnalyticsTenantId: __AzureTenantId__
+          logAnalyticsClientId: __AzureMonitorClientId__
           logAnalyticsDefaultWorkspace: __DevLogAnalyticsWorkspaceId__
         secureJsonData:
           clientSecret: __AzureMonitorClientSecret__
+          logAnalyticsClientSecret: __AzureMonitorClientSecret__
 
       - name: "Azure Monitor - PreProduction"
         orgId: 3
@@ -113,10 +119,13 @@ datasources:
           clientId: __AzureMonitorPreProdClientId__
           subscriptionId: __AzurePreProdSubscriptionId__
           tenantId: __AzureFCSTenantId__
-          azureLogAnalyticsSameAs: true
+          logAnalyticsSubscriptionId: __AzurePreProdSubscriptionId__
+          logAnalyticsTenantId: __AzureFCSTenantId__
+          logAnalyticsClientId: __AzureMonitorPreProdClientId__
           logAnalyticsDefaultWorkspace: __PreProdLogAnalyticsWorkspaceId__
         secureJsonData:
           clientSecret: __AzureMonitorPreProdClientSecret__
+          logAnalyticsClientSecret: __AzureMonitorPreProdClientSecret__
 
       - name: "Azure Monitor - Production"
         orgId: 3
@@ -127,10 +136,13 @@ datasources:
           clientId: __AzureMonitorProdClientId__
           subscriptionId: __AzureProdSubscriptionId__
           tenantId: __AzureFCSTenantId__
-          azureLogAnalyticsSameAs: true
+          logAnalyticsSubscriptionId: __AzureProdSubscriptionId__
+          logAnalyticsTenantId: __AzureFCSTenantId__
+          logAnalyticsClientId: __AzureMonitorProdClientId__
           logAnalyticsDefaultWorkspace: __ProdLogAnalyticsWorkspaceId__
         secureJsonData:
           clientSecret: __AzureMonitorProdClientSecret__
+          logAnalyticsClientSecret: __AzureMonitorProdClientSecret__
 
       - name: "Azure Monitor - NAS"
         orgId: 3
@@ -141,10 +153,13 @@ datasources:
           clientId: __AzureMonitorNASClientId__
           subscriptionId: __AzureNASSubscriptionId__
           tenantId: __AzureNASTenantId__
-          azureLogAnalyticsSameAs: true
+          logAnalyticsSubscriptionId: __AzureNASSubscriptionId__
+          logAnalyticsTenantId: __AzureFCSTenantId__
+          logAnalyticsClientId: __AzureMonitorNASClientId__
           logAnalyticsDefaultWorkspace: __NASLogAnalyticsWorkspaceId__
         secureJsonData:
           clientSecret: __AzureMonitorNASClientSecret__
+          logAnalyticsClientSecret: __AzureMonitorNASClientSecret__
 
       - name: Prometheus
         orgId: 3
