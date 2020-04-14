@@ -63,6 +63,7 @@ datasources:
           clientId: __AzureMonitorClientId__
           subscriptionId: __AzureSubscriptionId__
           tenantId: __AzureTenantId__
+          azureLogAnalyticsSameAs: false
           logAnalyticsSubscriptionId: __AzureSubscriptionId__
           logAnalyticsTenantId: __AzureTenantId__
           logAnalyticsClientId: __AzureMonitorClientId__
@@ -102,6 +103,7 @@ datasources:
           clientId: __AzureMonitorClientId__
           subscriptionId: __AzureSubscriptionId__
           tenantId: __AzureTenantId__
+          azureLogAnalyticsSameAs: false
           logAnalyticsSubscriptionId: __AzureSubscriptionId__
           logAnalyticsTenantId: __AzureTenantId__
           logAnalyticsClientId: __AzureMonitorClientId__
@@ -119,6 +121,7 @@ datasources:
           clientId: __AzureMonitorPreProdClientId__
           subscriptionId: __AzurePreProdSubscriptionId__
           tenantId: __AzureFCSTenantId__
+          azureLogAnalyticsSameAs: false
           logAnalyticsSubscriptionId: __AzurePreProdSubscriptionId__
           logAnalyticsTenantId: __AzureFCSTenantId__
           logAnalyticsClientId: __AzureMonitorPreProdClientId__
@@ -136,6 +139,7 @@ datasources:
           clientId: __AzureMonitorProdClientId__
           subscriptionId: __AzureProdSubscriptionId__
           tenantId: __AzureFCSTenantId__
+          azureLogAnalyticsSameAs: false
           logAnalyticsSubscriptionId: __AzureProdSubscriptionId__
           logAnalyticsTenantId: __AzureFCSTenantId__
           logAnalyticsClientId: __AzureMonitorProdClientId__
@@ -153,6 +157,7 @@ datasources:
           clientId: __AzureMonitorNASClientId__
           subscriptionId: __AzureNASSubscriptionId__
           tenantId: __AzureNASTenantId__
+          azureLogAnalyticsSameAs: false
           logAnalyticsSubscriptionId: __AzureNASSubscriptionId__
           logAnalyticsTenantId: __AzureFCSTenantId__
           logAnalyticsClientId: __AzureMonitorNASClientId__
