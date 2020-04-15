@@ -22,11 +22,11 @@ grafana.ini:
   auth:
     oauth_auto_login: true
     disable_login_form: false
-    signout_redirect_url: https://__IngressHost__/Account/Logout
+    signout_redirect_url: https://{{IngressHost}}/Account/Logout
   auth.generic_oauth:
     enabled: true
-    client_id: __Auth0ClientId__
-    client_secret: __Auth0ClientSecret__
+    client_id: {{Auth0ClientId{{
+    client_secret: {{Auth0ClientSecret{{
     scopes: openid profile email
     auth_url: https://dfe-apprenticeships.eu.auth0.com/authorize
     token_url: https://dfe-apprenticeships.eu.auth0.com/oauth/token
@@ -34,21 +34,21 @@ grafana.ini:
     send_client_credentials_via_post: true
     allow_sign_up: true
   server:
-    root_url: https://__IngressHost__/grafana
+    root_url: https://{{IngressHost}}/grafana
     serve_from_sub_path: true
   database:
     type: mysql
-    host: __MysqlServerName__.mysql.database.azure.com:3306
+    host: {{MysqlServerName}}.mysql.database.azure.com:3306
     name: grafana
-    user: __MySqlUsername__
-    password: __MySqlPassword__
+    user: {{MySqlUsername}}
+    password: {{MySqlPassword}}
     ssl_mode: skip-verify
     ca_cert_path: /etc/ssl/certs/ca-cert-Baltimore_CyberTrust_Root.pem
   external_image_storage:
     provider: azure_blob
   external_image_storage.azure_blob:
-    account_name: __StorageAccountName__
-    account_key: __StorageAccountKey__
+    account_name: {{StorageAccountName}}
+    account_key: {{StorageAccountKey}}
     container_name: alerts
 datasources:
   datasources.yaml:
@@ -60,17 +60,17 @@ datasources:
         access: "proxy"
         jsonData:
           cloudName: "azuremonitor"
-          clientId: __AzureMonitorClientId__
-          subscriptionId: __AzureSubscriptionId__
-          tenantId: __AzureTenantId__
+          clientId: {{AzureMonitorClientId}}
+          subscriptionId: {{AzureSubscriptionId}}
+          tenantId: {{AzureTenantId}}
           azureLogAnalyticsSameAs: false
-          logAnalyticsSubscriptionId: __AzureSubscriptionId__
-          logAnalyticsTenantId: __AzureTenantId__
-          logAnalyticsClientId: __AzureMonitorClientId__
-          logAnalyticsDefaultWorkspace: __DevLogAnalyticsWorkspaceId__
+          logAnalyticsSubscriptionId: {{AzureSubscriptionId}}
+          logAnalyticsTenantId: {{AzureTenantId}}
+          logAnalyticsClientId: {{AzureMonitorClientId}}
+          logAnalyticsDefaultWorkspace: {{DevLogAnalyticsWorkspaceId}}
         secureJsonData:
-          clientSecret: __AzureMonitorClientSecret__
-          logAnalyticsClientSecret: __AzureMonitorClientSecret__
+          clientSecret: {{AzureMonitorClientSecret}}
+          logAnalyticsClientSecret: {{AzureMonitorClientSecret}}
 
       - name: Prometheus
         orgId: 1
@@ -83,16 +83,16 @@ datasources:
         type: elasticsearch
         access: proxy
         database: "das-logstash*"
-        url: __ElasticSearchLoggingUrl__
+        url: {{ElasticSearchLoggingUrl{{
         basicAuth: true
-        basicAuthUser: __ElasticsearchLoggingServiceAccountUser__
+        basicAuthUser: {{ElasticsearchLoggingServiceAccountUser}}
         jsonData:
           timeField: "@timestamp"
           esVersion: 70
           logMessageField: "Message"
           logLevelField: "level"
         secureJsonData:
-          basicAuthPassword: __ElasticsearchLoggingServiceAccountPassword__
+          basicAuthPassword: {{ElasticsearchLoggingServiceAccountPassword}}
 
       - name: "Azure Monitor - Dev/Test"
         orgId: 3
@@ -100,17 +100,17 @@ datasources:
         access: "proxy"
         jsonData:
           cloudName: "azuremonitor"
-          clientId: __AzureMonitorClientId__
-          subscriptionId: __AzureSubscriptionId__
-          tenantId: __AzureTenantId__
+          clientId: {{AzureMonitorClientId}}
+          subscriptionId: {{AzureSubscriptionId}}
+          tenantId: {{AzureTenantId{{
           azureLogAnalyticsSameAs: false
-          logAnalyticsSubscriptionId: __AzureSubscriptionId__
-          logAnalyticsTenantId: __AzureTenantId__
-          logAnalyticsClientId: __AzureMonitorClientId__
-          logAnalyticsDefaultWorkspace: __DevLogAnalyticsWorkspaceId__
+          logAnalyticsSubscriptionId: {{AzureSubscriptionId}}
+          logAnalyticsTenantId: {{AzureTenantId}}
+          logAnalyticsClientId: {{AzureMonitorClientId}}
+          logAnalyticsDefaultWorkspace: {{DevLogAnalyticsWorkspaceId}}
         secureJsonData:
-          clientSecret: __AzureMonitorClientSecret__
-          logAnalyticsClientSecret: __AzureMonitorClientSecret__
+          clientSecret: {{AzureMonitorClientSecret}}
+          logAnalyticsClientSecret: {{AzureMonitorClientSecret}}
 
       - name: "Azure Monitor - PreProduction"
         orgId: 3
@@ -118,17 +118,17 @@ datasources:
         access: "proxy"
         jsonData:
           cloudName: "azuremonitor"
-          clientId: __AzureMonitorPreProdClientId__
-          subscriptionId: __AzurePreProdSubscriptionId__
-          tenantId: __AzureFCSTenantId__
+          clientId: {{AzureMonitorPreProdClientId}}
+          subscriptionId: {{AzurePreProdSubscriptionId}}
+          tenantId: {{AzureFCSTenantId{{
           azureLogAnalyticsSameAs: false
-          logAnalyticsSubscriptionId: __AzurePreProdSubscriptionId__
-          logAnalyticsTenantId: __AzureFCSTenantId__
-          logAnalyticsClientId: __AzureMonitorPreProdClientId__
-          logAnalyticsDefaultWorkspace: __PreProdLogAnalyticsWorkspaceId__
+          logAnalyticsSubscriptionId: {{AzurePreProdSubscriptionId}}
+          logAnalyticsTenantId: {{AzureFCSTenantId}}
+          logAnalyticsClientId: {{AzureMonitorPreProdClientId}}
+          logAnalyticsDefaultWorkspace: {{PreProdLogAnalyticsWorkspaceId}}
         secureJsonData:
-          clientSecret: __AzureMonitorPreProdClientSecret__
-          logAnalyticsClientSecret: __AzureMonitorPreProdClientSecret__
+          clientSecret: {{AzureMonitorPreProdClientSecret}}
+          logAnalyticsClientSecret: {{AzureMonitorPreProdClientSecret}}
 
       - name: "Azure Monitor - Production"
         orgId: 3
@@ -136,17 +136,17 @@ datasources:
         access: "proxy"
         jsonData:
           cloudName: "azuremonitor"
-          clientId: __AzureMonitorProdClientId__
-          subscriptionId: __AzureProdSubscriptionId__
-          tenantId: __AzureFCSTenantId__
+          clientId: {{AzureMonitorProdClientId}}
+          subscriptionId: {{AzureProdSubscriptionId}}
+          tenantId: {{AzureFCSTenantId}}
           azureLogAnalyticsSameAs: false
-          logAnalyticsSubscriptionId: __AzureProdSubscriptionId__
-          logAnalyticsTenantId: __AzureFCSTenantId__
-          logAnalyticsClientId: __AzureMonitorProdClientId__
-          logAnalyticsDefaultWorkspace: __ProdLogAnalyticsWorkspaceId__
+          logAnalyticsSubscriptionId: {{AzureProdSubscriptionId}}
+          logAnalyticsTenantId: {{AzureFCSTenantId}}
+          logAnalyticsClientId: {{AzureMonitorProdClientId}}
+          logAnalyticsDefaultWorkspace: {{ProdLogAnalyticsWorkspaceId}}
         secureJsonData:
-          clientSecret: __AzureMonitorProdClientSecret__
-          logAnalyticsClientSecret: __AzureMonitorProdClientSecret__
+          clientSecret: {{AzureMonitorProdClientSecret}}
+          logAnalyticsClientSecret: {{AzureMonitorProdClientSecret}}
 
       - name: "Azure Monitor - NAS"
         orgId: 3
@@ -154,17 +154,17 @@ datasources:
         access: "proxy"
         jsonData:
           cloudName: "azuremonitor"
-          clientId: __AzureMonitorNASClientId__
-          subscriptionId: __AzureNASSubscriptionId__
-          tenantId: __AzureNASTenantId__
+          clientId: {{AzureMonitorNASClientId}}
+          subscriptionId: {{AzureNASSubscriptionId}}
+          tenantId: {{AzureNASTenantId}}
           azureLogAnalyticsSameAs: false
-          logAnalyticsSubscriptionId: __AzureNASSubscriptionId__
-          logAnalyticsTenantId: __AzureFCSTenantId__
-          logAnalyticsClientId: __AzureMonitorNASClientId__
-          logAnalyticsDefaultWorkspace: __NASLogAnalyticsWorkspaceId__
+          logAnalyticsSubscriptionId: {{AzureNASSubscriptionId}}
+          logAnalyticsTenantId: {{AzureFCSTenantId}}
+          logAnalyticsClientId: {{AzureMonitorNASClientId}}
+          logAnalyticsDefaultWorkspace: {{NASLogAnalyticsWorkspaceId}}
         secureJsonData:
-          clientSecret: __AzureMonitorNASClientSecret__
-          logAnalyticsClientSecret: __AzureMonitorNASClientSecret__
+          clientSecret: {{AzureMonitorNASClientSecret}}
+          logAnalyticsClientSecret: {{AzureMonitorNASClientSecret}}
 
       - name: Prometheus
         orgId: 3
@@ -177,13 +177,13 @@ datasources:
         type: elasticsearch
         access: proxy
         database: "das-logstash*"
-        url: __ElasticSearchLoggingUrl__
+        url: {{ElasticSearchLoggingUrl{{
         basicAuth: true
-        basicAuthUser: __ElasticsearchLoggingServiceAccountUser__
+        basicAuthUser: {{ElasticsearchLoggingServiceAccountUser}}
         jsonData:
           timeField: "@timestamp"
           esVersion: 70
           logMessageField: "Message"
           logLevelField: "level"
         secureJsonData:
-          basicAuthPassword: __ElasticsearchLoggingServiceAccountPassword__
+          basicAuthPassword: {{ElasticsearchLoggingServiceAccountPassword}}
