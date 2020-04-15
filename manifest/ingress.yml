@@ -13,7 +13,7 @@ spec:
       middlewares:
         - name: secured
       services:
-        - name: grafana
+        - name: {{KubernetesServiceName}}
           port: 80
           healthCheck:
             path: /grafana/api/health
