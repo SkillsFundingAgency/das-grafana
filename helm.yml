@@ -22,7 +22,7 @@ grafana.ini:
   auth:
     oauth_auto_login: true
     disable_login_form: false
-    signout_redirect_url: https://__BaseUrl__/Account/Logout
+    signout_redirect_url: https://__IngressHost__/Account/Logout
   auth.generic_oauth:
     enabled: true
     client_id: __Auth0ClientId__
@@ -34,7 +34,7 @@ grafana.ini:
     send_client_credentials_via_post: true
     allow_sign_up: true
   server:
-    root_url: https://__BaseUrl__/grafana
+    root_url: https://__IngressHost__/grafana
     serve_from_sub_path: true
   database:
     type: mysql

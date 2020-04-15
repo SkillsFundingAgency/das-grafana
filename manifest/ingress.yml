@@ -1,0 +1,27 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana
+  namespace: {{Namespace}}
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`{{IngressHost}}`) && PathPrefix(`/grafana`)
+      kind: Rule
+      middlewares:
+        - name: secured
+      services:
+        - name: grafana
+          port: 80
+          healthCheck:
+            path: /grafana/api/health
+            host: {{IngressHost}}
+            intervalSeconds: 7
+            timeoutSeconds: 60
+  tls:
+    secretName: '{{TlsSecretName}}-correct-chain'
+    options:
+      name: enforce-tls-12
+      namespace: {{Namespace}}
