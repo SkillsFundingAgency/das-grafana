@@ -25,8 +25,8 @@ grafana.ini:
     signout_redirect_url: https://{{IngressHost}}/Account/Logout
   auth.generic_oauth:
     enabled: true
-    client_id: {{Auth0ClientId{{
-    client_secret: {{Auth0ClientSecret{{
+    client_id: {{Auth0ClientId}}
+    client_secret: {{Auth0ClientSecret}}
     scopes: openid profile email
     auth_url: https://dfe-apprenticeships.eu.auth0.com/authorize
     token_url: https://dfe-apprenticeships.eu.auth0.com/oauth/token
@@ -83,7 +83,7 @@ datasources:
         type: elasticsearch
         access: proxy
         database: "das-logstash*"
-        url: {{ElasticSearchLoggingUrl{{
+        url: {{ElasticSearchLoggingUrl}}
         basicAuth: true
         basicAuthUser: {{ElasticsearchLoggingServiceAccountUser}}
         jsonData:
@@ -102,7 +102,7 @@ datasources:
           cloudName: "azuremonitor"
           clientId: {{AzureMonitorClientId}}
           subscriptionId: {{AzureSubscriptionId}}
-          tenantId: {{AzureTenantId{{
+          tenantId: {{AzureTenantId}}
           azureLogAnalyticsSameAs: false
           logAnalyticsSubscriptionId: {{AzureSubscriptionId}}
           logAnalyticsTenantId: {{AzureTenantId}}
@@ -120,7 +120,7 @@ datasources:
           cloudName: "azuremonitor"
           clientId: {{AzureMonitorPreProdClientId}}
           subscriptionId: {{AzurePreProdSubscriptionId}}
-          tenantId: {{AzureFCSTenantId{{
+          tenantId: {{AzureFCSTenantId}}
           azureLogAnalyticsSameAs: false
           logAnalyticsSubscriptionId: {{AzurePreProdSubscriptionId}}
           logAnalyticsTenantId: {{AzureFCSTenantId}}
@@ -177,7 +177,7 @@ datasources:
         type: elasticsearch
         access: proxy
         database: "das-logstash*"
-        url: {{ElasticSearchLoggingUrl{{
+        url: {{ElasticSearchLoggingUrl}}
         basicAuth: true
         basicAuthUser: {{ElasticsearchLoggingServiceAccountUser}}
         jsonData:
