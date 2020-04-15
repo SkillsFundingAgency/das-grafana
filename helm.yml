@@ -28,9 +28,9 @@ grafana.ini:
     client_id: {{Auth0ClientId}}
     client_secret: {{Auth0ClientSecret}}
     scopes: openid profile email
-    auth_url: https://dfe-apprenticeships.eu.auth0.com/authorize
-    token_url: https://dfe-apprenticeships.eu.auth0.com/oauth/token
-    api_url:  https://dfe-apprenticeships.eu.auth0.com/usrinfo
+    auth_url: https://{{Auth0Domain}}/authorize
+    token_url: https://{{Auth0Domain}}/oauth/token
+    api_url:  https://{{Auth0Domain}}/usrinfo
     send_client_credentials_via_post: true
     allow_sign_up: true
   server:
