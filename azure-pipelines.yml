@@ -19,16 +19,13 @@ trigger:
   branches:
     include:
       - master
-  paths:
-    include:
-      - cluster/namespaces/default/app-gateway-ingress/*
 
 variables:
 - group: Release Management Resources
 - name: HelmClientVersion
   value: 3.4.1
 - name: HelmChartVersion
-  value: 1.2.1
+  value: 5.5.7
 - name: KubectlVersion
   value: 1.18.8
 
@@ -51,3 +48,5 @@ stages:
       KubectlVersion: $(KubectlVersion)
       ResourceGroupLocation: $(ResourceGroupLocation)
       SubscriptionId: $(SubscriptionId)
+      TemplateSecrets:
+        GrafanaMySqlAdminPassword: $(GrafanaMySqlAdminPassword)

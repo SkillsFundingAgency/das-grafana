@@ -8,6 +8,7 @@ parameters:
   KubectlVersion: 
   ResourceGroupLocation: 
   SubscriptionId: 
+  TemplateSecrets: {}
 
 jobs:
 - deployment: DeployTo_${{ parameters.Environment }}
@@ -47,4 +48,4 @@ jobs:
             SubscriptionId: ${{ parameters.SubscriptionId }}
             TemplatePath: $(Pipeline.Workspace)/das-grafana/azure/template.json
             IsMultiRepoCheckout: true
-            TemplateSecrets: {}
+            TemplateSecrets: ${{ parameters.TemplateSecrets }}
