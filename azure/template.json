@@ -64,7 +64,6 @@
             "name": "[variables('mySqlServerName')]",
             "type": "Microsoft.DBforMySQL/servers",
             "apiVersion": "2017-12-01",
-            "location": "[resourceGroup().location]",
             "sku": {
               "name": "[parameters('mySqlSkuName')]",
               "tier": "[parameters('mySqlSkuTier')]",
