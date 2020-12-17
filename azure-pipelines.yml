@@ -49,4 +49,4 @@ stages:
       ResourceGroupLocation: $(ResourceGroupLocation)
       SubscriptionId: $(SubscriptionId)
       TemplateSecrets:
-        GrafanaMySqlAdminPassword: $(GrafanaMySqlAdminPassword)
+        GRAFANAMYSQLADMINPASSWORD: $(GrafanaMySqlAdminPassword)
