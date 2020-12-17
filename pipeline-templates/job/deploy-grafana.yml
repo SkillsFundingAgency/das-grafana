@@ -45,6 +45,6 @@ jobs:
             ParametersPath: $(Pipeline.Workspace)/das-grafana/azure/template.parameters.json
             ServiceConnection: ${{ parameters.AzureServiceConnection }}
             SubscriptionId: ${{ parameters.SubscriptionId }}
-            TemplatePath: $(Pipeline.Workspace)/das-shared-aks/azure/template.json
+            TemplatePath: $(Pipeline.Workspace)/das-grafana/azure/template.json
             IsMultiRepoCheckout: true
             TemplateSecrets: {}
