@@ -1,9 +1,25 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "grafanaMySqlAdminLogin": {
+      "type": "string"
+    },
+    "grafanaMySqlAdminPassword": {
+      "type": "securestring"
+    },
+    "resourceGroupLocation": {
+      "type": "string"
+    },
     "resourceEnvironmentName": {
       "type": "string"
+    },
+    "tags": {
+      "type": "object"
+    },
+    "mySqlSkuFamily": {
+      "type": "string",
+      "defaultValue": "Gen5"
     },
     "mySqlSkuName": {
       "type": "string",
@@ -13,75 +29,89 @@
       "type": "string",
       "defaultValue": "Basic"
     },
-    "mySqlSkuFamily": {
-      "type": "string",
-      "defaultValue": "Gen5"
-    },
     "mySqlStorageMB": {
       "type": "string",
       "defaultValue": "51200"
-    },
-    "mySqlAdminLogin": {
-      "type": "string"
-    },
-    "mySqlAdminPassword": {
-      "type": "securestring"
     }
   },
   "variables": {
     "deploymentUrlBase": "https://raw.githubusercontent.com/SkillsFundingAgency/das-platform-building-blocks/master/templates/",
-    "mySqlServerName": "[concat('das-', parameters('resourceEnvironmentName'), '-graf-msql')]",
-    "storageAccountName": "[toLower(concat('das', parameters('resourceEnvironmentName'), 'grafstr'))]"
+    "resourceNamePrefix": "[toLower(concat('das-', parameters('resourceEnvironmentName'), '-graf'))]",
+    "mySqlServerName": "[concat(variables('resourceNamePrefix'), '-msql')]",
+    "resourceGroupName": "[concat(variables('resourceNamePrefix'),'-rg')]",
+    "storageAccountName": "[toLower(concat(replace(variables('resourceNamePrefix'), '-', ''), 'str'))]"
   },
   "resources": [
     {
-      "name": "[variables('mySqlServerName')]",
-      "type": "Microsoft.DBforMySQL/servers",
-      "apiVersion": "2017-12-01",
-      "location": "[resourceGroup().location]",
-      "sku": {
-        "name": "[parameters('mySqlSkuName')]",
-        "tier": "[parameters('mySqlSkuTier')]",
-        "family": "[parameters('mySqlSkuFamily')]"
-      },
+      "apiVersion": "2020-06-01",
+      "name": "[variables('resourceGroupName')]",
+      "type": "Microsoft.Resources/resourceGroups",
+      "location": "[parameters('resourceGroupLocation')]",
+      "tags": "[parameters('tags')]",
       "properties": {
-        "administratorLogin": "[parameters('mySqlAdminLogin')]",
-        "administratorLoginPassword": "[parameters('mySqlAdminPassword')]",
-        "version": "5.7",
-        "sslEnforcement": "Enabled",
-        "storageProfile": {
-          "backupRetentionDays": 7,
-          "storageMB": "[parameters('mySqlStorageMB')]"
-        },
-        "createMode": "Default"
-      },
-      "resources": [
-        {
-          "name": "grafana",
-          "type": "databases",
-          "apiVersion": "2017-12-01",
-          "properties": {},
-          "dependsOn": [
-            "[variables('mySqlServerName')]"
-          ]
-        },
-        {
-          "name": "AllowAllWindowsAzureIps",
-          "type": "firewallRules",
-          "apiVersion": "2017-12-01",
-          "properties": {
-            "startIpAddress": "0.0.0.0",
-            "endIpAddress": "0.0.0.0"
-          },
-          "dependsOn": [
-            "[variables('mySqlServerName')]"
-          ]
-        }
-      ]
+      }
     },
     {
-      "apiVersion": "2017-05-10",
+      "apiVersion": "2020-06-01",
+      "name": "mysql-database-server",
+      "resourceGroup": "[variables('resourceGroupName')]",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "Incremental",
+        "parameters": {},
+        "resources": [
+          {
+            "name": "[variables('mySqlServerName')]",
+            "type": "Microsoft.DBforMySQL/servers",
+            "apiVersion": "2017-12-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+              "name": "[parameters('mySqlSkuName')]",
+              "tier": "[parameters('mySqlSkuTier')]",
+              "family": "[parameters('mySqlSkuFamily')]"
+            },
+            "properties": {
+              "administratorLogin": "[parameters('grafanaMySqlAdminLogin')]",
+              "administratorLoginPassword": "[parameters('grafanaMySqlAdminPassword')]",
+              "version": "5.7",
+              "sslEnforcement": "Enabled",
+              "storageProfile": {
+                "backupRetentionDays": 7,
+                "storageMB": "[parameters('mySqlStorageMB')]"
+              },
+              "createMode": "Default"
+            },
+            "resources": [
+              {
+                "name": "grafana",
+                "type": "databases",
+                "apiVersion": "2017-12-01",
+                "properties": {},
+                "dependsOn": [
+                  "[variables('mySqlServerName')]"
+                ]
+              },
+              {
+                "name": "AllowAllWindowsAzureIps",
+                "type": "firewallRules",
+                "apiVersion": "2017-12-01",
+                "properties": {
+                  "startIpAddress": "0.0.0.0",
+                  "endIpAddress": "0.0.0.0"
+                },
+                "dependsOn": [
+                  "[variables('mySqlServerName')]"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "2020-06-01",
       "name": "storage-account",
+      "resourceGroup": "[variables('resourceGroupName')]",
       "type": "Microsoft.Resources/deployments",
       "properties": {
         "mode": "Incremental",
@@ -99,6 +129,7 @@
     {
       "apiVersion": "2017-05-10",
       "name": "[concat('storage-account-container')]",
+      "resourceGroup": "[variables('resourceGroupName')]",
       "type": "Microsoft.Resources/deployments",
       "properties": {
         "mode": "Incremental",
@@ -131,6 +162,10 @@
     "storageAccountName": {
       "type": "string",
       "value": "[variables('storageAccountName')]"
+    },
+    "resourceGroupName": {
+      "type": "string",
+      "value": "[variables('resourceGroupName')]"
     }
   }
 }

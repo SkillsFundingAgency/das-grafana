@@ -1,0 +1,50 @@
+parameters:
+  AksClusterName: 
+  AksResourceGroupName: 
+  AzureServiceConnection: 
+  Environment: 
+  HelmClientVersion: 
+  HelmChartVersion: 
+  KubectlVersion: 
+  ResourceGroupLocation: 
+  SubscriptionId: 
+
+jobs:
+- deployment: DeployTo_${{ parameters.Environment }}
+  environment: ${{ parameters.Environment }}
+  pool:
+    name: 'DAS - Continuous Integration'
+  #variables:
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - checkout: self
+          path: 'das-grafana/'
+        - task: KubectlInstaller@0
+          displayName: 'Install Kubectl $(KubectlVersion)'
+          inputs:
+            kubectlVersion: $(KubectlVersion)
+        - task: HelmInstaller@1
+          displayName: 'Install Helm $(HelmClientVersion)'
+          inputs:
+            helmVersionToInstall: $(HelmClientVersion)
+        - task: HelmDeploy@0
+          displayName: 'Check application-gateway-ingress deployed'
+          inputs:
+            azureSubscription: '${{ parameters.AzureServiceConnection }}'
+            azureResourceGroup: '${{ parameters.AksResourceGroupName }}'
+            kubernetesCluster: '${{ parameters.AksClusterName }}'
+            useClusterAdmin: true
+            command: get
+            namespace: default
+            arguments: 'all application-gateway-ingress'
+        - template: azure-pipelines-templates/deploy/step/arm-deploy.yml@das-platform-building-blocks
+          parameters:
+            Location: ${{ parameters.ResourceGroupLocation }}
+            ParametersPath: $(Pipeline.Workspace)/das-grafana/azure/template.parameters.json
+            ServiceConnection: ${{ parameters.AzureServiceConnection }}
+            SubscriptionId: ${{ parameters.SubscriptionId }}
+            TemplatePath: $(Pipeline.Workspace)/das-shared-aks/azure/template.json
+            IsMultiRepoCheckout: true
+            TemplateSecrets: {}

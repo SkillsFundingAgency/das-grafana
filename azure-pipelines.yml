@@ -1,0 +1,53 @@
+resources:
+  repositories:
+  - repository: self
+  - repository: das-platform-building-blocks
+    type: github
+    name: SkillsFundingAgency/das-platform-building-blocks
+    ref: refs/tags/0.2.12
+    endpoint: SFA
+  - repository: das-platform-automation
+    type: github
+    name: SkillsFundingAgency/das-platform-automation
+    ref: refs/tags/4.2.6
+    endpoint: SFA
+
+pr: none
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - cluster/namespaces/default/app-gateway-ingress/*
+
+variables:
+- group: Release Management Resources
+- name: HelmClientVersion
+  value: 3.4.1
+- name: HelmChartVersion
+  value: 1.2.1
+- name: KubectlVersion
+  value: 1.18.8
+
+stages:
+- stage: Deploy_Dev
+  variables:
+  - group: Dev Management Resources
+  ##TO DO: establish why ARM deployment tasks are disabled before deploying to dev
+  ##TO DO: change the value for ResourceEnvironmentName after checking what else references it
+  - group: Tools - ENV - TEST
+  jobs:
+  - template: pipeline-templates/job/deploy-grafana.yml
+    parameters:
+      AksClusterName: $(AKSSharedClusterName)
+      AksResourceGroupName: $(AKSResourceGroupName)
+      AzureServiceConnection: SFA-DAS-DevTest-ARM
+      Environment: DEV
+      HelmClientVersion: $(HelmClientVersion)
+      HelmChartVersion: $(HelmChartVersion)
+      KubectlVersion: $(KubectlVersion)
+      ResourceGroupLocation: $(ResourceGroupLocation)
+      SubscriptionId: $(SubscriptionId)
