@@ -58,53 +58,59 @@
       "type": "Microsoft.Resources/deployments",
       "properties": {
         "mode": "Incremental",
-        "parameters": {},
-        "resources": [
-          {
-            "name": "[variables('mySqlServerName')]",
-            "type": "Microsoft.DBforMySQL/servers",
-            "apiVersion": "2017-12-01",
-            "sku": {
-              "name": "[parameters('mySqlSkuName')]",
-              "tier": "[parameters('mySqlSkuTier')]",
-              "family": "[parameters('mySqlSkuFamily')]"
-            },
-            "properties": {
-              "administratorLogin": "[parameters('grafanaMySqlAdminLogin')]",
-              "administratorLoginPassword": "[parameters('grafanaMySqlAdminPassword')]",
-              "version": "5.7",
-              "sslEnforcement": "Enabled",
-              "storageProfile": {
-                "backupRetentionDays": 7,
-                "storageMB": "[parameters('mySqlStorageMB')]"
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {},
+          "variables": {},
+          "resources": [
+            {
+              "name": "[variables('mySqlServerName')]",
+              "type": "Microsoft.DBforMySQL/servers",
+              "apiVersion": "2017-12-01",
+              "sku": {
+                "name": "[parameters('mySqlSkuName')]",
+                "tier": "[parameters('mySqlSkuTier')]",
+                "family": "[parameters('mySqlSkuFamily')]"
               },
-              "createMode": "Default"
-            },
-            "resources": [
-              {
-                "name": "grafana",
-                "type": "databases",
-                "apiVersion": "2017-12-01",
-                "properties": {},
-                "dependsOn": [
-                  "[variables('mySqlServerName')]"
-                ]
-              },
-              {
-                "name": "AllowAllWindowsAzureIps",
-                "type": "firewallRules",
-                "apiVersion": "2017-12-01",
-                "properties": {
-                  "startIpAddress": "0.0.0.0",
-                  "endIpAddress": "0.0.0.0"
+              "properties": {
+                "administratorLogin": "[parameters('grafanaMySqlAdminLogin')]",
+                "administratorLoginPassword": "[parameters('grafanaMySqlAdminPassword')]",
+                "version": "5.7",
+                "sslEnforcement": "Enabled",
+                "storageProfile": {
+                  "backupRetentionDays": 7,
+                  "storageMB": "[parameters('mySqlStorageMB')]"
                 },
-                "dependsOn": [
-                  "[variables('mySqlServerName')]"
-                ]
-              }
-            ]
-          }
-        ]
+                "createMode": "Default"
+              },
+              "resources": [
+                {
+                  "name": "grafana",
+                  "type": "databases",
+                  "apiVersion": "2017-12-01",
+                  "properties": {},
+                  "dependsOn": [
+                    "[variables('mySqlServerName')]"
+                  ]
+                },
+                {
+                  "name": "AllowAllWindowsAzureIps",
+                  "type": "firewallRules",
+                  "apiVersion": "2017-12-01",
+                  "properties": {
+                    "startIpAddress": "0.0.0.0",
+                    "endIpAddress": "0.0.0.0"
+                  },
+                  "dependsOn": [
+                    "[variables('mySqlServerName')]"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+
       }
     },
     {
