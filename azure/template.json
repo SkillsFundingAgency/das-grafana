@@ -2,11 +2,11 @@
   "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "grafanaMySqlAdminLogin": {
-      "type": "string"
-    },
     "grafanaMySqlAdminPassword": {
       "type": "securestring"
+    },
+    "grafanaMySqlAdminUsername": {
+      "type": "string"
     },
     "resourceGroupLocation": {
       "type": "string"
@@ -75,7 +75,7 @@
                 "family": "[parameters('mySqlSkuFamily')]"
               },
               "properties": {
-                "administratorLogin": "[parameters('grafanaMySqlAdminLogin')]",
+                "administratorLogin": "[parameters('grafanaMySqlAdminUsername')]",
                 "administratorLoginPassword": "[parameters('grafanaMySqlAdminPassword')]",
                 "version": "5.7",
                 "sslEnforcement": "Enabled",
@@ -161,17 +161,22 @@
     }
   ],
   "outputs": {
+    "grafanaMySqlAdminLogin": {
+      "type": "string",
+      "value": "[concat(parameters('grafanaMySqlAdminUsername'), '@', variables('mySqlServerName'))]"
+    },
     "mySqlServerName": {
       "type": "string",
       "value": "[variables('mySqlServerName')]"
     },
-    "storageAccountName": {
-      "type": "string",
-      "value": "[variables('storageAccountName')]"
-    },
     "resourceGroupName": {
       "type": "string",
       "value": "[variables('resourceGroupName')]"
+    },
+    "storageAccountName": {
+      "type": "string",
+      "value": "[variables('storageAccountName')]"
     }
+
   }
 }
