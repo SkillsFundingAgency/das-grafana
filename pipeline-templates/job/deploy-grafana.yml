@@ -49,3 +49,14 @@ jobs:
             TemplatePath: $(Pipeline.Workspace)/das-grafana/azure/template.json
             IsMultiRepoCheckout: true
             TemplateSecrets: ${{ parameters.TemplateSecrets }}
+        - task: replacetokens@3
+          displayName: 'Replace tokens manifests and values files'
+          inputs:
+            rootDirectory: '$(Pipeline.Workspace)/das-grafana'
+            targetFiles: 'manifest/*.yml, /helm.yml'
+            encoding: 'auto'
+            writeBOM: true
+            actionOnMissing: 'fail'
+            keepToken: false
+            tokenPrefix: '{{'
+            tokenSuffix: '}}'
