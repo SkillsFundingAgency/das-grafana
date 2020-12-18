@@ -38,10 +38,10 @@ grafana.ini:
     serve_from_sub_path: true
   database:
     type: mysql
-    host: {{MysqlServerName}}.mysql.database.azure.com:3306
+    host: {{MySqlServerName}}.mysql.database.azure.com:3306
     name: grafana
-    user: {{MySqlUsername}}
-    password: {{MySqlPassword}}
+    user: {{GrafanaMySqlAdminLogin}}
+    password: {{GrafanaMySqlAdminPassword}}
     ssl_mode: skip-verify
     ca_cert_path: /etc/ssl/certs/ca-cert-Baltimore_CyberTrust_Root.pem
   external_image_storage:
