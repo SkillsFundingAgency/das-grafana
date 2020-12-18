@@ -132,7 +132,10 @@
             "value": "[variables('storageAccountName')]"
           }
         }
-      }
+      },
+      "dependsOn": [
+        "[variables('resourceGroupName')]"
+      ]
     },
     {
       "apiVersion": "2017-05-10",
