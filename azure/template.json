@@ -184,7 +184,7 @@
     },
     "storageAccountKey": {
       "type": "securestring",
-      "value": "[listKeys(resourceId(variables('resourceGroupName'),'Microsoft.Storage/storageAccounts',variables('storageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]"
+      "value": "[listKeys(concat('subscriptions/',subscription().subscriptionId,'/resourceGroups/',variables('resourceGroupName'),'/providers/Microsoft.Storage/storageAccounts/',variables('storageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]"
     }
 
   }
