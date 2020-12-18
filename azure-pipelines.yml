@@ -35,6 +35,7 @@ stages:
   - group: Dev Management Resources
   ##TO DO: establish why ARM deployment tasks are disabled before deploying to dev
   ##TO DO: change the value for ResourceEnvironmentName after checking what else references it
+  - group: TEST Tools Service Shared
   - group: TEST Grafana
   jobs:
   - template: pipeline-templates/job/deploy-grafana.yml
