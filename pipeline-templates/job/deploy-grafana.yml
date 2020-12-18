@@ -51,6 +51,8 @@ jobs:
             TemplatePath: $(Pipeline.Workspace)/das-grafana/azure/template.json
             IsMultiRepoCheckout: true
             TemplateSecrets: ${{ parameters.TemplateSecrets }}
+        ##TO DO: remove this task
+        - pwsh: Get-ChildItem ENV:* | Sort-Object Name | Format-Table -AutoSize
         - task: replacetokens@3
           displayName: 'Replace tokens manifests and values files'
           inputs:
