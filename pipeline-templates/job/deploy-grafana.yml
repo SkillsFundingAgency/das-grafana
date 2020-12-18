@@ -53,7 +53,8 @@ jobs:
           displayName: 'Replace tokens manifests and values files'
           inputs:
             rootDirectory: '$(Pipeline.Workspace)/das-grafana'
-            targetFiles: 'manifest/*.yml, /helm.yml'
+            #TO DO: why isn't helm tokenised? 
+            targetFiles: 'manifest/*.yml, helm.yml'
             encoding: 'auto'
             writeBOM: true
             actionOnMissing: 'fail'
