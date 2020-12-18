@@ -1,27 +1,23 @@
 ---
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
   name: grafana
-  namespace: {{Namespace}}
+  ##TO DO: decide on namespace - engineering or monitoring
+  namespace: engineering
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+    appgw.ingress.kubernetes.io/appgw-ssl-certificate: {{TlsSecretName}}
 spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`{{IngressHost}}`) && PathPrefix(`/grafana`)
-      kind: Rule
-      middlewares:
-        - name: secured
-      services:
-        - name: {{KubernetesServiceName}}
-          port: 80
-          healthCheck:
-            path: /grafana/api/health
-            host: {{IngressHost}}
-            intervalSeconds: 7
-            timeoutSeconds: 60
-  tls:
-    secretName: '{{TlsSecretName}}-correct-chain'
-    options:
-      name: enforce-tls-12
-      namespace: {{Namespace}}
+  rules:
+  - host: {{IngressHost}}
+    http:
+      paths:
+      - path: /grafana
+        backend:
+          serviceName: grafana
+          servicePort: 80
+      - path: /grafana/*
+        backend:
+          serviceName: grafana
+          servicePort: 80
