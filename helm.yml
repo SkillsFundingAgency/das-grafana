@@ -66,8 +66,8 @@ datasources:
           azureLogAnalyticsSameAs: false
           logAnalyticsSubscriptionId: {{AzureDevTestSubscriptionId}}
           logAnalyticsTenantId: {{AzureCDSTenantId}}
-          logAnalyticsClientId: {{AzureDevTestMonitorClientId}}
-          logAnalyticsDefaultWorkspace: {{DevLogAnalyticsWorkspaceId}}
+          logAnalyticsClientId: {{AzureMonitorDevTestClientId}}
+          logAnalyticsDefaultWorkspace: {{LogAnalyticsDevTestWorkspaceId}}
         secureJsonData:
           clientSecret: {{AzureMonitorDevTestClientSecret}}
           logAnalyticsClientSecret: {{AzureMonitorDevTestClientSecret}}
@@ -106,7 +106,7 @@ datasources:
           azureLogAnalyticsSameAs: false
           logAnalyticsSubscriptionId: {{AzureDevTestSubscriptionId}}
           logAnalyticsTenantId: {{AzureCDSTenantId}}
-          logAnalyticsClientId: {{AzureDevTestMonitorClientId}}
+          logAnalyticsClientId: {{AzureMonitorDevTestClientId}}
           logAnalyticsDefaultWorkspace: {{LogAnalyticsDevTestWorkspaceId}}
         secureJsonData:
           clientSecret: {{AzureMonitorDevTestClientSecret}}
