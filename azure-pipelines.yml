@@ -43,10 +43,13 @@ stages:
     parameters:
       AksClusterName: $(AKSSharedClusterName)
       AksResourceGroupName: $(AKSResourceGroupName)
+      AppGatewayName: $(AKSSharedAppGatewayName)
+      AppGatewayResourceGroup: $(AKSSharedNodeResourceGroupName)
       AzureServiceConnection: SFA-DAS-DevTest-ARM
       Environment: DEV
       HelmClientVersion: $(HelmClientVersion)
       HelmChartVersion: $(HelmChartVersion)
+      KeyVaultName: $(SharedKeyVaultName)
       KubectlVersion: $(KubectlVersion)
       ResourceGroupLocation: $(ResourceGroupLocation)
       SubscriptionId: $(SubscriptionId)

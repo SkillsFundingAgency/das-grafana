@@ -1,10 +1,13 @@
 parameters:
   AksClusterName: 
   AksResourceGroupName: 
+  AppGatewayName:
+  AppGatewayResourceGroup: 
   AzureServiceConnection: 
   Environment: 
   HelmClientVersion: 
   HelmChartVersion: 
+  KeyVaultName: 
   KubectlVersion: 
   ResourceGroupLocation: 
   SubscriptionId: 
@@ -89,6 +92,17 @@ jobs:
             AzureSubscription: ${{ parameters.AzureServiceConnection }}
             KubectlVersion: ${{ parameters.KubectlVersion }}
             ManifestFile: $(Pipeline.Workspace)/das-grafana/manifest/grafana-user-secret.yml
+            Namespace: $(KubernetesNamespace)
+        - template: azure-pipelines-templates/deploy/step/create-kubernetes-ingress.yml@das-platform-building-blocks
+          parameters:
+            AksClusterName: ${{ parameters.AksClusterName }}
+            AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
+            AppGatewayName: ${{ parameters.AppGatewayName }}
+            AppGatewayResourceGroup: ${{ parameters.AppGatewayResourceGroup }}
+            AzureServiceConnection: ${{ parameters.AzureServiceConnection }}
+            IngressManifestPath: $(Pipeline.Workspace)/das-grafana/manifest/ingress.yml
+            KeyVaultName: ${{ parameters.KeyVaultName }}
+            Namespace: $(KubernetesNamespace)
         # - template: azure-pipelines-templates/deploy/step/upgrade-kubernetes-helmchart.yml@das-platform-building-blocks
         #   parameters:
         #     AksClusterName:
