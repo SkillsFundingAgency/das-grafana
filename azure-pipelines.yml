@@ -4,7 +4,8 @@ resources:
   - repository: das-platform-building-blocks
     type: github
     name: SkillsFundingAgency/das-platform-building-blocks
-    ref: refs/tags/0.2.19
+    ##TO DO: revert to latest tag
+    ref: refs/heads/DASD-8382-AddUpgradeHelmTemplate
     endpoint: SFA
   - repository: das-platform-automation
     type: github

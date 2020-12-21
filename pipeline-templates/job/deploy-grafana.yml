@@ -82,3 +82,26 @@ jobs:
             AzureSubscription: ${{ parameters.AzureServiceConnection }}
             AksClusterName: ${{ parameters.AksClusterName }}
             Namespace: $(KubernetesNamespace)
+        - template: azure-pipelines-templates/deploy/step/apply-kubernetes-manifest.yml@das-platform-building-blocks
+          parameters:
+            AksClusterName: ${{ parameters.AksClusterName }}
+            AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
+            AzureSubscription: ${{ parameters.AzureServiceConnection }}
+            KubectlVersion: ${{ parameters.KubectlVersion }}
+            ManifestFile: $(Pipeline.Workspace)/das-grafana/manifest/grafana-user-secret.yml
+        # - template: azure-pipelines-templates/deploy/step/upgrade-kubernetes-helmchart.yml@das-platform-building-blocks
+        #   parameters:
+        #     AksClusterName:
+        #     AksResourceGroupName:
+        #     AzureSubscription:
+        #     ChartName:
+        #     HelmClientVersion: 
+        #     HelmChartVersion: 
+        #     KubectlVersion: 
+        #     Namespace: 
+        #     ReleaseName:
+        #     # separate the chart name and url with a space, eg 'foocharts https://charts.foo.com/'
+        #     AdditionalChartRepoNameAndUrl: 'none'
+        #     AdditionalUpgradeAgs: ''
+        #     OverrideValues: ''
+        #     ValuesFile: ''
