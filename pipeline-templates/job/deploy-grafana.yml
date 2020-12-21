@@ -103,19 +103,15 @@ jobs:
             IngressManifestPath: $(Pipeline.Workspace)/das-grafana/manifest/ingress.yml
             KeyVaultName: ${{ parameters.KeyVaultName }}
             Namespace: $(KubernetesNamespace)
-        # - template: azure-pipelines-templates/deploy/step/upgrade-kubernetes-helmchart.yml@das-platform-building-blocks
-        #   parameters:
-        #     AksClusterName: ${{ parameters.AksClusterName }}
-        #     AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
-        #     AzureSubscription: ${{ parameters.AzureServiceConnection }}
-        #     ChartName:
-        #     HelmClientVersion: 
-        #     HelmChartVersion: 
-        #     KubectlVersion: 
-        #     Namespace: 
-        #     ReleaseName:
-        #     # separate the chart name and url with a space, eg 'foocharts https://charts.foo.com/'
-        #     AdditionalChartRepoNameAndUrl: 'none'
-        #     AdditionalUpgradeAgs: ''
-        #     OverrideValues: ''
-        #     ValuesFile: ''
+        - template: azure-pipelines-templates/deploy/step/upgrade-kubernetes-helmchart.yml@das-platform-building-blocks
+          parameters:
+            AksClusterName: ${{ parameters.AksClusterName }}
+            AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
+            AzureSubscription: ${{ parameters.AzureServiceConnection }}
+            ChartName: stable/grafana
+            HelmClientVersion: ${{ parameters.HelmClientVersion }}
+            HelmChartVersion: ${{ parameters.HelmChartVersion }}
+            KubectlVersion: ${{ parameters.KubectlVersion }}
+            Namespace: $(KubernetesNamespace)
+            ReleaseName: grafana
+            ValuesFile: $(Pipeline.Workspace)/das-grafana/helm.yml
