@@ -2,7 +2,7 @@ replicas: 2
 image:
   tag: 7.3.1
 nodeSelector:
-  agentpool: agentpool=tools01
+  agentpool: tools01
 resources:
   requests:
     cpu: 100m
