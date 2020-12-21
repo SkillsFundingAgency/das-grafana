@@ -48,7 +48,7 @@ grafana.ini:
     provider: azure_blob
   external_image_storage.azure_blob:
     account_name: {{StorageAccountName}}
-    account_key: {{SECRET_STORAGEACCOUNTKEY}}
+    account_key: {{StorageAccountKey}}
     container_name: alerts
 datasources:
   datasources.yaml:

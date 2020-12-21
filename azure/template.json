@@ -181,11 +181,6 @@
     "storageAccountName": {
       "type": "string",
       "value": "[variables('storageAccountName')]"
-    },
-    "storageAccountKey": {
-      "type": "securestring",
-      "value": "[listKeys(concat('subscriptions/',subscription().subscriptionId,'/resourceGroups/',variables('resourceGroupName'),'/providers/Microsoft.Storage/storageAccounts/',variables('storageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).keys[0].value]"
     }
-
   }
 }

@@ -53,6 +53,15 @@ jobs:
             TemplateSecrets: ${{ parameters.TemplateSecrets }}
         ##TO DO: remove this task
         - pwsh: Get-ChildItem ENV:* | Sort-Object Name | Format-Table -AutoSize
+        - task: AzurePowerShell@4
+          displayName: 'Azure PowerShell: Set StorageAccountKey variable'
+          inputs:
+            azureSubscription: ${{ parameters.AzureServiceConnection }}
+            scriptType: inlineScript
+            inline: |
+              $Keys = Get-AzStorageAccountKey -ResourceGroupName $(RESOURCEGROUPNAME) -Name $(STORAGEACCOUNTNAME)
+              Write-Output "##vso[task.setvariable variable=StorageAccountKey;isOutput=false]$($Keys[0].Value)"
+            azurePowerShellVersion: LatestVersion
         - task: replacetokens@3
           displayName: 'Replace tokens manifests and values files'
           inputs:
