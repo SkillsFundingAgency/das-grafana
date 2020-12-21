@@ -107,7 +107,7 @@ datasources:
           logAnalyticsSubscriptionId: {{AzureDevTestSubscriptionId}}
           logAnalyticsTenantId: {{AzureCDSTenantId}}
           logAnalyticsClientId: {{AzureDevTestMonitorClientId}}
-          logAnalyticsDefaultWorkspace: {{DevLogAnalyticsWorkspaceId}}
+          logAnalyticsDefaultWorkspace: {{LogAnalyticsDevTestWorkspaceId}}
         secureJsonData:
           clientSecret: {{AzureMonitorDevTestClientSecret}}
           logAnalyticsClientSecret: {{AzureMonitorDevTestClientSecret}}
@@ -125,7 +125,7 @@ datasources:
           logAnalyticsSubscriptionId: {{AzurePreProdSubscriptionId}}
           logAnalyticsTenantId: {{AzureFCSTenantId}}
           logAnalyticsClientId: {{AzureMonitorPreProdClientId}}
-          logAnalyticsDefaultWorkspace: {{PreProdLogAnalyticsWorkspaceId}}
+          logAnalyticsDefaultWorkspace: {{LogAnalyticsPreProdWorkspaceId}}
         secureJsonData:
           clientSecret: {{AzureMonitorPreProdClientSecret}}
           logAnalyticsClientSecret: {{AzureMonitorPreProdClientSecret}}
@@ -143,7 +143,7 @@ datasources:
           logAnalyticsSubscriptionId: {{AzureProdSubscriptionId}}
           logAnalyticsTenantId: {{AzureFCSTenantId}}
           logAnalyticsClientId: {{AzureMonitorProdClientId}}
-          logAnalyticsDefaultWorkspace: {{ProdLogAnalyticsWorkspaceId}}
+          logAnalyticsDefaultWorkspace: {{LogAnalyticsProdWorkspaceId}}
         secureJsonData:
           clientSecret: {{AzureMonitorProdClientSecret}}
           logAnalyticsClientSecret: {{AzureMonitorProdClientSecret}}
@@ -161,7 +161,7 @@ datasources:
           logAnalyticsSubscriptionId: {{AzureNASSubscriptionId}}
           logAnalyticsTenantId: {{AzureFCSTenantId}}
           logAnalyticsClientId: {{AzureMonitorNASClientId}}
-          logAnalyticsDefaultWorkspace: {{NASLogAnalyticsWorkspaceId}}
+          logAnalyticsDefaultWorkspace: {{LogAnalyticsNASWorkspaceId}}
         secureJsonData:
           clientSecret: {{AzureMonitorNASClientSecret}}
           logAnalyticsClientSecret: {{AzureMonitorNASClientSecret}}
