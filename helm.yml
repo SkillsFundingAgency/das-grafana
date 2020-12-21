@@ -60,17 +60,17 @@ datasources:
         access: "proxy"
         jsonData:
           cloudName: "azuremonitor"
-          clientId: {{AzureMonitorClientId}}
-          subscriptionId: {{AzureSubscriptionId}}
-          tenantId: {{AzureTenantId}}
+          clientId: {{AzureMonitorDevTestClientId}}
+          subscriptionId: {{AzureDevTestSubscriptionId}}
+          tenantId: {{AzureDevTestTenantId}}
           azureLogAnalyticsSameAs: false
-          logAnalyticsSubscriptionId: {{AzureSubscriptionId}}
-          logAnalyticsTenantId: {{AzureTenantId}}
-          logAnalyticsClientId: {{AzureMonitorClientId}}
+          logAnalyticsSubscriptionId: {{AzureDevTestSubscriptionId}}
+          logAnalyticsTenantId: {{AzureDevTestTenantId}}
+          logAnalyticsClientId: {{AzureDevTestMonitorClientId}}
           logAnalyticsDefaultWorkspace: {{DevLogAnalyticsWorkspaceId}}
         secureJsonData:
-          clientSecret: {{AzureMonitorClientSecret}}
-          logAnalyticsClientSecret: {{AzureMonitorClientSecret}}
+          clientSecret: {{AzureMonitorDevTestClientSecret}}
+          logAnalyticsClientSecret: {{AzureMonitorDevTestClientSecret}}
 
       - name: Prometheus
         orgId: 1
@@ -100,17 +100,17 @@ datasources:
         access: "proxy"
         jsonData:
           cloudName: "azuremonitor"
-          clientId: {{AzureMonitorClientId}}
-          subscriptionId: {{AzureSubscriptionId}}
-          tenantId: {{AzureTenantId}}
+          clientId: {{AzureMonitorDevTestClientId}}
+          subscriptionId: {{AzureDevTestSubscriptionId}}
+          tenantId: {{AzureDevTestTenantId}}
           azureLogAnalyticsSameAs: false
-          logAnalyticsSubscriptionId: {{AzureSubscriptionId}}
-          logAnalyticsTenantId: {{AzureTenantId}}
-          logAnalyticsClientId: {{AzureMonitorClientId}}
+          logAnalyticsSubscriptionId: {{AzureDevTestSubscriptionId}}
+          logAnalyticsTenantId: {{AzureDevTestTenantId}}
+          logAnalyticsClientId: {{AzureDevTestMonitorClientId}}
           logAnalyticsDefaultWorkspace: {{DevLogAnalyticsWorkspaceId}}
         secureJsonData:
-          clientSecret: {{AzureMonitorClientSecret}}
-          logAnalyticsClientSecret: {{AzureMonitorClientSecret}}
+          clientSecret: {{AzureMonitorDevTestClientSecret}}
+          logAnalyticsClientSecret: {{AzureMonitorDevTestClientSecret}}
 
       - name: "Azure Monitor - PreProduction"
         orgId: 3
