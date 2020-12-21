@@ -105,6 +105,7 @@ jobs:
             Namespace: $(KubernetesNamespace)
         - template: azure-pipelines-templates/deploy/step/upgrade-kubernetes-helmchart.yml@das-platform-building-blocks
           parameters:
+            AdditionalChartRepoNameAndUrl: grafana https://grafana.github.io/helm-charts
             AksClusterName: ${{ parameters.AksClusterName }}
             AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
             AzureSubscription: ${{ parameters.AzureServiceConnection }}
