@@ -78,7 +78,7 @@ jobs:
             tokenSuffix: '}}'
         - template: azure-pipelines-templates/deploy/step/create-kubernetes-namespace.yml@das-platform-building-blocks
           parameters:
-            AksResourceGroupName: ${{ parameters.AksResourceGroup }}
+            AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
             AzureSubscription: ${{ parameters.AzureServiceConnection }}
             AksClusterName: ${{ parameters.AksClusterName }}
             Namespace: $(KubernetesNamespace)
