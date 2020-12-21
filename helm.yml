@@ -62,10 +62,10 @@ datasources:
           cloudName: "azuremonitor"
           clientId: {{AzureMonitorDevTestClientId}}
           subscriptionId: {{AzureDevTestSubscriptionId}}
-          tenantId: {{AzureDevTestTenantId}}
+          tenantId: {{AzureCDSTenantId}}
           azureLogAnalyticsSameAs: false
           logAnalyticsSubscriptionId: {{AzureDevTestSubscriptionId}}
-          logAnalyticsTenantId: {{AzureDevTestTenantId}}
+          logAnalyticsTenantId: {{AzureCDSTenantId}}
           logAnalyticsClientId: {{AzureDevTestMonitorClientId}}
           logAnalyticsDefaultWorkspace: {{DevLogAnalyticsWorkspaceId}}
         secureJsonData:
@@ -102,10 +102,10 @@ datasources:
           cloudName: "azuremonitor"
           clientId: {{AzureMonitorDevTestClientId}}
           subscriptionId: {{AzureDevTestSubscriptionId}}
-          tenantId: {{AzureDevTestTenantId}}
+          tenantId: {{AzureCDSTenantId}}
           azureLogAnalyticsSameAs: false
           logAnalyticsSubscriptionId: {{AzureDevTestSubscriptionId}}
-          logAnalyticsTenantId: {{AzureDevTestTenantId}}
+          logAnalyticsTenantId: {{AzureCDSTenantId}}
           logAnalyticsClientId: {{AzureDevTestMonitorClientId}}
           logAnalyticsDefaultWorkspace: {{DevLogAnalyticsWorkspaceId}}
         secureJsonData:
