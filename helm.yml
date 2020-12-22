@@ -14,6 +14,8 @@ plugins:
   - grafana-piechart-panel
 admin:
   existingSecret: grafana-admin-user
+  userKey: admin-user
+  passwordKey: admin-password
 grafana.ini:
   users:
     auto_assign_org: true
