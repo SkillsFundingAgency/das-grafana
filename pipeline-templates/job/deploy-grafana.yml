@@ -123,11 +123,10 @@ jobs:
             Namespace: $(KubernetesNamespace)
             ReleaseName: grafana
             ValuesFile: $(Pipeline.Workspace)/das-grafana/helm.yml
-        - task: AzurePowerShell@4
-          displayName: 'Azure PowerShell: New-GrafanaOrg.ps1'
+        - task: PowerShell@2
+          displayName: 'PowerShell: New-GrafanaOrg.ps1'
           inputs:
-            azureSubscription: ${{ parameters.AzureServiceConnection }}
-            scriptPath: $(Pipeline.Workspace)/das-grafana/tools/New-GrafanaOrg.ps1
-            scriptArguments: -GrafanaBaseUri ${{ parameters.GrafanaBaseUri }} -OrgId 3 -OrgName "Apprenticeship Service" -Password ${{ parameters.GrafanaAdminPassword }} -Username ${{ parameters.GrafanaAdminUsername }} -Verbose
-            azurePowerShellVersion: LatestVersion
+            filePath: $(Pipeline.Workspace)/das-grafana/tools/New-GrafanaOrg.ps1
+            arguments: -GrafanaBaseUri ${{ parameters.GrafanaBaseUri }} -OrgId 3 -OrgName "Apprenticeship Service" -Password ${{ parameters.GrafanaAdminPassword }} -Username ${{ parameters.GrafanaAdminUsername }} -Verbose
+            pwsh: true
         ##TO DO: configure datasources - https://grafana.com/docs/grafana/latest/administration/provisioning/#datasources
