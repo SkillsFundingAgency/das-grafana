@@ -5,6 +5,9 @@ parameters:
   AppGatewayResourceGroup: 
   AzureServiceConnection: 
   Environment: 
+  GrafanaBaseUri: 
+  GrafanaAdminPassword: 
+  GrafanaAdminUsername:
   HelmClientVersion: 
   HelmChartVersion: 
   KeyVaultName: 
@@ -116,3 +119,13 @@ jobs:
             Namespace: $(KubernetesNamespace)
             ReleaseName: grafana
             ValuesFile: $(Pipeline.Workspace)/das-grafana/helm.yml
+        - task: AzurePowerShell@4
+          displayName: 'Azure PowerShell: Set StorageAccountKey variable'
+          inputs:
+            azureSubscription: ${{ parameters.AzureServiceConnection }}
+            scriptPath: $(Pipeline.Workspace)/das-grafana/tools/New-GrafanaOrg.ps1
+            scriptArguments: -GrafanaBaseUri ${{ parameters.GrafanaBaseUri }} -OrgId 3 -OrgName "Apprenticeship Service" -Password ${{ parameters.GrafanaAdminPassword }} -Username ${{ parameters.GrafanaAdminUsername }}
+            azurePowerShellVersion: LatestVersion
+        ##TO DO: create org(s) - https://grafana.com/docs/grafana/latest/http_api/org/#create-organization
+        # requires basic auth https://community.grafana.com/t/basic-auth-api-call/37091
+        ##TO DO: configure datasources - https://grafana.com/docs/grafana/latest/administration/provisioning/#datasources

@@ -47,6 +47,9 @@ stages:
       AppGatewayResourceGroup: $(AKSSharedNodeResourceGroupName)
       AzureServiceConnection: SFA-DAS-DevTest-ARM
       Environment: DEV
+      GrafanaBaseUri: $(IngressHost)/grafana
+      GrafanaAdminPassword: $(GrafanaAdminUsername)
+      GrafanaAdminUsername: $(GrafanaAdminPassword)
       HelmClientVersion: $(HelmClientVersion)
       HelmChartVersion: $(HelmChartVersion)
       KeyVaultName: $(SharedKeyVaultName)
