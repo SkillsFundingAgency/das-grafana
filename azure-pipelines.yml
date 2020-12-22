@@ -48,8 +48,8 @@ stages:
       AzureServiceConnection: SFA-DAS-DevTest-ARM
       Environment: DEV
       GrafanaBaseUri: https://$(IngressHost)/grafana
-      GrafanaAdminPassword: $(GrafanaAdminUsername)
-      GrafanaAdminUsername: $(GrafanaAdminPassword)
+      GrafanaAdminPassword: $(GrafanaAdminPassword)
+      GrafanaAdminUsername: $(GrafanaAdminUsername)
       HelmClientVersion: $(HelmClientVersion)
       HelmChartVersion: $(HelmChartVersion)
       KeyVaultName: $(SharedKeyVaultName)
