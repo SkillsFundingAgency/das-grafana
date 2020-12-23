@@ -17,6 +17,7 @@ for($t = 1; $t -le $Timeout; $t++) {
     
     if ($Health -and $Health.database -eq "ok") {
         Write-Verbose "Grafana database health ok."
+        Write-Output "##vso[task.setvariable variable=IsGrafanaOnline]true" 
         break
     }
     if ($t -eq $Timeout) {
