@@ -14,4 +14,4 @@ $Body = @{"loginOrEmail"="user@example.com";"role"="Admin"}
 Invoke-RestMethod -Uri $GrafanaBaseUri/api/orgs/<orgid>/users -Method POST -Headers $Headers -Body $($Body | ConvertTo-Json -Compress) -UserAgent $([Microsoft.PowerShell.Commands.PSUserAgent]::Chrome.ToString()) -Verbose
 ```
 
-Once your user is an admin you'll be able to complete the remaining config, including adding other users as admin, via the Grafana GUI.
+Once your user is an admin you'll be able to complete the remaining config, including adding other users as admin, via the Grafana GUI.  Additional documentation on user management can be found [here](https://grafana.com/docs/grafana/latest/http_api/org/#admin-organizations-api).
