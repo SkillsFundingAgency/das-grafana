@@ -155,10 +155,10 @@ jobs:
             useClusterAdmin: true
             command: login
         - task: PowerShell@2
-          displayName: 'PowerShell: New-GrafanaOrg.ps1'
+          displayName: 'PowerShell: Copy-FileToContainer.ps1'
           inputs:
             filePath: $(Pipeline.Workspace)/das-grafana/tools/Copy-FileToContainer.ps1
-            arguments: -Namespace $() -PodLabel app.kubernetes.io/name=grafana -SourceFilePath $(Pipeline.Workspace)/das-grafana/config/datasources/datasources.yml -TargetFilePath /etc/grafana/provisioning/datasources/datasources.yml -Verbose
+            arguments: -Namespace $(KubernetesNamespace) -PodLabel app.kubernetes.io/name=grafana -SourceFilePath $(Pipeline.Workspace)/das-grafana/config/datasources/datasources.yml -TargetFilePath /etc/grafana/provisioning/datasources/datasources.yml -Verbose
             pwsh: true
         ## TO DO: restart (both) grafana pods
 
