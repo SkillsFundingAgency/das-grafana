@@ -124,7 +124,7 @@ jobs:
             Namespace: $(KubernetesNamespace)
             ReleaseName: grafana
             ValuesFile: $(Pipeline.Workspace)/das-grafana/helm.yml
-        - template: ../pipeline-templates/step/test-grafana-online.yml
+        - template: ../step/test-grafana-online.yml
         - task: PowerShell@2
           displayName: 'PowerShell: Test-GrafanaOnline.ps1'
           inputs:
