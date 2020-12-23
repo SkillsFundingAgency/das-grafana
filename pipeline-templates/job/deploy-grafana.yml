@@ -118,7 +118,7 @@ jobs:
             AksClusterName: ${{ parameters.AksClusterName }}
             AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
             AzureServiceConnection: ${{ parameters.AzureServiceConnection }}
-            Command: rm /etc/grafana/provisioning/datasources/datasources.yml
+            Command: rm /etc/grafana/provisioning/datasources/datasources.yml  || true
             ContainerName: grafana
             IncrementingCounter: 1
             PodLabel: app.kubernetes.io/name=grafana
