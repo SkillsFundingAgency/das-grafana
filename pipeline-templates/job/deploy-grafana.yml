@@ -110,6 +110,7 @@ jobs:
             IngressManifestPath: $(Pipeline.Workspace)/das-grafana/manifest/ingress.yml
             KeyVaultName: ${{ parameters.KeyVaultName }}
             Namespace: $(KubernetesNamespace)
+        ##TO DO: empty the datasources directory
         - template: azure-pipelines-templates/deploy/step/upgrade-kubernetes-helmchart.yml@das-platform-building-blocks
           parameters:
             AdditionalChartRepoNameAndUrl: grafana https://grafana.github.io/helm-charts
@@ -123,6 +124,7 @@ jobs:
             Namespace: $(KubernetesNamespace)
             ReleaseName: grafana
             ValuesFile: $(Pipeline.Workspace)/das-grafana/helm.yml
+        - template: ../pipeline-templates/step/test-grafana-online.yml
         - task: PowerShell@2
           displayName: 'PowerShell: Test-GrafanaOnline.ps1'
           inputs:
@@ -136,4 +138,8 @@ jobs:
             filePath: $(Pipeline.Workspace)/das-grafana/tools/New-GrafanaOrg.ps1
             arguments: -GrafanaBaseUri ${{ parameters.GrafanaBaseUri }} -OrgName "Placeholder", "Apprenticeship Service" -Password ${{ parameters.GrafanaAdminPassword }} -Username ${{ parameters.GrafanaAdminUsername }} -Verbose
             pwsh: true
-        ##TO DO: configure datasources - https://grafana.com/docs/grafana/latest/administration/provisioning/#datasources
+        ## TO DO: configure datasources - https://grafana.com/docs/grafana/latest/administration/provisioning/#datasources
+        ## TO DO: mount /usr/share/grafana/conf/provisioning/datasources
+        ## TO DO: kubectl cp datasources.yml to mounted folder
+        ## TO DO: restart both grafana pods
+

@@ -1,0 +1,7 @@
+steps:
+- task: PowerShell@2
+  displayName: 'PowerShell: Test-GrafanaOnline.ps1'
+  inputs:
+    filePath: $(Pipeline.Workspace)/das-grafana/tools/Test-GrafanaOnline.ps1
+    arguments: -GrafanaBaseUri ${{ parameters.GrafanaBaseUri }} -Verbose
+    pwsh: true
