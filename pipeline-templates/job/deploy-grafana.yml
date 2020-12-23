@@ -125,6 +125,8 @@ jobs:
             ReleaseName: grafana
             ValuesFile: $(Pipeline.Workspace)/das-grafana/helm.yml
         - template: ../step/test-grafana-online.yml
+          parameters:
+            GrafanaBaseUri: ${{ parameters.GrafanaBaseUri }}
         - task: PowerShell@2
           displayName: 'PowerShell: Test-GrafanaOnline.ps1'
           inputs:

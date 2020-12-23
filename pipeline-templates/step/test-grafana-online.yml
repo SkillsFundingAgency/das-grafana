@@ -1,3 +1,6 @@
+parameters:
+  GrafanaBaseUri: 
+  
 steps:
 - task: PowerShell@2
   displayName: 'PowerShell: Test-GrafanaOnline.ps1'
