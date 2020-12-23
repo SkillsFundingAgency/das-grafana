@@ -16,8 +16,8 @@ param(
 
 $Pods = Invoke-Expression -Command "kubectl get pods --selector $PodLabel --namespace $Namespace --output json" | ConvertFrom-Json
 $TargetPodName = $Pods.items[0].metadata.name
-Write-Verbose "Copying $SourceFile to $TargetFile in $TargetPodName"
-$CopyCommand = "kubectl cp $SourceFile $TargetPodName`:$TargetFilePath --namespace $Namespace"
+Write-Verbose "Copying $SourceFilePath to $TargetFile in $TargetPodName"
+$CopyCommand = "kubectl cp $SourceFilePath $TargetPodName`:$TargetFilePath --namespace $Namespace"
 if ($ContainerName) {
     $CopyCommand = "$CopyCommand --container $ContainerName"
 }
