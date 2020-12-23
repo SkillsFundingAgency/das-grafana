@@ -124,6 +124,13 @@ jobs:
             ReleaseName: grafana
             ValuesFile: $(Pipeline.Workspace)/das-grafana/helm.yml
         - task: PowerShell@2
+          displayName: 'PowerShell: Test-GrafanaOnline.ps1'
+          inputs:
+            filePath: $(Pipeline.Workspace)/das-grafana/tools/Test-GrafanaOnline.ps1
+            arguments: -GrafanaBaseUri ${{ parameters.GrafanaBaseUri }} -Verbose
+            pwsh: true
+        ## This approach is a placeholder to ensure that an organisation with the name "Apprenticeship Service" and id of 3 is created.  
+        - task: PowerShell@2
           displayName: 'PowerShell: New-GrafanaOrg.ps1'
           inputs:
             filePath: $(Pipeline.Workspace)/das-grafana/tools/New-GrafanaOrg.ps1
