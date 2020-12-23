@@ -16,6 +16,9 @@ admin:
   existingSecret: grafana-admin-user
   userKey: admin-user
   passwordKey: admin-password
+extraEmptyDirMounts: 
+  - name: provisioning-datasources
+    mountPath: /etc/grafana/provisioning/datasources
 grafana.ini:
   users:
     auto_assign_org: true
