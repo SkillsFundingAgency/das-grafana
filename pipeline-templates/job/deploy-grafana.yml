@@ -119,8 +119,6 @@ jobs:
             AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
             AzureServiceConnection: ${{ parameters.AzureServiceConnection }}
             Command: rm -f /etc/grafana/provisioning/datasources/datasources.yml
-            ContainerName: grafana
-            IncrementingCounter: 1
             PodLabel: app.kubernetes.io/name=grafana
             PodNamespace: $(KubernetesNamespace)
             ExecuteTasks: eq(variables.IsGrafanaOnline, 'true')
