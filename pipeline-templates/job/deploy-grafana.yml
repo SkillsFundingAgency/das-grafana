@@ -110,6 +110,14 @@ jobs:
             IngressManifestPath: $(Pipeline.Workspace)/das-grafana/manifest/ingress.yml
             KeyVaultName: ${{ parameters.KeyVaultName }}
             Namespace: $(KubernetesNamespace)
+        - template: azure-pipelines-templates/deploy/step/kubernetes-apply-manifest.yml@das-platform-building-blocks
+          parameters:
+            AksClusterName: ${{ parameters.AksClusterName }}
+            AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
+            AzureServiceConnection: ${{ parameters.AzureServiceConnection }}
+              KubectlVersion: ${{ parameters.KubectlVersion }}
+              ManifestFile: $(Pipeline.Workspace)/das-grafana/manifest/volume-claim.yml
+              Namespace: $(KubernetesNamespace)
         - template: ../step/test-grafana-online.yml
           parameters:
             GrafanaBaseUri: ${{ parameters.GrafanaBaseUri }}
