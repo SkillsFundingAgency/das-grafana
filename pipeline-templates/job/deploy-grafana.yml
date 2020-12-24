@@ -115,9 +115,9 @@ jobs:
             AksClusterName: ${{ parameters.AksClusterName }}
             AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
             AzureServiceConnection: ${{ parameters.AzureServiceConnection }}
-              KubectlVersion: ${{ parameters.KubectlVersion }}
-              ManifestFile: $(Pipeline.Workspace)/das-grafana/manifest/volume-claim.yml
-              Namespace: $(KubernetesNamespace)
+            KubectlVersion: ${{ parameters.KubectlVersion }}
+            ManifestFile: $(Pipeline.Workspace)/das-grafana/manifest/volume-claim.yml
+            Namespace: $(KubernetesNamespace)
         - template: ../step/test-grafana-online.yml
           parameters:
             GrafanaBaseUri: ${{ parameters.GrafanaBaseUri }}
