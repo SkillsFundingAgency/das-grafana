@@ -1,4 +1,28 @@
-##TO DO: documentation
+<#
+.SYNOPSIS
+Copies a file to a Kubernetes container.
+
+.DESCRIPTION
+Copies a file to a Kubernetes container using a pod label as an identifier.
+
+.PARAMETER Namespace
+The namespace of the pod containing the container that will receive the file.
+
+.PARAMETER PodLabel
+The label of the pod containing the container that will receive the file.
+
+.PARAMETER SourceFilePath
+The absolute path of the file to be copied.
+
+.PARAMETER TargetFilePath
+The absolute file path within the container.
+
+.PARAMETER ContainerName
+(optional) The name of the container, only required if the pod contains multiple containers and you do not want to target the first container.
+
+.EXAMPLE
+./Copy-FileToContainer.ps1 -Namespace foo -PodLabel app.kubernetes.io/name=bar -SourceFilePath $(Pipeline.Workspace)/foo-repo/barfile.yml -TargetFilePath /etc/foo/barfile.yml
+#>
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]    

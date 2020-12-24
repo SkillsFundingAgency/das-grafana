@@ -21,7 +21,7 @@ jobs:
   environment: ${{ parameters.Environment }}
   pool:
     name: 'DAS - Continuous Integration'
-    ## Windows Agent doesn't have Az module installed
+    ## Linux agent required to ensure the 'kubectl cp' in Copy-FileToContainer.ps1 functions as expected
     demands: Agent.OS -equals Linux
   variables:
   - name: KubernetesNamespace
