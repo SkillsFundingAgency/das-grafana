@@ -75,7 +75,7 @@ jobs:
           displayName: 'Replace tokens manifests and values files'
           inputs:
             rootDirectory: '$(Pipeline.Workspace)/das-grafana'
-            targetFiles: 'manifest/*.yml, helm.yml'
+            targetFiles: 'manifest/*.yml, config/**/*.yml, helm.yml'
             encoding: 'auto'
             writeBOM: true
             actionOnMissing: 'fail'
