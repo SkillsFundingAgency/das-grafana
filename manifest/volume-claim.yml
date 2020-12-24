@@ -4,8 +4,8 @@ metadata:
   name: provisioning-datasources
 spec:
   accessModes:
-  - ReadWriteOnce
-  storageClassName: default
+  - ReadWriteMany
+  storageClassName: azure-file
   resources:
     requests:
-      storage: 4Gi
+      storage: 5Gi
