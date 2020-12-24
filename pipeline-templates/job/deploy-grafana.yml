@@ -169,5 +169,33 @@ jobs:
             filePath: $(Pipeline.Workspace)/das-grafana/tools/Copy-FileToContainer.ps1
             arguments: -Namespace $(KubernetesNamespace) -PodLabel app.kubernetes.io/name=grafana -SourceFilePath $(Pipeline.Workspace)/das-grafana/config/datasources/datasources.yml -TargetFilePath /etc/grafana/provisioning/datasources/datasources.yml -Verbose
             pwsh: true
-        ## TO DO: restart (both) grafana pods
-
+        ## delete a grafana pod to force reapplication of config
+        - task: Kubernetes@1
+          displayName: kubectl get grafana pod names
+          name: GetGrafanaPodNames
+          inputs:
+            connectionType: Azure Resource Manager
+            azureSubscriptionEndpoint: ${{ parameters.AzureServiceConnection }}
+            azureResourceGroup: ${{ parameters.AksResourceGroupName }}
+            kubernetesCluster: ${{ parameters.AksClusterName }}
+            useClusterAdmin: true
+            namespace: $(KubernetesNamespace)
+            command: get
+            arguments: 'pod -l app.kubernetes.io/name=grafana'
+            outputFormat: name
+        - pwsh: |
+            $Name = "$(GetGrafanaPodNames.KubectlOutput)[0]"
+            Write-Output "Setting PodName variable to $Name"
+            Write-Output "##vso[task.setvariable variable=GrafanaPodName]$Name"
+          displayName: 'PowerShell: Output PodName'
+        - task: Kubernetes@1
+          displayName: kubectl delete one grafana pod"
+          inputs:
+            connectionType: Azure Resource Manager
+            azureSubscriptionEndpoint: ${{ parameters.AzureServiceConnection }}
+            azureResourceGroup: ${{ parameters.AksResourceGroupName }}
+            kubernetesCluster: ${{ parameters.AksClusterName }}
+            useClusterAdmin: true
+            namespace: $(KubernetesNamespace)
+            command: delete
+            arguments: '$(GrafanaPodName)'
