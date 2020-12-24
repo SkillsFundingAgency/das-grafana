@@ -1,3 +1,22 @@
+<#
+.SYNOPSIS
+Tests whether Grafana is online.
+
+.DESCRIPTION
+Tests whether Grafana is online using it's health check endpoint and writes the result out to an Azure DevOps variable called IsGrafanaOnline.
+
+.PARAMETER GrafanaBaseUri
+The URI of the Grafana ingress.
+
+.PARAMETER ContinueOnTimeout
+By default the script will throw an error if Grafana is not online within the timeout period.  Override this behaviour with the ContinueOnTimeout switch.
+
+.PARAMETER Timeout
+(optional) The timeout period in seconds for the script, defaults to 300 seconds.
+
+.EXAMPLE
+./Test-GrafanaOnline.ps1 -GrafanaBaseUri https://foo.grafana.gov.uk
+#>
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]    
