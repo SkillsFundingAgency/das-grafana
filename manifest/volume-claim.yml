@@ -5,7 +5,7 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: azure-disk-standard-ssd-lrs
+  storageClassName: default
   resources:
     requests:
-      storage: 2Gi
+      storage: 4Gi
