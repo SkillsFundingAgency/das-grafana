@@ -3,6 +3,8 @@ param(
     [Parameter(Mandatory = $true)]    
     [string]$GrafanaBaseUri,
     [Parameter(Mandatory = $false)]    
+    [switch]$ContinueOnTimeout,
+    [Parameter(Mandatory = $false)]    
     [int]$Timeout = 300
 )
 
@@ -21,7 +23,13 @@ for($t = 1; $t -le $Timeout; $t++) {
         break
     }
     if ($t -eq $Timeout) {
-        throw "Timed out waiting for Grafana to start"
+        if ($ContinueOnTimeout) {
+            Write-Warning "Timed out waiting for Grafana to start"
+            Write-Output "##vso[task.setvariable variable=IsGrafanaOnline]false" 
+        }
+        else {
+            throw "Timed out waiting for Grafana to start"
+        }
     }
     Start-Sleep -Seconds 1
 }

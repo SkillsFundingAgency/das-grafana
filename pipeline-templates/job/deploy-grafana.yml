@@ -121,6 +121,7 @@ jobs:
         - template: ../step/test-grafana-online.yml
           parameters:
             GrafanaBaseUri: ${{ parameters.GrafanaBaseUri }}
+            ContinueOnTimeout: true
         - template: azure-pipelines-templates/deploy/step/kubernetes-exec.yml@das-platform-building-blocks
           parameters:
             AksClusterName: ${{ parameters.AksClusterName }}
