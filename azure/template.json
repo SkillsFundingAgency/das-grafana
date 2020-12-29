@@ -17,6 +17,14 @@
     "tags": {
       "type": "object"
     },
+    "mySqlFirewallRules": {
+      "type": "array",
+      "defaultValue": [],
+      "metadata": {
+        "description": "An array containing a collection of objects that defines the firewall rules applied to the MySQL database.",
+        "example": "/[ { 'name': 'foofirewallrule', 'startIpAddress': '192.168.0.1', 'endIpAddress': '192.168.0.1'}]"
+      }
+    },
     "mySqlSkuFamily": {
       "type": "string",
       "defaultValue": "Gen5"
@@ -37,6 +45,34 @@
   "variables": {
     "deploymentUrlBase": "https://raw.githubusercontent.com/SkillsFundingAgency/das-platform-building-blocks/master/templates/",
     "resourceNamePrefix": "[toLower(concat('das-', parameters('resourceEnvironmentName'), '-graf'))]",
+    "copy": [
+      {
+        "name": "firewall-rules",
+        "count": "[length(parameters('mySqlFirewallRules'))]",
+        "input": {
+          "name": "[parameters('mySqlFirewallRules')[copyIndex('firewall-rules')].name]",
+          "type": "firewallRules",
+          "apiVersion": "2017-12-01",
+          "properties": {
+            "startIpAddress": "[parameters('mySqlFirewallRules')[copyIndex('firewall-rules')].startIpAddress]",
+            "endIpAddress": "[parameters('mySqlFirewallRules')[copyIndex('firewall-rules')].endIpAddress]"
+          },
+          "dependsOn": [
+            "[variables('mySqlServerName')]"
+          ]
+        }
+      }
+    ],
+    "grafanaDatabase": {
+      "name": "grafana",
+      "type": "databases",
+      "apiVersion": "2017-12-01",
+      "properties": {},
+      "dependsOn": [
+        "[variables('mySqlServerName')]"
+      ]
+    },
+    "mySqlServerChildResources": "[concat(variables('grafanaDatabase'), variables('firewall-rules'))]",
     "mySqlServerName": "[concat(variables('resourceNamePrefix'), '-msql')]",
     "resourceGroupName": "[concat(variables('resourceNamePrefix'),'-rg')]",
     "storageAccountName": "[toLower(concat(replace(variables('resourceNamePrefix'), '-', ''), 'str'))]"
@@ -85,29 +121,7 @@
                 },
                 "createMode": "Default"
               },
-              "resources": [
-                {
-                  "name": "grafana",
-                  "type": "databases",
-                  "apiVersion": "2017-12-01",
-                  "properties": {},
-                  "dependsOn": [
-                    "[variables('mySqlServerName')]"
-                  ]
-                },
-                {
-                  "name": "AllowAllWindowsAzureIps",
-                  "type": "firewallRules",
-                  "apiVersion": "2017-12-01",
-                  "properties": {
-                    "startIpAddress": "0.0.0.0",
-                    "endIpAddress": "0.0.0.0"
-                  },
-                  "dependsOn": [
-                    "[variables('mySqlServerName')]"
-                  ]
-                }
-              ]
+              "resources": "[variables('mySqlServerChildResources')]"
             }
           ]
         }
