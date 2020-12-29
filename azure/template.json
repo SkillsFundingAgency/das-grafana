@@ -72,7 +72,7 @@
         "[variables('mySqlServerName')]"
       ]
     },
-    "mySqlServerChildResources": "[concat(variables('grafanaDatabase'), variables('firewall-rules'))]",
+    "mySqlServerChildResources": "[createArray(variables('grafanaDatabase'), variables('firewall-rules'))]",
     "mySqlServerName": "[concat(variables('resourceNamePrefix'), '-msql')]",
     "resourceGroupName": "[concat(variables('resourceNamePrefix'),'-rg')]",
     "storageAccountName": "[toLower(concat(replace(variables('resourceNamePrefix'), '-', ''), 'str'))]"
