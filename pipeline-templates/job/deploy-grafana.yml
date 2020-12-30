@@ -59,7 +59,7 @@ jobs:
             TemplatePath: $(Pipeline.Workspace)/das-grafana/azure/template.json
             IsMultiRepoCheckout: true
             TemplateSecrets: ${{ parameters.TemplateSecrets }}
-        - task: AzurePowerShell@4
+        - task: AzurePowerShell@5
           displayName: 'Azure PowerShell: Set StorageAccountKey variable'
           inputs:
             azureSubscription: ${{ parameters.AzureServiceConnection }}
@@ -68,6 +68,7 @@ jobs:
               $Keys = Get-AzStorageAccountKey -ResourceGroupName $(RESOURCEGROUPNAME) -Name $(STORAGEACCOUNTNAME)
               Write-Output "##vso[task.setvariable variable=StorageAccountKey;isOutput=false]$($Keys[0].Value)"
             azurePowerShellVersion: LatestVersion
+            pwsh: true
         - task: replacetokens@3
           displayName: 'Replace tokens manifests and values files'
           inputs:
