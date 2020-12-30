@@ -195,19 +195,19 @@
     }
   ],
   "outputs": {
-    "grafanaMySqlAdminLogin": {
+    "GrafanaMySqlAdminLogin": {
       "type": "string",
       "value": "[concat(parameters('grafanaMySqlAdminUsername'), '@', variables('mySqlServerName'))]"
     },
-    "mySqlServerName": {
+    "MySqlServerName": {
       "type": "string",
       "value": "[variables('mySqlServerName')]"
     },
-    "resourceGroupName": {
+    "ResourceGroupName": {
       "type": "string",
       "value": "[variables('resourceGroupName')]"
     },
-    "storageAccountName": {
+    "StorageAccountName": {
       "type": "string",
       "value": "[variables('storageAccountName')]"
     }
