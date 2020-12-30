@@ -45,34 +45,6 @@
   "variables": {
     "deploymentUrlBase": "https://raw.githubusercontent.com/SkillsFundingAgency/das-platform-building-blocks/master/templates/",
     "resourceNamePrefix": "[toLower(concat('das-', parameters('resourceEnvironmentName'), '-graf'))]",
-    "copy": [
-      {
-        "name": "firewall-rules",
-        "count": "[length(parameters('mySqlFirewallRules'))]",
-        "input": {
-          "name": "[parameters('mySqlFirewallRules')[copyIndex('firewall-rules')].name]",
-          "type": "firewallRules",
-          "apiVersion": "2017-12-01",
-          "properties": {
-            "startIpAddress": "[parameters('mySqlFirewallRules')[copyIndex('firewall-rules')].startIpAddress]",
-            "endIpAddress": "[parameters('mySqlFirewallRules')[copyIndex('firewall-rules')].endIpAddress]"
-          },
-          "dependsOn": [
-            "[variables('mySqlServerName')]"
-          ]
-        }
-      }
-    ],
-    "grafanaDatabase": {
-      "name": "grafana",
-      "type": "databases",
-      "apiVersion": "2017-12-01",
-      "properties": {},
-      "dependsOn": [
-        "[variables('mySqlServerName')]"
-      ]
-    },
-    "mySqlServerChildResources": "[createArray(variables('grafanaDatabase'), variables('firewall-rules'))]",
     "mySqlServerName": "[concat(variables('resourceNamePrefix'), '-msql')]",
     "resourceGroupName": "[concat(variables('resourceNamePrefix'),'-rg')]",
     "storageAccountName": "[toLower(concat(replace(variables('resourceNamePrefix'), '-', ''), 'str'))]"
@@ -121,7 +93,33 @@
                 },
                 "createMode": "Default"
               },
-              "resources": "[variables('mySqlServerChildResources')]"
+              "resources": [
+                {
+                  "name": "grafana",
+                  "type": "databases",
+                  "apiVersion": "2017-12-01",
+                  "properties": {},
+                  "dependsOn": [
+                    "[variables('mySqlServerName')]"
+                  ]
+                },
+                {
+                  "name": "[parameters('mySqlFirewallRules')[copyIndex()].name]",
+                  "type": "firewallRules",
+                  "apiVersion": "2017-12-01",
+                  "properties": {
+                    "startIpAddress": "[parameters('mySqlFirewallRules')[copyIndex()].startIpAddress]",
+                    "endIpAddress": "[parameters('mySqlFirewallRules')[copyIndex()].endIpAddress]"
+                  },
+                  "copy": {
+                    "name": "firewall-rules-copy",
+                    "length": "[length(parameters('mySqlFirewallRules'))]"
+                  },
+                  "dependsOn": [
+                    "[variables('mySqlServerName')]"
+                  ]
+                }
+              ]
             }
           ]
         }
