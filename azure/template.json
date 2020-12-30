@@ -102,22 +102,6 @@
                   "dependsOn": [
                     "[variables('mySqlServerName')]"
                   ]
-                },
-                {
-                  "name": "[parameters('mySqlFirewallRules')[copyIndex()].name]",
-                  "type": "firewallRules",
-                  "apiVersion": "2017-12-01",
-                  "properties": {
-                    "startIpAddress": "[parameters('mySqlFirewallRules')[copyIndex()].startIpAddress]",
-                    "endIpAddress": "[parameters('mySqlFirewallRules')[copyIndex()].endIpAddress]"
-                  },
-                  "copy": {
-                    "name": "firewall-rules-copy",
-                    "length": "[length(parameters('mySqlFirewallRules'))]"
-                  },
-                  "dependsOn": [
-                    "[variables('mySqlServerName')]"
-                  ]
                 }
               ]
             }
@@ -126,6 +110,39 @@
       },
       "dependsOn": [
         "[variables('resourceGroupName')]"
+      ]
+    },
+    {
+      "apiVersion": "2020-06-01",
+      "name": "[concat('mysql-firewall-rules-', parameters('mySqlFirewallRules')[copyIndex()].name)]",
+      "resourceGroup": "[variables('resourceGroupName')]",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {},
+          "variables": {},
+          "resources": [
+            {
+              "name": "[concat(variables('mySqlServerName'), '/', parameters('mySqlFirewallRules')[copyIndex()].name)]",
+              "type": "Microsoft.DBforMySQL/servers/firewallRules",
+              "apiVersion": "2017-12-01",
+              "properties": {
+                "startIpAddress": "[parameters('mySqlFirewallRules')[copyIndex()].startIpAddress]",
+                "endIpAddress": "[parameters('mySqlFirewallRules')[copyIndex()].endIpAddress]"
+              }
+            }
+          ]
+        }
+      },
+      "copy": {
+        "name": "firewall-rules-copy",
+        "count": "[length(parameters('mySqlFirewallRules'))]"
+      },
+      "dependsOn": [
+        "[variables('mySqlServerName')]"
       ]
     },
     {
