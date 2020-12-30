@@ -142,7 +142,7 @@
         "count": "[length(parameters('mySqlFirewallRules'))]"
       },
       "dependsOn": [
-        "[variables('mySqlServerName')]"
+        "mysql-database-server"
       ]
     },
     {
