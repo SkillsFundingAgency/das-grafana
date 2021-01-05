@@ -57,3 +57,5 @@ stages:
       SubscriptionId: $(SubscriptionId)
       TemplateSecrets:
         GRAFANAMYSQLADMINPASSWORD: $(GrafanaMySqlAdminPassword)
+
+##TO DO: PROD stage
