@@ -92,7 +92,7 @@ jobs:
             AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
             AzureServiceConnection: ${{ parameters.AzureServiceConnection }}
             Namespace: $(KubernetesNamespace)
-            SecretArguments: --from-literal=admin-user=${{ parameters.GrafanaAdminUsername }} --from-literal=admin-password=${{ parameters.GrafanaAdminPassword }}
+            SecretArguments: '--from-literal=admin-user=${{ parameters.GrafanaAdminUsername }} --from-literal=admin-password=${{ parameters.GrafanaAdminPassword }}'
             SecretName: grafana-admin-user
         - template: azure-pipelines-templates/deploy/step/kubernetes-create-ingress.yml@das-platform-building-blocks
           parameters:
