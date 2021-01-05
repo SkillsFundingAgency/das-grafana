@@ -84,7 +84,7 @@ jobs:
           parameters:
             AksClusterName: ${{ parameters.AksClusterName }}
             AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
-            AzureSubscription: ${{ parameters.AzureServiceConnection }}
+            AzureServiceConnection: ${{ parameters.AzureServiceConnection }}
             Namespace: $(KubernetesNamespace)
         - template: azure-pipelines-templates/deploy/step/kubernetes-create-secret.yml@das-platform-building-blocks
           parameters:
