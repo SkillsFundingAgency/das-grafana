@@ -4,7 +4,8 @@ resources:
   - repository: das-platform-building-blocks
     type: github
     name: SkillsFundingAgency/das-platform-building-blocks
-    ref: refs/heads/DASD-8435-AlignKubernetesBuildingBlocks
+    ##TO DO: revert to latest tag
+    ref: refs/heads/DASD-8435-FixKubernetesApply
     endpoint: SFA
   - repository: das-platform-automation
     type: github
