@@ -45,7 +45,7 @@
   "variables": {
     "deploymentUrlBase": "https://raw.githubusercontent.com/SkillsFundingAgency/das-platform-building-blocks/master/templates/",
     "resourceNamePrefix": "[toLower(concat('das-', parameters('resourceEnvironmentName'), '-graf'))]",
-    "mySqlServerName": "[concat(variables('resourceNamePrefix'), '-msql')]",
+    "mySqlServerName": "[concat(variables('resourceNamePrefix'), '-mysql')]",
     "resourceGroupName": "[concat(variables('resourceNamePrefix'),'-rg')]",
     "storageAccountName": "[toLower(concat(replace(variables('resourceNamePrefix'), '-', ''), 'str'))]"
   },
