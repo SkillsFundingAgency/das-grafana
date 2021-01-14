@@ -57,6 +57,7 @@ stages:
         GRAFANAMYSQLADMINPASSWORD: $(GrafanaMySqlAdminPassword)
 
 - stage: Deploy_PROD
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   variables:
   - group: Prod Management Resources
   - group: PROD Tools Service Shared
