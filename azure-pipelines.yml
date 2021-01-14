@@ -30,7 +30,7 @@ variables:
   value: 1.18.8
 
 stages:
-- stage: Deploy_Dev
+- stage: Deploy_DEV
   variables:
   - group: Dev Management Resources
   - group: DEV Tools Service Shared
@@ -56,7 +56,7 @@ stages:
       TemplateSecrets:
         GRAFANAMYSQLADMINPASSWORD: $(GrafanaMySqlAdminPassword)
 
-- stage: Deploy_Dev
+- stage: Deploy_PROD
   variables:
   - group: Prod Management Resources
   - group: PROD Tools Service Shared
