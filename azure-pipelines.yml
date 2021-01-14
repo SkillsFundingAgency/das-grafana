@@ -33,7 +33,7 @@ stages:
 - stage: Deploy_Dev
   variables:
   - group: Dev Management Resources
-  - group: TEST Tools Service Shared
+  - group: DEV Tools Service Shared
   - group: DEV Grafana
   jobs:
   - template: pipeline-templates/job/deploy-grafana.yml
