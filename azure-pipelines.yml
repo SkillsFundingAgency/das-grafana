@@ -56,4 +56,28 @@ stages:
       TemplateSecrets:
         GRAFANAMYSQLADMINPASSWORD: $(GrafanaMySqlAdminPassword)
 
-##TO DO: PROD stage
+- stage: Deploy_Dev
+  variables:
+  - group: Prod Management Resources
+  - group: PROD Tools Service Shared
+  - group: PROD Grafana
+  jobs:
+  - template: pipeline-templates/job/deploy-grafana.yml
+    parameters:
+      AksClusterName: $(AKSSharedClusterName)
+      AksResourceGroupName: $(AKSResourceGroupName)
+      AppGatewayName: $(AKSSharedAppGatewayName)
+      AppGatewayResourceGroup: $(AKSSharedNodeResourceGroupName)
+      AzureServiceConnection: SFA-DIG-Prod-ARM
+      Environment: PROD
+      GrafanaBaseUri: https://$(IngressHost)/grafana
+      GrafanaAdminPassword: $(GrafanaAdminPassword)
+      GrafanaAdminUsername: $(GrafanaAdminUsername)
+      HelmClientVersion: $(HelmClientVersion)
+      HelmChartVersion: $(HelmChartVersion)
+      KeyVaultName: $(SharedKeyVaultName)
+      KubectlVersion: $(KubectlVersion)
+      ResourceGroupLocation: $(ResourceGroupLocation)
+      SubscriptionId: $(SubscriptionId)
+      TemplateSecrets:
+        GRAFANAMYSQLADMINPASSWORD: $(GrafanaMySqlAdminPassword)
