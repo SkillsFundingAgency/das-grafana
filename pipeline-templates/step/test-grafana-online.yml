@@ -1,0 +1,14 @@
+parameters:
+  GrafanaBaseUri: 
+  ContinueOnTimeout: false
+  
+steps:
+- task: PowerShell@2
+  displayName: 'PowerShell: Test-GrafanaOnline.ps1'
+  inputs:
+    filePath: $(Pipeline.Workspace)/das-grafana/tools/Test-GrafanaOnline.ps1
+    ${{ if eq(parameters.ContinueOnTimeout, true) }}:
+      arguments: -GrafanaBaseUri ${{ parameters.GrafanaBaseUri }} -ContinueOnTimeout -Verbose
+    ${{ if eq(parameters.ContinueOnTimeout, false) }}:
+      arguments: -GrafanaBaseUri ${{ parameters.GrafanaBaseUri }} -Verbose
+    pwsh: true

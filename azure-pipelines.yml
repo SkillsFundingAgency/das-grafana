@@ -1,0 +1,84 @@
+resources:
+  repositories:
+  - repository: self
+  - repository: das-platform-building-blocks
+    type: github
+    name: SkillsFundingAgency/das-platform-building-blocks
+    ref: refs/tags/0.3.1
+    endpoint: SFA
+  - repository: das-platform-automation
+    type: github
+    name: SkillsFundingAgency/das-platform-automation
+    ref: refs/tags/4.2.7
+    endpoint: SFA
+
+pr: none
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - "*"
+
+variables:
+- group: Release Management Resources
+- name: HelmClientVersion
+  value: 3.4.1
+- name: HelmChartVersion
+  value: 5.5.7
+- name: KubectlVersion
+  value: 1.18.8
+
+stages:
+- stage: Deploy_DEV
+  variables:
+  - group: Dev Management Resources
+  - group: DEV Tools Service Shared
+  - group: DEV Grafana
+  jobs:
+  - template: pipeline-templates/job/deploy-grafana.yml
+    parameters:
+      AksClusterName: $(AKSSharedClusterName)
+      AksResourceGroupName: $(AKSResourceGroupName)
+      AppGatewayName: $(AKSSharedAppGatewayName)
+      AppGatewayResourceGroup: $(AKSSharedNodeResourceGroupName)
+      AzureServiceConnection: SFA-DAS-DevTest-ARM
+      Environment: DEV
+      GrafanaBaseUri: https://$(IngressHost)/grafana
+      GrafanaAdminPassword: $(GrafanaAdminPassword)
+      GrafanaAdminUsername: $(GrafanaAdminUsername)
+      HelmClientVersion: $(HelmClientVersion)
+      HelmChartVersion: $(HelmChartVersion)
+      KeyVaultName: $(SharedKeyVaultName)
+      KubectlVersion: $(KubectlVersion)
+      ResourceGroupLocation: $(ResourceGroupLocation)
+      SubscriptionId: $(SubscriptionId)
+      TemplateSecrets:
+        GRAFANAMYSQLADMINPASSWORD: $(GrafanaMySqlAdminPassword)
+
+- stage: Deploy_PROD
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  variables:
+  - group: Prod Management Resources
+  - group: PROD Tools Service Shared
+  - group: PROD Grafana
+  jobs:
+  - template: pipeline-templates/job/deploy-grafana.yml
+    parameters:
+      AksClusterName: $(AKSSharedClusterName)
+      AksResourceGroupName: $(AKSResourceGroupName)
+      AppGatewayName: $(AKSSharedAppGatewayName)
+      AppGatewayResourceGroup: $(AKSSharedNodeResourceGroupName)
+      AzureServiceConnection: SFA-DIG-Prod-ARM
+      Environment: PROD
+      GrafanaBaseUri: https://$(IngressHost)/grafana
+      GrafanaAdminPassword: $(GrafanaAdminPassword)
+      GrafanaAdminUsername: $(GrafanaAdminUsername)
+      HelmClientVersion: $(HelmClientVersion)
+      HelmChartVersion: $(HelmChartVersion)
+      KeyVaultName: $(SharedKeyVaultName)
+      KubectlVersion: $(KubectlVersion)
+      ResourceGroupLocation: $(ResourceGroupLocation)
+      SubscriptionId: $(SubscriptionId)
+      TemplateSecrets:
+        GRAFANAMYSQLADMINPASSWORD: $(GrafanaMySqlAdminPassword)

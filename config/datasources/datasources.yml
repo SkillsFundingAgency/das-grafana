@@ -1,0 +1,135 @@
+apiVersion: 1
+datasources:
+  - name: "Azure Monitor - Dev/Test"
+    orgId: 1
+    type: "grafana-azure-monitor-datasource"
+    access: "proxy"
+    jsonData:
+      cloudName: "azuremonitor"
+      clientId: {{AzureMonitorDevTestClientId}}
+      subscriptionId: {{AzureDevTestSubscriptionId}}
+      tenantId: {{AzureCDSTenantId}}
+      azureLogAnalyticsSameAs: false
+      logAnalyticsSubscriptionId: {{AzureDevTestSubscriptionId}}
+      logAnalyticsTenantId: {{AzureCDSTenantId}}
+      logAnalyticsClientId: {{AzureMonitorDevTestClientId}}
+      logAnalyticsDefaultWorkspace: {{LogAnalyticsDevTestWorkspaceId}}
+    secureJsonData:
+      clientSecret: {{AzureMonitorDevTestClientSecret}}
+      logAnalyticsClientSecret: {{AzureMonitorDevTestClientSecret}}
+
+  - name: Prometheus
+    orgId: 1
+    type: prometheus
+    access: proxy
+    url: http://pom-prometheus.monitoring.svc.cluster.local:9090
+
+  - name: Elasticsearch - Logging
+    orgId: 1
+    type: elasticsearch
+    access: proxy
+    database: "das-logstash*"
+    url: {{ElasticSearchLoggingUrl}}
+    basicAuth: true
+    basicAuthUser: {{ElasticsearchLoggingServiceAccountUser}}
+    jsonData:
+      timeField: "@timestamp"
+      esVersion: 70
+      logMessageField: "Message"
+      logLevelField: "level"
+    secureJsonData:
+      basicAuthPassword: {{ElasticsearchLoggingServiceAccountPassword}}
+
+  - name: "Azure Monitor - Dev/Test"
+    orgId: 3
+    type: "grafana-azure-monitor-datasource"
+    access: "proxy"
+    jsonData:
+      cloudName: "azuremonitor"
+      clientId: {{AzureMonitorDevTestClientId}}
+      subscriptionId: {{AzureDevTestSubscriptionId}}
+      tenantId: {{AzureCDSTenantId}}
+      azureLogAnalyticsSameAs: false
+      logAnalyticsSubscriptionId: {{AzureDevTestSubscriptionId}}
+      logAnalyticsTenantId: {{AzureCDSTenantId}}
+      logAnalyticsClientId: {{AzureMonitorDevTestClientId}}
+      logAnalyticsDefaultWorkspace: {{LogAnalyticsDevTestWorkspaceId}}
+    secureJsonData:
+      clientSecret: {{AzureMonitorDevTestClientSecret}}
+      logAnalyticsClientSecret: {{AzureMonitorDevTestClientSecret}}
+
+  - name: "Azure Monitor - PreProduction"
+    orgId: 3
+    type: "grafana-azure-monitor-datasource"
+    access: "proxy"
+    jsonData:
+      cloudName: "azuremonitor"
+      clientId: {{AzureMonitorPreProdClientId}}
+      subscriptionId: {{AzurePreProdSubscriptionId}}
+      tenantId: {{AzureFCSTenantId}}
+      azureLogAnalyticsSameAs: false
+      logAnalyticsSubscriptionId: {{AzurePreProdSubscriptionId}}
+      logAnalyticsTenantId: {{AzureFCSTenantId}}
+      logAnalyticsClientId: {{AzureMonitorPreProdClientId}}
+      logAnalyticsDefaultWorkspace: {{LogAnalyticsPreProdWorkspaceId}}
+    secureJsonData:
+      clientSecret: {{AzureMonitorPreProdClientSecret}}
+      logAnalyticsClientSecret: {{AzureMonitorPreProdClientSecret}}
+
+  - name: "Azure Monitor - Production"
+    orgId: 3
+    type: "grafana-azure-monitor-datasource"
+    access: "proxy"
+    jsonData:
+      cloudName: "azuremonitor"
+      clientId: {{AzureMonitorProdClientId}}
+      subscriptionId: {{AzureProdSubscriptionId}}
+      tenantId: {{AzureFCSTenantId}}
+      azureLogAnalyticsSameAs: false
+      logAnalyticsSubscriptionId: {{AzureProdSubscriptionId}}
+      logAnalyticsTenantId: {{AzureFCSTenantId}}
+      logAnalyticsClientId: {{AzureMonitorProdClientId}}
+      logAnalyticsDefaultWorkspace: {{LogAnalyticsProdWorkspaceId}}
+    secureJsonData:
+      clientSecret: {{AzureMonitorProdClientSecret}}
+      logAnalyticsClientSecret: {{AzureMonitorProdClientSecret}}
+
+  - name: "Azure Monitor - NAS"
+    orgId: 3
+    type: "grafana-azure-monitor-datasource"
+    access: "proxy"
+    jsonData:
+      cloudName: "azuremonitor"
+      clientId: {{AzureMonitorNASClientId}}
+      subscriptionId: {{AzureNASSubscriptionId}}
+      tenantId: {{AzureNASTenantId}}
+      azureLogAnalyticsSameAs: false
+      logAnalyticsSubscriptionId: {{AzureNASSubscriptionId}}
+      logAnalyticsTenantId: {{AzureFCSTenantId}}
+      logAnalyticsClientId: {{AzureMonitorNASClientId}}
+      logAnalyticsDefaultWorkspace: {{LogAnalyticsNASWorkspaceId}}
+    secureJsonData:
+      clientSecret: {{AzureMonitorNASClientSecret}}
+      logAnalyticsClientSecret: {{AzureMonitorNASClientSecret}}
+
+  - name: Prometheus
+    orgId: 3
+    type: prometheus
+    access: proxy
+    url: http://pom-prometheus.monitoring.svc.cluster.local:9090
+
+  - name: Elasticsearch - Logging
+    orgId: 3
+    type: elasticsearch
+    access: proxy
+    database: "das-logstash*"
+    url: {{ElasticSearchLoggingUrl}}
+    basicAuth: true
+    basicAuthUser: {{ElasticsearchLoggingServiceAccountUser}}
+    jsonData:
+      timeField: "@timestamp"
+      esVersion: 70
+      logMessageField: "Message"
+      logLevelField: "level"
+    secureJsonData:
+      basicAuthPassword: {{ElasticsearchLoggingServiceAccountPassword}}
