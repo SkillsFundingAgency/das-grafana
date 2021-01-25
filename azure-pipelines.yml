@@ -56,6 +56,32 @@ stages:
       TemplateSecrets:
         GRAFANAMYSQLADMINPASSWORD: $(GrafanaMySqlAdminPassword)
 
+- stage: Deploy_PREPROD
+  variables:
+  - group: PreProd Management Resources
+  - group: PREPROD Tools Service Shared
+  - group: PREPROD Grafana
+  jobs:
+  - template: pipeline-templates/job/deploy-grafana.yml
+    parameters:
+      AksClusterName: $(AKSSharedClusterName)
+      AksResourceGroupName: $(AKSResourceGroupName)
+      AppGatewayName: $(AKSSharedAppGatewayName)
+      AppGatewayResourceGroup: $(AKSSharedNodeResourceGroupName)
+      AzureServiceConnection: SFA-DIG-PreProd-ARM
+      Environment: PREPROD
+      GrafanaBaseUri: https://$(IngressHost)/grafana
+      GrafanaAdminPassword: $(GrafanaAdminPassword)
+      GrafanaAdminUsername: $(GrafanaAdminUsername)
+      HelmClientVersion: $(HelmClientVersion)
+      HelmChartVersion: $(HelmChartVersion)
+      KeyVaultName: $(SharedKeyVaultName)
+      KubectlVersion: $(KubectlVersion)
+      ResourceGroupLocation: $(ResourceGroupLocation)
+      SubscriptionId: $(SubscriptionId)
+      TemplateSecrets:
+        GRAFANAMYSQLADMINPASSWORD: $(GrafanaMySqlAdminPassword)
+
 - stage: Deploy_PROD
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   variables:
