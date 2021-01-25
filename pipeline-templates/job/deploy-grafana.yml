@@ -146,7 +146,7 @@ jobs:
           displayName: 'PowerShell: New-GrafanaOrg.ps1'
           inputs:
             filePath: $(Pipeline.Workspace)/das-grafana/tools/New-GrafanaOrg.ps1
-            arguments: -GrafanaBaseUri ${{ parameters.GrafanaBaseUri }} -OrgName "Placeholder", "Apprenticeship Service" -Password ${{ parameters.GrafanaAdminPassword }} -Username ${{ parameters.GrafanaAdminUsername }} -Verbose
+            arguments: -GrafanaBaseUri "${{ parameters.GrafanaBaseUri }}" -OrgName "Placeholder", "Apprenticeship Service" -Password "${{ parameters.GrafanaAdminPassword }}" -Username ${{ parameters.GrafanaAdminUsername }} -Verbose
             pwsh: true
         - task: Kubernetes@1
           displayName: kubectl login
