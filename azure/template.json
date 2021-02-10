@@ -88,7 +88,7 @@
                 "version": "5.7",
                 "sslEnforcement": "Enabled",
                 "storageProfile": {
-                  "backupRetentionDays": 7,
+                  "backupRetentionDays": "[if(equals(parameters('resourceEnvironmentName'), 'prd'), 35, 7)]",
                   "storageMB": "[parameters('mySqlStorageMB')]"
                 },
                 "createMode": "Default"
