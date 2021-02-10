@@ -112,19 +112,6 @@ jobs:
             KubectlVersion: ${{ parameters.KubectlVersion }}
             ManifestFile: $(Pipeline.Workspace)/das-grafana/manifest/volume-claim.yml
             Namespace: $(KubernetesNamespace)
-        - template: ../step/test-grafana-online.yml
-          parameters:
-            GrafanaBaseUri: ${{ parameters.GrafanaBaseUri }}
-            ContinueOnTimeout: true
-        - template: azure-pipelines-templates/deploy/step/kubernetes-exec.yml@das-platform-building-blocks
-          parameters:
-            AksClusterName: ${{ parameters.AksClusterName }}
-            AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
-            AzureServiceConnection: ${{ parameters.AzureServiceConnection }}
-            Command: rm -f /etc/grafana/provisioning/datasources/datasources.yml
-            Namespace: $(KubernetesNamespace)
-            PodLabel: app.kubernetes.io/name=grafana
-            ExecuteTasks: eq(variables.IsGrafanaOnline, 'true')
         - template: azure-pipelines-templates/deploy/step/kubernetes-upgrade-helmchart.yml@das-platform-building-blocks
           parameters:
             AdditionalChartRepoNameAndUrl: grafana https://grafana.github.io/helm-charts
@@ -138,58 +125,3 @@ jobs:
             Namespace: $(KubernetesNamespace)
             ReleaseName: grafana
             ValuesFile: $(Pipeline.Workspace)/das-grafana/helm.yml
-        - template: ../step/test-grafana-online.yml
-          parameters:
-            GrafanaBaseUri: ${{ parameters.GrafanaBaseUri }}
-        ## This approach is a placeholder to ensure that an organisation with the name "Apprenticeship Service" and id of 3 is created.  
-        - task: PowerShell@2
-          displayName: 'PowerShell: New-GrafanaOrg.ps1'
-          inputs:
-            filePath: $(Pipeline.Workspace)/das-grafana/tools/New-GrafanaOrg.ps1
-            arguments: -GrafanaBaseUri "${{ parameters.GrafanaBaseUri }}" -OrgName "Placeholder", "Apprenticeship Service" -Password "${{ parameters.GrafanaAdminPassword }}" -Username ${{ parameters.GrafanaAdminUsername }} -Verbose
-            pwsh: true
-        - task: Kubernetes@1
-          displayName: kubectl login
-          inputs:
-            connectionType: Azure Resource Manager
-            azureSubscriptionEndpoint: ${{ parameters.AzureServiceConnection }}
-            azureResourceGroup: ${{ parameters.AksResourceGroupName }}
-            kubernetesCluster: ${{ parameters.AksClusterName }}
-            useClusterAdmin: true
-            command: login
-        - task: PowerShell@2
-          displayName: 'PowerShell: Copy-FileToContainer.ps1'
-          inputs:
-            filePath: $(Pipeline.Workspace)/das-grafana/tools/Copy-FileToContainer.ps1
-            arguments: -Namespace $(KubernetesNamespace) -PodLabel app.kubernetes.io/name=grafana -SourceFilePath $(Pipeline.Workspace)/das-grafana/config/datasources/datasources.yml -TargetFilePath /etc/grafana/provisioning/datasources/datasources.yml -Verbose
-            pwsh: true
-        ## delete a grafana pod to force reapplication of config
-        - task: Kubernetes@1
-          displayName: kubectl get grafana pod names
-          name: GetGrafanaPodNames
-          inputs:
-            connectionType: Azure Resource Manager
-            azureSubscriptionEndpoint: ${{ parameters.AzureServiceConnection }}
-            azureResourceGroup: ${{ parameters.AksResourceGroupName }}
-            kubernetesCluster: ${{ parameters.AksClusterName }}
-            useClusterAdmin: true
-            namespace: $(KubernetesNamespace)
-            command: get
-            arguments: 'pod -l app.kubernetes.io/name=grafana'
-            outputFormat: name
-        - pwsh: |
-            $Name = "$(GetGrafanaPodNames.KubectlOutput)[0]"
-            Write-Output "Setting PodName variable to $Name"
-            Write-Output "##vso[task.setvariable variable=GrafanaPodName]$Name"
-          displayName: 'PowerShell: Output PodName'
-        - task: Kubernetes@1
-          displayName: kubectl delete one grafana pod"
-          inputs:
-            connectionType: Azure Resource Manager
-            azureSubscriptionEndpoint: ${{ parameters.AzureServiceConnection }}
-            azureResourceGroup: ${{ parameters.AksResourceGroupName }}
-            kubernetesCluster: ${{ parameters.AksClusterName }}
-            useClusterAdmin: true
-            namespace: $(KubernetesNamespace)
-            command: delete
-            arguments: '$(GrafanaPodName)'
