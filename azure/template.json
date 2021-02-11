@@ -17,6 +17,10 @@
     "tags": {
       "type": "object"
     },
+    "mySqlBackupRetentionDays": {
+      "type": "int",
+      "defaultValue": 7
+    },
     "mySqlFirewallRules": {
       "type": "array",
       "defaultValue": [],
@@ -88,7 +92,7 @@
                 "version": "5.7",
                 "sslEnforcement": "Enabled",
                 "storageProfile": {
-                  "backupRetentionDays": 7,
+                  "backupRetentionDays": "[parameters('mySqlBackupRetentionDays')]",
                   "storageMB": "[parameters('mySqlStorageMB')]"
                 },
                 "createMode": "Default"
