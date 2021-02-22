@@ -125,3 +125,4 @@ jobs:
             Namespace: $(KubernetesNamespace)
             ReleaseName: grafana
             ValuesFile: $(Pipeline.Workspace)/das-grafana/helm.yml
+            AdditionalUpgradeAgs: --cleanup-on-fail
