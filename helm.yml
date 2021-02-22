@@ -17,8 +17,8 @@ datasources:
     apiVersion: 1
     datasources:
     - name: "Elasticsearch - Logging"
-      type: Elasticsearch
-      orgId: 1
+      type: elasticsearch
+      orgId: 3
       readOnly: false
       editable: true
 admin:
