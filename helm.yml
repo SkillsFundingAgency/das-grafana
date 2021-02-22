@@ -12,10 +12,6 @@ plugins:
   - flant-statusmap-panel
   - simpod-json-datasource
   - grafana-piechart-panel
-datasources:
-- name: "Elasticsearch - Logging"
-  readOnly: false
-  editable: true
 admin:
   existingSecret: grafana-admin-user
   userKey: admin-user
