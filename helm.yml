@@ -13,7 +13,7 @@ plugins:
   - simpod-json-datasource
   - grafana-piechart-panel
 datasources:
-  datasource.yaml:
+  datasources.yaml:
     apiVersion: 1
     datasources:
     - name: "Elasticsearch - Logging"
