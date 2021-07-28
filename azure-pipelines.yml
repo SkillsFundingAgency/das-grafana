@@ -23,11 +23,11 @@ trigger:
 variables:
 - group: Release Management Resources
 - name: HelmClientVersion
-  value: 3.4.1
+  value: 3.6.3
 - name: HelmChartVersion
-  value: 5.5.7
+  value: 6.14.1
 - name: KubectlVersion
-  value: 1.18.8
+  value: 1.19.11
 
 stages:
 - stage: Deploy_DEV
