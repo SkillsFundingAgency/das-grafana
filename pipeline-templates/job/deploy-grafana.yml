@@ -110,7 +110,7 @@ jobs:
             AksClusterName: ${{ parameters.AksClusterName }}
             AksResourceGroupName: ${{ parameters.AksResourceGroupName }}
             AzureServiceConnection: ${{ parameters.AzureServiceConnection }}
-            ChartName: stable/grafana
+            ChartName: grafana/grafana
             HelmClientVersion: ${{ parameters.HelmClientVersion }}
             HelmChartVersion: ${{ parameters.HelmChartVersion }}
             KubectlVersion: ${{ parameters.KubectlVersion }}
