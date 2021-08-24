@@ -21,8 +21,8 @@ admin:
 grafana.ini:
   users:
     auto_assign_org: true
-    ## TO DO: find a way to set this to 3 on initial deployment
-    auto_assign_org_id: 1
+    ## On initial deployment value must be set to 1. Due to current configuration of orgs, it is set to 3 for ease of on-boarding new users.
+    auto_assign_org_id: 3
     auto_assign_org_role: Viewer
   auth:
     oauth_auto_login: true

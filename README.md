@@ -15,3 +15,7 @@ Invoke-RestMethod -Uri $GrafanaBaseUri/api/orgs/<orgid>/users -Method POST -Head
 ```
 
 Once your user is an admin you'll be able to complete the remaining config, including adding other users as admin, via the Grafana GUI.  Additional documentation on user management can be found [here](https://grafana.com/docs/grafana/latest/http_api/org/#admin-organizations-api).
+
+## User Auto-assignment
+
+The grafana.ini / users / auto_assign_org_id value in the helm.yml file sets what organisation the users are auto assigned to. On initial deployment value must be set to 1. Due to current configuration of orgs, it is set to 3 for ease of on-boarding new users.
