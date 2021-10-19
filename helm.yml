@@ -41,12 +41,12 @@ grafana.ini:
   auth.azuread:
     name: Azure AD
     enabled: true
-    allow_sign_up: false
+    allow_sign_up: true
     client_id: {{AdOidcClientId}}
     client_secret: {{AdOidcClientSecret}}
     scopes: openid email profile
-    auth_url: https://login.microsoftonline.com/{{Tenant}}/oauth2/v2.0/authorize
-    token_url: https://login.microsoftonline.com/{{Tenant}}/oauth2/v2.0/token
+    auth_url: https://login.microsoftonline.com/{{AzureCDSTenantId}}/oauth2/v2.0/authorize
+    token_url: https://login.microsoftonline.com/{{AzureCDSTenantId}}/oauth2/v2.0/token
     allowed_domains:
     allowed_groups:
   server:
