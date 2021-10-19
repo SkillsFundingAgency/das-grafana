@@ -48,7 +48,7 @@ grafana.ini:
     auth_url: https://login.microsoftonline.com/{{AzureCDSTenantId}}/oauth2/v2.0/authorize
     token_url: https://login.microsoftonline.com/{{AzureCDSTenantId}}/oauth2/v2.0/token
     allowed_domains:
-    allowed_groups:
+    allowed_groups: {{AllowedAdGroups}}
   server:
     root_url: https://{{IngressHost}}/grafana
     serve_from_sub_path: true
