@@ -28,16 +28,17 @@ grafana.ini:
     oauth_auto_login: true
     disable_login_form: false
     signout_redirect_url: https://{{IngressHost}}/Account/Logout
-  auth.generic_oauth:
+  auth.azuread:
+    name: Azure AD
     enabled: true
-    client_id: {{Auth0ClientId}}
-    client_secret: {{Auth0ClientSecret}}
-    scopes: openid profile email
-    auth_url: https://{{Auth0Domain}}/authorize
-    token_url: https://{{Auth0Domain}}/oauth/token
-    api_url:  https://{{Auth0Domain}}/usrinfo
-    send_client_credentials_via_post: true
     allow_sign_up: true
+    client_id: {{AdOidcClientId}}
+    client_secret: {{AdOidcClientSecret}}
+    scopes: openid email profile
+    auth_url: https://login.microsoftonline.com/{{TenantId}}/oauth2/v2.0/authorize
+    token_url: https://login.microsoftonline.com/{{TenantId}}/oauth2/v2.0/token
+    allowed_domains:
+    allowed_groups: {{AllowedAdGroups}}
   server:
     root_url: https://{{IngressHost}}/grafana
     serve_from_sub_path: true
