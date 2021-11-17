@@ -32,8 +32,8 @@ grafana.ini:
     name: Azure AD
     enabled: true
     allow_sign_up: true
-    client_id: {{AdOidcClientId}}
-    client_secret: {{AdOidcClientSecret}}
+    client_id: {{ToolsServiceAadOidcClientId}}
+    client_secret: {{ToolsServiceAadOidcClientSecret}}
     scopes: openid email profile
     auth_url: https://login.microsoftonline.com/{{TenantId}}/oauth2/v2.0/authorize
     token_url: https://login.microsoftonline.com/{{TenantId}}/oauth2/v2.0/token
