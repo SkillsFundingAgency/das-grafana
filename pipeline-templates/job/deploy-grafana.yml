@@ -20,7 +20,7 @@ jobs:
 - deployment: DeployTo_${{ parameters.Environment }}
   environment: ${{ parameters.Environment }}
   pool:
-    name: 'DAS - Continuous Integration'
+    name: DAS - Continuous Integration Agents
     ## Linux agent required to ensure the 'kubectl cp' in Copy-FileToContainer.ps1 functions as expected
     demands: Agent.OS -equals Linux
   variables:
