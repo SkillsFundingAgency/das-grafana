@@ -1,5 +1,5 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: grafana
@@ -15,10 +15,17 @@ spec:
     http:
       paths:
       - path: /grafana
+        pathType: Exact
         backend:
-          serviceName: grafana
-          servicePort: 80
+          service:
+            name: grafana
+            port: 
+              number: 80
       - path: /grafana/*
+        pathType: Prefix
         backend:
-          serviceName: grafana
-          servicePort: 80
+          service:
+            name: grafana
+            port:
+              number: 80
+    
