@@ -44,6 +44,10 @@
     "mySqlStorageMB": {
       "type": "string",
       "defaultValue": "51200"
+    },
+    "utcValue": {
+      "type": "string",
+      "defaultValue": "[utcNow('yyMMddHHmmss')]"
     }
   },
   "variables": {
@@ -65,7 +69,7 @@
     },
     {
       "apiVersion": "2020-06-01",
-      "name": "mysql-database-server",
+      "name": "[concat('mysql-database-server-', parameters('utcValue'))]",
       "resourceGroup": "[variables('resourceGroupName')]",
       "type": "Microsoft.Resources/deployments",
       "properties": {
@@ -118,7 +122,7 @@
     },
     {
       "apiVersion": "2020-06-01",
-      "name": "[concat('mysql-firewall-rules-', parameters('mySqlFirewallRules')[copyIndex()].name)]",
+      "name": "[concat('mysql-firewall-rules-', parameters('mySqlFirewallRules')[copyIndex()].name, '-', parameters('utcValue'))]",
       "resourceGroup": "[variables('resourceGroupName')]",
       "type": "Microsoft.Resources/deployments",
       "properties": {
@@ -146,12 +150,12 @@
         "count": "[length(parameters('mySqlFirewallRules'))]"
       },
       "dependsOn": [
-        "mysql-database-server"
+        "[concat('mysql-database-server-', parameters('utcValue'))]"
       ]
     },
     {
       "apiVersion": "2020-06-01",
-      "name": "storage-account",
+      "name": "[concat('storage-account-', parameters('utcValue'))]",
       "resourceGroup": "[variables('resourceGroupName')]",
       "type": "Microsoft.Resources/deployments",
       "properties": {
@@ -178,7 +182,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[concat('storage-account-container')]",
+      "name": "[concat('storage-account-container-', parameters('utcValue'))]",
       "resourceGroup": "[variables('resourceGroupName')]",
       "type": "Microsoft.Resources/deployments",
       "properties": {
@@ -200,7 +204,7 @@
         }
       },
       "dependsOn": [
-        "storage-account"
+        "[concat('storage-account-', parameters('utcValue'))]"
       ]
     }
   ],
