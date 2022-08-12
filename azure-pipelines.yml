@@ -4,7 +4,7 @@ resources:
   - repository: das-platform-building-blocks
     type: github
     name: SkillsFundingAgency/das-platform-building-blocks
-    ref: refs/tags/0.4.63
+    ref: refs/tags/0.4.73
     endpoint: SFA
   - repository: das-platform-automation
     type: github
@@ -25,35 +25,9 @@ variables:
 - name: HelmChartVersion
   value: 6.32.2
 - name: KubectlVersion
-  value: 1.19.11
+  value: 1.23.8
 
 stages:
-- stage: Deploy_DEV
-  variables:
-  - group: Dev Management Resources
-  - group: DEV Tools Service Shared
-  - group: DEV Grafana
-  jobs:
-  - template: pipeline-templates/job/deploy-grafana.yml
-    parameters:
-      AksClusterName: $(AKSSharedClusterName)
-      AksResourceGroupName: $(AKSResourceGroupName)
-      AppGatewayName: $(AKSSharedAppGatewayName)
-      AppGatewayResourceGroup: $(AKSSharedNodeResourceGroupName)
-      AzureServiceConnection: SFA-DAS-DevTest-ARM
-      Environment: DEV
-      GrafanaBaseUri: https://$(IngressHost)/grafana
-      GrafanaAdminPassword: $(GrafanaAdminPassword)
-      GrafanaAdminUsername: $(GrafanaAdminUsername)
-      HelmClientVersion: $(HelmClientVersion)
-      HelmChartVersion: $(HelmChartVersion)
-      KeyVaultName: $(SharedKeyVaultName)
-      KubectlVersion: $(KubectlVersion)
-      ResourceGroupLocation: $(ResourceGroupLocation)
-      SubscriptionId: $(SubscriptionId)
-      TemplateSecrets:
-        GRAFANAMYSQLADMINPASSWORD: $(GrafanaMySqlAdminPassword)
-
 - stage: Deploy_PREPROD
   variables:
   - group: PreProd Management Resources
