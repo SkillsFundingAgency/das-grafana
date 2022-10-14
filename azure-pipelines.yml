@@ -23,7 +23,7 @@ variables:
 - name: HelmClientVersion
   value: 3.6.3
 - name: HelmChartVersion
-  value: 6.32.2
+  value: 6.40.4
 - name: KubectlVersion
   value: 1.23.8
 
