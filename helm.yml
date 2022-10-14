@@ -2,7 +2,7 @@
 replicas: 2
 image:
   repository: grafana/grafana
-  tag: 8.5.9
+  tag: 8.5.14
 nodeSelector:
   agentpool: tools01
 resources:
