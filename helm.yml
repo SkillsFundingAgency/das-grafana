@@ -1,8 +1,8 @@
-#Reference chart version 6.14.1 values.yml at https://github.com/grafana/helm-charts/blob/bea1de88b4e991251e6c0cce27a149eceb09d9bc/charts/grafana/values.yaml
+#Reference chart version 6.50.7 values.yml at https://github.com/grafana/helm-charts/blob/bf834bfa74e4f00d41e6de8acec258eefa2b35f9/charts/grafana/values.yaml
 replicas: 2
 image:
   repository: grafana/grafana
-  tag: 8.5.14
+  tag: 9.3.6
 nodeSelector:
   agentpool: tools01
 resources:
@@ -18,6 +18,8 @@ admin:
   existingSecret: grafana-admin-user
   userKey: admin-user
   passwordKey: admin-password
+rbac:
+  pspEnabled: false
 grafana.ini:
   users:
     auto_assign_org: true
