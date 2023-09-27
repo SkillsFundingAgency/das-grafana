@@ -1,8 +1,8 @@
-#Reference chart version 6.50.7 values.yml at https://github.com/grafana/helm-charts/blob/bf834bfa74e4f00d41e6de8acec258eefa2b35f9/charts/grafana/values.yaml
+#Reference chart version 6.60.1 values.yml at https://github.com/grafana/helm-charts/blob/bf834bfa74e4f00d41e6de8acec258eefa2b35f9/charts/grafana/values.yaml
 replicas: 2
 image:
   repository: grafana/grafana
-  tag: 9.3.6
+  tag: 10.1.2
 nodeSelector:
   agentpool: tools01
 resources:
