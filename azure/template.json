@@ -135,7 +135,7 @@
           "resources": [
             {
               "name": "[concat(variables('mySqlServerName'), '/', parameters('mySqlFirewallRules')[copyIndex()].name)]",
-              "type": "Microsoft.DBforMySQL/servers/firewallRules",
+              "type": "Microsoft.DBforMySQL/flexibleServers/firewallRules",
               "apiVersion": "2021-05-01",
               "properties": {
                 "startIpAddress": "[parameters('mySqlFirewallRules')[copyIndex()].startIpAddress]",
