@@ -105,7 +105,7 @@
                 {
                   "name": "grafana",
                   "type": "databases",
-                  "apiVersion": "2017-12-01",
+                  "apiVersion": "2021-05-01",
                   "properties": {},
                   "dependsOn": [
                     "[variables('mySqlServerName')]"
@@ -136,7 +136,7 @@
             {
               "name": "[concat(variables('mySqlServerName'), '/', parameters('mySqlFirewallRules')[copyIndex()].name)]",
               "type": "Microsoft.DBforMySQL/servers/firewallRules",
-              "apiVersion": "2017-12-01",
+              "apiVersion": "2021-05-01",
               "properties": {
                 "startIpAddress": "[parameters('mySqlFirewallRules')[copyIndex()].startIpAddress]",
                 "endIpAddress": "[parameters('mySqlFirewallRules')[copyIndex()].endIpAddress]"
