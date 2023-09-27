@@ -35,11 +35,11 @@
     },
     "mySqlSkuName": {
       "type": "string",
-      "defaultValue": "B_Gen5_2"
+      "defaultValue": "Standard_B2s"
     },
     "mySqlSkuTier": {
       "type": "string",
-      "defaultValue": "Basic"
+      "defaultValue": "Burstable"
     },
     "mySqlStorageMB": {
       "type": "string",
