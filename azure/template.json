@@ -83,7 +83,7 @@
             {
               "name": "[variables('mySqlServerName')]",
               "type": "Microsoft.DBforMySQL/flexibleServers",
-              "apiVersion": "2017-12-01",
+              "apiVersion": "2021-05-01",
               "location": "[parameters('resourceGroupLocation')]",
               "sku": {
                 "name": "[parameters('mySqlSkuName')]",
