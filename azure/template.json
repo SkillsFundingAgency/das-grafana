@@ -29,10 +29,6 @@
         "example": "/[ { 'name': 'foofirewallrule', 'startIpAddress': '192.168.0.1', 'endIpAddress': '192.168.0.1'}]"
       }
     },
-    "mySqlSkuFamily": {
-      "type": "string",
-      "defaultValue": "Gen5"
-    },
     "mySqlSkuName": {
       "type": "string",
       "defaultValue": "Standard_B2s"
@@ -87,8 +83,7 @@
               "location": "[parameters('resourceGroupLocation')]",
               "sku": {
                 "name": "[parameters('mySqlSkuName')]",
-                "tier": "[parameters('mySqlSkuTier')]",
-                "family": "[parameters('mySqlSkuFamily')]"
+                "tier": "[parameters('mySqlSkuTier')]"
               },
               "properties": {
                 "administratorLogin": "[parameters('grafanaMySqlAdminUsername')]",
