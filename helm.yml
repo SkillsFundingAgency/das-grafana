@@ -49,7 +49,7 @@ grafana.ini:
     host: {{MySqlServerName}}.mysql.database.azure.com:3306
     name: grafana
     user: {{GrafanaMySqlAdminLogin}}
-    password: {{GrafanaMySqlAdminPassword}}
+    password: '"""{{GrafanaMySqlAdminPassword}}"""'
     ssl_mode: skip-verify
     ca_cert_path: /etc/ssl/certs/ca-cert-Baltimore_CyberTrust_Root.pem
   external_image_storage:
