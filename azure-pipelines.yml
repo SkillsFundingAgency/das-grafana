@@ -33,6 +33,7 @@ stages:
   - group: PreProd Management Resources
   - group: PREPROD Tools Service Shared
   - group: PREPROD Grafana
+  - group: PREPROD AKS Configuration
   jobs:
   - template: pipeline-templates/job/deploy-grafana.yml
     parameters:
@@ -60,6 +61,7 @@ stages:
   - group: Prod Management Resources
   - group: PROD Tools Service Shared
   - group: PROD Grafana
+  - group: PROD AKS Configuration
   jobs:
   - template: pipeline-templates/job/deploy-grafana.yml
     parameters:
