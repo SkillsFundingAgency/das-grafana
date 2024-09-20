@@ -44,7 +44,17 @@
     "utcValue": {
       "type": "string",
       "defaultValue": "[utcNow('yyMMddHHmmss')]"
+    },
+    "VirtualNetworkResourceGroup": {
+      "type": "string"
+    },
+    "virtualNetworkName": {
+      "type": "string"
+    },
+    "subnetNameAKS": {
+      "type": "string"
     }
+
   },
   "variables": {
     "deploymentUrlBase": "https://raw.githubusercontent.com/SkillsFundingAgency/das-platform-building-blocks/master/templates/",
@@ -164,10 +174,13 @@
             "value": "[variables('storageAccountName')]"
           },
           "allowBlobPublicAccess": {
-            "value": true
+            "value": false
           },
           "allowSharedKeyAccess": {
             "value": true
+          },
+          "subnetResourceIdList": {
+            "value": "[array(resourceId( subscription().subscriptionId, parameters('VirtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('subnetNameAKS')))]"
           }
         }
       },
@@ -194,7 +207,7 @@
             "value": "alerts"
           },
           "publicAccess": {
-            "value": "Blob"
+            "value": "None"
           }
         }
       },
