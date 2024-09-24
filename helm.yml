@@ -4,7 +4,7 @@ image:
   repository: grafana/grafana
   tag: 10.1.2
 nodeSelector:
-  agentpool: tools01
+  agentpool: {{toolsAgentName}}
 resources:
   requests:
     cpu: 100m
