@@ -78,7 +78,7 @@ $NewSqlDBAccountParameters = @{
         $SqlServerUserName = (Get-AzSqlServer -ResourceGroupName $ServerResource.ResourceGroupName -ServerName $ServerName).SqlAdministratorLogin
 
         Write-Verbose -Message "Retrieving secure server password"
-        $SqlServerPassword = (Get-AzKeyVaultSecret -VaultName $KeyVaultName -Name $ServerName.Replace("-ne","")).SecretValueText
+        $SqlServerPassword = Get-AzKeyVaultSecret -VaultName $KeyVaultName -Name $ServerName -AsPlainText
         if (!$SqlServerPassword) {
             throw "Could not retrieve secure password for $ServerName"
         }
@@ -102,7 +102,7 @@ $NewSqlDBAccountParameters = @{
 
         # --- Retrieve or set service account password
         Write-Verbose -Message "Creating service account: $SqlServiceAccountName"
-        $ServiceAccountPassword = (Get-AzKeyVaultSecret -VaultName $KeyVaultName -Name $ServiceAccountSecretName).SecretValueText
+        $ServiceAccountPassword = Get-AzKeyVaultSecret -VaultName $KeyVaultName -Name $ServiceAccountSecretName -AsPlainText
         if (!$ServiceAccountPassword) {
             $ServiceAccountPassword = Get-RandomPassword
             $SecureAccountPassword = $ServiceAccountPassword | ConvertTo-SecureString -AsPlainText -Force
