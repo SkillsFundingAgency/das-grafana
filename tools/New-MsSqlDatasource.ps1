@@ -83,7 +83,7 @@ try {
         Write-Host "        -> Creating data source"
 
         $ServiceAccountSecretName = "$Environment-$ServiceAccountName".ToLower()
-        $ServiceAccountPassword = (Get-AzKeyVaultSecret -VaultName $KeyVaultName -Name $ServiceAccountSecretName).SecretValueText
+        $ServiceAccountPassword = Get-AzKeyVaultSecret -VaultName $KeyVaultName -Name $ServiceAccountSecretName -AsPlainText
         if (!$ServiceAccountPassword) {
             Write-Error -Message "Could not find a secret with name $ServiceAccountSecretName" -ErrorAction Stop
         }
